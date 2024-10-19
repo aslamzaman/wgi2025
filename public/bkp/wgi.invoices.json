@@ -1,0 +1,312 @@
+[{
+  "_id": {
+    "$oid": "65fc718afc0452474d3c611b"
+  },
+  "dt": {
+    "$date": "2024-03-21T00:00:00.000Z"
+  },
+  "invoiceno": 28517381,
+  "shipment": 54,
+  "customer": {
+    "name": "MUAAZ TRADING CORP.(NAZRUL ISLAM)",
+    "address": "PLAZA MARKET, ISLAMPUR",
+    "contact": "01717691397"
+  },
+  "item": [
+    {
+      "id": {
+        "$numberLong": "1711042870636"
+      },
+      "name": "PANJABI BOX;SYNTHETIC, COTTON",
+      "rate": 500,
+      "unit": "Piece",
+      "qty": 4,
+      "_id": {
+        "$oid": "65fc718afc0452474d3c611c"
+      }
+    },
+    {
+      "id": {
+        "$numberLong": "1711042927483"
+      },
+      "name": "SHAREE;SHAREE",
+      "rate": 50000,
+      "unit": "Cartoon",
+      "qty": 10,
+      "_id": {
+        "$oid": "65fc718afc0452474d3c611d"
+      }
+    }
+  ],
+  "deduct": "6000",
+  "payment": "23000",
+  "createdAt": {
+    "$date": "2024-03-21T17:42:34.385Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-21T17:42:34.385Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65fd3fc00188c88902fe66c4"
+  },
+  "dt": {
+    "$date": "2024-03-22T00:00:00.000Z"
+  },
+  "invoiceno": 28518261,
+  "shipment": 23,
+  "customer": {
+    "name": "SAGOR GARMENT(2022)",
+    "address": "KARANIGANJ, DHAKA",
+    "contact": "0"
+  },
+  "item": [
+    {
+      "id": {
+        "$numberLong": "1711095687101"
+      },
+      "name": "READY MADE GARMENTS;SHAREE, ORNA, KURTI",
+      "rate": 4,
+      "unit": "Kgs.",
+      "qty": 4,
+      "_id": {
+        "$oid": "65fd3fc00188c88902fe66c5"
+      }
+    },
+    {
+      "id": {
+        "$numberLong": "1711095709717"
+      },
+      "name": "LADIES THAN;SYNTHETIC, COTTON",
+      "rate": 400,
+      "unit": "Meter",
+      "qty": 40,
+      "_id": {
+        "$oid": "65fd3fc00188c88902fe66c6"
+      }
+    },
+    {
+      "id": {
+        "$numberLong": "1711095724565"
+      },
+      "name": "NAMAJ CAP;NAMAJ TUPI",
+      "rate": 50,
+      "unit": "Piece",
+      "qty": 1,
+      "_id": {
+        "$oid": "65fd3fc00188c88902fe66c7"
+      }
+    }
+  ],
+  "deduct": "0",
+  "payment": "0",
+  "createdAt": {
+    "$date": "2024-03-22T08:22:24.458Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-22T08:22:24.458Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65fd409a0188c88902fe66d8"
+  },
+  "dt": {
+    "$date": "2024-03-22T00:00:00.000Z"
+  },
+  "invoiceno": 28518265,
+  "shipment": 11,
+  "customer": {
+    "name": "MOTAHAR BHI",
+    "address": "MOGBAZER, DHAKA",
+    "contact": "0"
+  },
+  "item": [
+    {
+      "id": {
+        "$numberLong": "1711095687101"
+      },
+      "name": "READY MADE GARMENTS;SHAREE, ORNA, KURTI",
+      "rate": 4,
+      "unit": "Kgs.",
+      "qty": 4,
+      "_id": {
+        "$oid": "65fd409a0188c88902fe66d9"
+      }
+    },
+    {
+      "id": {
+        "$numberLong": "1711095709717"
+      },
+      "name": "LADIES THAN;SYNTHETIC, COTTON",
+      "rate": 400,
+      "unit": "Meter",
+      "qty": 40,
+      "_id": {
+        "$oid": "65fd409a0188c88902fe66da"
+      }
+    },
+    {
+      "id": {
+        "$numberLong": "1711095724565"
+      },
+      "name": "NAMAJ CAP;NAMAJ TUPI",
+      "rate": 50,
+      "unit": "Piece",
+      "qty": 1,
+      "_id": {
+        "$oid": "65fd409a0188c88902fe66db"
+      }
+    }
+  ],
+  "deduct": "800",
+  "payment": "891",
+  "createdAt": {
+    "$date": "2024-03-22T08:26:02.895Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-22T08:26:02.895Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65fe98d2089dcd720a9c68dd"
+  },
+  "dt": {
+    "$date": "2024-03-23T00:00:00.000Z"
+  },
+  "invoiceno": 28519734,
+  "shipment": 54,
+  "customer": {
+    "name": "MOTAHAR BHI",
+    "address": "MOGBAZER, DHAKA",
+    "contact": "0"
+  },
+  "item": [
+    {
+      "id": {
+        "$numberLong": "1711095724565"
+      },
+      "name": "NAMAJ CAP;NAMAJ TUPI",
+      "rate": 50,
+      "unit": "Piece",
+      "qty": 1,
+      "_id": {
+        "$oid": "65fe98d2089dcd720a9c68de"
+      }
+    },
+    {
+      "id": {
+        "$numberLong": "1711184060634"
+      },
+      "name": "SHIRTING BOX;SHIRTING BOX",
+      "rate": 25000,
+      "unit": "Thaan",
+      "qty": 100,
+      "_id": {
+        "$oid": "65fe98d2089dcd720a9c68df"
+      }
+    }
+  ],
+  "deduct": "0",
+  "payment": "0",
+  "createdAt": {
+    "$date": "2024-03-23T08:54:42.432Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-23T08:54:42.432Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65fe9b37089dcd720a9c6952"
+  },
+  "dt": {
+    "$date": "2024-03-23T00:00:00.000Z"
+  },
+  "invoiceno": 28519744,
+  "shipment": 23,
+  "customer": {
+    "name": "SAGOR GARMENT(2022)",
+    "address": "KARANIGANJ, DHAKA",
+    "contact": "0"
+  },
+  "item": [
+    {
+      "id": {
+        "$numberLong": "1711184679291"
+      },
+      "name": "SHIRTING BOX;SHIRTING BOX",
+      "rate": 10000,
+      "unit": "Thaan",
+      "qty": 100,
+      "_id": {
+        "$oid": "65fe9b37089dcd720a9c6953"
+      }
+    }
+  ],
+  "deduct": "50",
+  "payment": "800",
+  "createdAt": {
+    "$date": "2024-03-23T09:04:55.725Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-23T09:04:55.725Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65ff0565ac1786d1d124ad72"
+  },
+  "dt": {
+    "$date": "2024-03-23T00:00:00.000Z"
+  },
+  "invoiceno": 28520197,
+  "shipment": 23,
+  "customer": {
+    "name": "MUAAZ TRADING CORP.(NAZRUL ISLAM)",
+    "address": "PLAZA MARKET, ISLAMPUR",
+    "contact": "01717691397"
+  },
+  "item": [
+    {
+      "id": {
+        "$numberLong": "1711184679291"
+      },
+      "name": "SHIRTING BOX;SHIRTING BOX",
+      "rate": 10000,
+      "unit": "Thaan",
+      "qty": 100,
+      "_id": {
+        "$oid": "65ff0565ac1786d1d124ad73"
+      }
+    },
+    {
+      "id": {
+        "$numberLong": "1711211838092"
+      },
+      "name": "PANJABI FABRICS;COTTON, SYNTHETIC, PRINT",
+      "rate": 500,
+      "unit": "Piece",
+      "qty": 100,
+      "_id": {
+        "$oid": "65ff0565ac1786d1d124ad74"
+      }
+    }
+  ],
+  "deduct": "800",
+  "payment": "9000",
+  "createdAt": {
+    "$date": "2024-03-23T16:37:57.292Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-23T16:37:57.292Z"
+  },
+  "__v": 0
+}]

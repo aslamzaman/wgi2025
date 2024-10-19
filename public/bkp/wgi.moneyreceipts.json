@@ -1,0 +1,52 @@
+[{
+  "_id": {
+    "$oid": "65ffb448528fdaddf40d50ec"
+  },
+  "dt": {
+    "$date": "2024-03-17T00:00:00.000Z"
+  },
+  "receiveNo": 28520943,
+  "receivedFrom": "Aslam Zaman",
+  "taka": 50000,
+  "cashType": "Cash",
+  "bankName": " ",
+  "chequeNo": " ",
+  "chequeDt": {
+    "$date": "2024-03-24T00:00:00.000Z"
+  },
+  "purpose": "By T-Shirt",
+  "contact": "01720025151",
+  "createdAt": {
+    "$date": "2024-03-24T05:04:08.891Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-24T05:04:08.891Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65ffb4d5528fdaddf40d50f1"
+  },
+  "dt": {
+    "$date": "2024-03-24T00:00:00.000Z"
+  },
+  "receiveNo": 28520945,
+  "receivedFrom": "Aslam Zaman",
+  "taka": 30000,
+  "cashType": "Cheque",
+  "bankName": "Agrani Bangk Limited",
+  "chequeNo": "7884545665",
+  "chequeDt": {
+    "$date": "2024-03-22T00:00:00.000Z"
+  },
+  "purpose": "By Button",
+  "contact": "012750025151",
+  "createdAt": {
+    "$date": "2024-03-24T05:06:29.206Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-24T05:06:29.206Z"
+  },
+  "__v": 0
+}]

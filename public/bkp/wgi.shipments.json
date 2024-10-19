@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "65f289d68cad048ad8fb3cbd"
+  },
+  "dt": {
+    "$date": "2024-03-14T00:00:00.000Z"
+  },
+  "shipmentno": "4653",
+  "lcid": {
+    "$oid": "65efdb24a95b4e296ee8a854"
+  },
+  "supplierid": {
+    "$oid": "65ec51436bb974a7703cf69b"
+  },
+  "itemid": {
+    "$oid": "65ec4c4f6bb974a7703cf679"
+  },
+  "unitid": {
+    "$oid": "65efcf1c377aef65af3146cf"
+  },
+  "qty": 15970,
+  "taka": 300,
+  "createdAt": {
+    "$date": "2024-03-14T05:23:34.015Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-14T07:37:26.454Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f289d68cad048ad8fb3cc1"
+  },
+  "dt": {
+    "$date": "2024-03-14T00:00:00.000Z"
+  },
+  "shipmentno": "4654",
+  "lcid": {
+    "$oid": "65efdb24a95b4e296ee8a854"
+  },
+  "supplierid": {
+    "$oid": "65ec51436bb974a7703cf69b"
+  },
+  "itemid": {
+    "$oid": "65ec4c4f6bb974a7703cf676"
+  },
+  "unitid": {
+    "$oid": "65efcf1c377aef65af3146cf"
+  },
+  "qty": 15970,
+  "taka": 9000,
+  "createdAt": {
+    "$date": "2024-03-14T05:23:34.579Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-14T05:35:46.404Z"
+  },
+  "__v": 0
+}]

@@ -1,0 +1,56 @@
+[{
+  "_id": {
+    "$oid": "65e98b33adb333f5f1bf1114"
+  },
+  "name": "Office Assistance",
+  "shortname": "OA",
+  "createdAt": {
+    "$date": "2024-03-07T09:38:59.370Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T10:34:18.345Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e99dd6adb333f5f1bf117b"
+  },
+  "name": "Manager-Overseesy",
+  "shortname": "MO",
+  "createdAt": {
+    "$date": "2024-03-07T10:58:30.399Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T10:33:47.831Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65eb24b96e17ba438aa376cd"
+  },
+  "name": "Manager- Commercial",
+  "shortname": "MC",
+  "createdAt": {
+    "$date": "2024-03-08T14:46:17.494Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T10:33:54.599Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65ec046fa2ad13bedc0c7ebc"
+  },
+  "name": "Manager- Accounts and Admin",
+  "shortname": "MAA",
+  "createdAt": {
+    "$date": "2024-03-09T06:40:47.572Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T10:25:25.888Z"
+  },
+  "__v": 0
+}]

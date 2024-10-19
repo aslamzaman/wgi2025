@@ -1,0 +1,65 @@
+[{
+  "_id": {
+    "$oid": "65efceec377aef65af3146bd"
+  },
+  "name": "Cartoon",
+  "createdAt": {
+    "$date": "2024-03-12T03:41:32.451Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-12T03:41:32.451Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65efcef8377aef65af3146c3"
+  },
+  "name": "Thaan",
+  "createdAt": {
+    "$date": "2024-03-12T03:41:44.506Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-12T03:41:44.506Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65efcf03377aef65af3146c7"
+  },
+  "name": "Kgs.",
+  "createdAt": {
+    "$date": "2024-03-12T03:41:55.893Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-21T17:44:14.363Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65efcf0a377aef65af3146cb"
+  },
+  "name": "Meter",
+  "createdAt": {
+    "$date": "2024-03-12T03:42:02.870Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-12T03:42:02.870Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65efcf1c377aef65af3146cf"
+  },
+  "name": "Piece",
+  "createdAt": {
+    "$date": "2024-03-12T03:42:20.504Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-12T03:42:20.504Z"
+  },
+  "__v": 0
+}]

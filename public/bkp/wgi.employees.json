@@ -1,0 +1,88 @@
+[{
+  "_id": {
+    "$oid": "65ec39666bb974a7703cf512"
+  },
+  "name": "AL AMIN CHOWDHURY",
+  "address": "52 East Rayer Bazer, Zigatola, Dhaka",
+  "post_id": {
+    "$oid": "65ec046fa2ad13bedc0c7ebc"
+  },
+  "salary": 500000,
+  "join_dt": {
+    "$date": "2017-01-01T00:00:00.000Z"
+  },
+  "contact": "01767950314",
+  "createdAt": {
+    "$date": "2024-03-09T10:26:46.641Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T10:26:46.641Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65ec3b946bb974a7703cf553"
+  },
+  "name": "IQBAL HOSSAIN",
+  "address": "Dhaka",
+  "post_id": {
+    "$oid": "65eb24b96e17ba438aa376cd"
+  },
+  "salary": 14000,
+  "join_dt": {
+    "$date": "2022-05-01T00:00:00.000Z"
+  },
+  "contact": "01316902727",
+  "createdAt": {
+    "$date": "2024-03-09T10:36:04.482Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T10:36:04.482Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65ec3bd26bb974a7703cf55a"
+  },
+  "name": "NAIMUL HOSSAIN",
+  "address": "Dhaka",
+  "post_id": {
+    "$oid": "65e99dd6adb333f5f1bf117b"
+  },
+  "salary": 14000,
+  "join_dt": {
+    "$date": "2022-09-01T00:00:00.000Z"
+  },
+  "contact": "01770442300",
+  "createdAt": {
+    "$date": "2024-03-09T10:37:06.414Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T10:37:06.414Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65ec3bfe6bb974a7703cf561"
+  },
+  "name": "MD MOTIN KHAN",
+  "address": "Barishal",
+  "post_id": {
+    "$oid": "65e98b33adb333f5f1bf1114"
+  },
+  "salary": 9000,
+  "join_dt": {
+    "$date": "2022-06-20T00:00:00.000Z"
+  },
+  "contact": "01845882143",
+  "createdAt": {
+    "$date": "2024-03-09T10:37:50.600Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T10:52:25.221Z"
+  },
+  "__v": 0
+}]

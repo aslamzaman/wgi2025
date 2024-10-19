@@ -1,0 +1,322 @@
+[{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf682"
+  },
+  "name": "SHIRTING BOX",
+  "description": "SHIRTING BOX",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.232Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.232Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf672"
+  },
+  "name": "SHIRTING FABRICS",
+  "description": "SHIRTING FABRICS",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.230Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.230Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf679"
+  },
+  "name": "ORNA",
+  "description": "ORNA",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf67c"
+  },
+  "name": "NAMAJ CAP",
+  "description": "NAMAJ TUPI",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf673"
+  },
+  "name": "DUPATTA",
+  "description": "JORJET, SYNTHETIC",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.230Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.230Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf685"
+  },
+  "name": "CHANEL FABRICS",
+  "description": "CHANEL FABRICS",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.232Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.232Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf67a"
+  },
+  "name": "SUITING FABRICS",
+  "description": "COTTON, SYNTHETIC",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf675"
+  },
+  "name": "PANJABI FABRICS",
+  "description": "COTTON, SYNTHETIC, PRINT",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.230Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.230Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf677"
+  },
+  "name": "CAPITAL MACHINERY",
+  "description": "CAPITAL MACHINERY",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf681"
+  },
+  "name": "DHUPON",
+  "description": "COTTON, SYNTHETIC",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.232Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.232Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf671"
+  },
+  "name": "YARN",
+  "description": "SYNTHETIC AND COTTON",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.230Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.230Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf67d"
+  },
+  "name": "PANJABI CATALOG",
+  "description": "CATALOG FABRIC",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf684"
+  },
+  "name": "LADIES THAN",
+  "description": "SYNTHETIC, COTTON",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.232Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.232Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf676"
+  },
+  "name": "SHERWANI",
+  "description": "SHERWANI",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf670"
+  },
+  "name": "PANTING FABRICS",
+  "description": "SYNTHETIC AND COTTON",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.230Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.230Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf680"
+  },
+  "name": "SHAREE",
+  "description": "SHAREE",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.232Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.232Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf67b"
+  },
+  "name": "DHOTI",
+  "description": "DHOTI",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf67f"
+  },
+  "name": "CATALOG SAMPLE",
+  "description": "CATALOG SAMPLE",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf674"
+  },
+  "name": "BUTTON",
+  "description": "BUTTON",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.230Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.230Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf67e"
+  },
+  "name": "SUITING FABRICS",
+  "description": "COTTON, SYNTHETIC",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf686"
+  },
+  "name": "PANJABI BOX",
+  "description": "SYNTHETIC, COTTON",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.232Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.232Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf678"
+  },
+  "name": "READY MADE GARMENTS",
+  "description": "SHAREE, ORNA, KURTI",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.231Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec4c4f6bb974a7703cf683"
+  },
+  "name": "PENCIL",
+  "description": "MARKER PENCIL",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-03-09T11:47:27.232Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T11:47:27.232Z"
+  }
+}]

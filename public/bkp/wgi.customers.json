@@ -1,0 +1,3408 @@
+[{
+  "_id": {
+    "$oid": "662547fe9cdef8385a7e14c7"
+  },
+  "name": "dsfdsfs",
+  "address": "Bamnacharaa",
+  "contact": "017333",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.747Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.747Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "662547f59cdef8385a7e14c4"
+  },
+  "name": "Ahsan",
+  "address": "Bamnacharaa",
+  "contact": "017333",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.747Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.747Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf663"
+  },
+  "name": "TUSHAR GARMENTS (TUTUL)u",
+  "address": "KARANIGANJ, DHAKA",
+  "contact": "-",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.748Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.748Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf662"
+  },
+  "name": "LITON RAJBABI",
+  "address": "RAJBARI-FARIDPUR",
+  "contact": "-",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.748Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.748Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf661"
+  },
+  "name": "TUSHAR-TUTUL",
+  "address": "KARANIGANJ, DHAKA",
+  "contact": "-",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.748Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.748Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf660"
+  },
+  "name": "SHORAV TEXTILE ",
+  "address": "ISLAMPUR.DHAKA",
+  "contact": "-",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.748Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.748Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf65f"
+  },
+  "name": "MAYER DOA GARMENTS -TUTUL",
+  "address": "KARANIGANJ, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.748Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.748Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf65e"
+  },
+  "name": "HOLIDAY FASHION ",
+  "address": "SCIENCE LABRATORY",
+  "contact": "-",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.748Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.748Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf65d"
+  },
+  "name": "MUAAZ TRADING CORP.(NAZRUL ISLAM)",
+  "address": "PLAZA MARKET, ISLAMPUR",
+  "contact": "01717691397",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.748Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.748Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf65c"
+  },
+  "name": "NOWSHAD GARMENTS",
+  "address": "CHITTAGANJ",
+  "contact": "-",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.748Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.748Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf65b"
+  },
+  "name": "NEW POLASH BOSTRO BITAN",
+  "address": "0",
+  "contact": "0",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf65a"
+  },
+  "name": "MUZAHID BHI (IFRA FABRICS)",
+  "address": "Q",
+  "contact": "0",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf659"
+  },
+  "name": "SAGOR GARMENT(2022)",
+  "address": "KARANIGANJ, DHAKA",
+  "contact": "0",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf658"
+  },
+  "name": "MASNOOR FASHION(2022-23)",
+  "address": "MIRPUR, DHAKA",
+  "contact": "0",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf657"
+  },
+  "name": "MOTAHAR BHI",
+  "address": "MOGBAZER, DHAKA",
+  "contact": "0",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf656"
+  },
+  "name": "BISMILLAH ENTERPIRSE(2022)",
+  "address": "EAST BANGLE MARKET",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf655"
+  },
+  "name": "N R FABRICS(2022)",
+  "address": "NOTUN BAZER,GULSHAN, DHAKA",
+  "contact": "0",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf654"
+  },
+  "name": "B R FABRICS (BIPLOB BHI) ",
+  "address": "KUMARTULI, ISLAMPUR, DHAKA",
+  "contact": "01686645198",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf653"
+  },
+  "name": "KAUSER BHI (BUSINESS POINT)",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "0",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf652"
+  },
+  "name": "SAMIYA KALAM (2020-21)",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01749065575",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf651"
+  },
+  "name": "FAIR FABRICS(MANIK BHI)",
+  "address": "CHITTAGONG",
+  "contact": "0",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf650"
+  },
+  "name": "NATIYA FASHION (JAZANGIR BHI)",
+  "address": "THAKOREGONE",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf64f"
+  },
+  "name": "A KHALID (SYLHET)",
+  "address": "ZINDABAZAR, SYLHET",
+  "contact": "0",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf64e"
+  },
+  "name": "JASA FABRICS",
+  "address": "KUMARTULI, ISLAMPUR, DHAKA",
+  "contact": "01681589075",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.749Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf64d"
+  },
+  "name": "MARJAN FABRICS(MUNAEM HAJI)",
+  "address": "HAYAT DOLON MARKET",
+  "contact": "01715046304",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf64c"
+  },
+  "name": "A KHALID BHI (CHITTAGONJ)",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf64b"
+  },
+  "name": "KARNAFULLY GARMENTS (2021-22)",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf64a"
+  },
+  "name": "HAQ TRADING (2021-22)",
+  "address": "PABNA BUILDING- PATUATULI, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf649"
+  },
+  "name": "REDOY GARMENTS (ZAHANGIR BHI)",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf648"
+  },
+  "name": "PINTO BHI (LALBAGH)",
+  "address": "LALABAGH, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf647"
+  },
+  "name": "MOUSHUMI GARMENTS (MONTU BHAI)",
+  "address": "GAUSIA,NEW MARKET",
+  "contact": "01973544429",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf646"
+  },
+  "name": "SHOHAG FABRICS",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01949504232, 0247391430",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf645"
+  },
+  "name": "NASIR-MOON COMPLEX",
+  "address": "MOON COMPLEX, PATUATULI, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf644"
+  },
+  "name": "HANIF (ROSE FABRICS)",
+  "address": "MIRPUR, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf643"
+  },
+  "name": "TUSHAR BHI (LILAC GARMENTS)",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01817079276",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf642"
+  },
+  "name": "GALIB TRADE INTERNATIONAL (MUSHARUF BHI)",
+  "address": "392, DOKHINKHZN, UTTARA, DHAKA",
+  "contact": "-",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf641"
+  },
+  "name": "KALAM BHI -ISLAMPUR",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf640"
+  },
+  "name": "RIZWAN TRADING",
+  "address": "ITC TOWER, ISLAMPUR, DHAKA",
+  "contact": "01937244706",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf63f"
+  },
+  "name": "NAYEM N BROTHERS",
+  "address": "91, NOOR SUPER MARKET, KALIGANG, DHAKA",
+  "contact": "01740542968",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf63e"
+  },
+  "name": "KHADMATH ( HANNAN BHI)",
+  "address": "ISLAMPUR",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.750Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf63d"
+  },
+  "name": "M A BOUTIQUE",
+  "address": "MIRPUR, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf63c"
+  },
+  "name": "MOHAMMAD TRADE INTERNATIONAL(SAGOR BHI)",
+  "address": "GULSANARA CITY-5TH FLOOR, WASIE GHAT ROAD, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf63b"
+  },
+  "name": "QUALITY GARMENTS",
+  "address": "URDHU ROAD, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf63a"
+  },
+  "name": "AKR ( ABDUL KHALIC BHI)",
+  "address": "RAHAMANIA CLOTH STORE-BOGURA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf639"
+  },
+  "name": "RIYAD GARMAENTS",
+  "address": "SHORIF MARKET",
+  "contact": "01940950858",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf638"
+  },
+  "name": "AMIN BHI (BIRDS EYE)",
+  "address": "AZIZ SUPER MARKET, SHAHABAGH, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf637"
+  },
+  "name": "JEWEL GARMENTS (2021-22)",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf636"
+  },
+  "name": "STAR PANJABI",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf635"
+  },
+  "name": "RAHAT GARMENTS",
+  "address": "URDU ROAD",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf634"
+  },
+  "name": "N A TRADERS",
+  "address": "URDHU ROAD",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf633"
+  },
+  "name": "LATEST GARMENTS",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf632"
+  },
+  "name": "AL AZHAR GARMENTS",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf631"
+  },
+  "name": "SHAMEEM-SHARIF MARKET",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf630"
+  },
+  "name": "ELIAS-CHITTAGONG",
+  "address": "CHITTAGONG",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf62f"
+  },
+  "name": "TORE BAZER (MUZAMMEL BHI)",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf62e"
+  },
+  "name": "A ZABBAR (NOOR GARMENTS)",
+  "address": "RAJSHAHI",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf62d"
+  },
+  "name": "PORITOSH SHAHA(PARTHO PANJABI)",
+  "address": "MIRPUR, DHAKA",
+  "contact": "01714377497",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf62c"
+  },
+  "name": "ABDULLAH SHAH GARMENTS (MD NAHAL MAHAMUD)",
+  "address": "HOUSE:98/1, RD-3, SHAMOLY HOUSING PROJECT, ADABOR, DHAKA",
+  "contact": "01913448245",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.751Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf62b"
+  },
+  "name": "NEW SHAPLA CLOTH STORE",
+  "address": "MONSOUR CASTLE, ISLAMPUR",
+  "contact": "01710849073,0257395885",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf62a"
+  },
+  "name": "JMC",
+  "address": "RAJDHANI SUPER MARKET",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf629"
+  },
+  "name": "LIBERTY GARMENTS",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf628"
+  },
+  "name": "M/S SUCHI",
+  "address": "MIMI SUPER MARKET, CHITTAGONG",
+  "contact": "0188255787",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf627"
+  },
+  "name": "AL RIAD (HABIB MOLLAH)",
+  "address": "EAST BANGLE MARKET, SADARGHAT, DHAKA",
+  "contact": "01711465303",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf626"
+  },
+  "name": "SHAMSI (ALAMIN)",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf625"
+  },
+  "name": "SIRAZUL BHI",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf624"
+  },
+  "name": "IQBAL IRAM FASHION(FIROZ)",
+  "address": "CHADNI CHOKE, NEW MARKET",
+  "contact": "01726604098",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf623"
+  },
+  "name": "SHERAJUL BHI",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf622"
+  },
+  "name": "NABARUN GARMENTS",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf621"
+  },
+  "name": "MAA SUITING CENTER",
+  "address": "CHINA MARKET (UNDERGROUND), ISLAMPUR",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf620"
+  },
+  "name": "RANA CORPORATION",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf61f"
+  },
+  "name": "J B PLUS",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01623639168",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf61e"
+  },
+  "name": "AYRA FASHION",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01970273777",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf61d"
+  },
+  "name": "BOMBEY COLLECTION(SUMON MUNSHI)",
+  "address": "1ST FLOOR, MOON COMPLEX, PATUATULI, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf61c"
+  },
+  "name": "NURU  BHI",
+  "address": "EASTERN MOLLIKA",
+  "contact": "ELEPHANT ROAD",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf61b"
+  },
+  "name": "MUSA BHI(SARKAR FASHION)",
+  "address": "EAST BANGLE MARKET, SADARGHAT, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf61a"
+  },
+  "name": "AMIR FABRICS",
+  "address": "BANANI SUPER MARKET, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf619"
+  },
+  "name": "S I ENTERPRISE",
+  "address": "MONSOUR CASTLE, ISLAMPUR",
+  "contact": "01711535779",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf618"
+  },
+  "name": "WGI",
+  "address": "MOON COMPLEX, PATUATULI, DHAKA",
+  "contact": "01767950314",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf617"
+  },
+  "name": "BS FABRICS (TIPU MOROL)",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf616"
+  },
+  "name": "SONALI ENTERPRISE",
+  "address": "CHINA MARKET(GROUND FLOOR)",
+  "contact": "01936203578",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf615"
+  },
+  "name": "ISHAN FASHION",
+  "address": "MIRPUR - 10",
+  "contact": "0",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf614"
+  },
+  "name": "LIPI FASHION (MR.TALEB)",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01711129828",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf613"
+  },
+  "name": "RAJA FARUQ ",
+  "address": "NEW SUPER MARKET,",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf612"
+  },
+  "name": "IMRAN BHI",
+  "address": "KALIGANG, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf611"
+  },
+  "name": "AYAN ENTERPRISE (HAMIDUL)",
+  "address": "KHAN PLAZA, ISLAMPUR, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf610"
+  },
+  "name": "JAMIL CREATION",
+  "address": "MIRPUR",
+  "contact": "01716246446",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf60f"
+  },
+  "name": "ABBAS BISWAS",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf60e"
+  },
+  "name": "BABUL BHI",
+  "address": "RAMNA BHABAN, GULISTAN",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf60d"
+  },
+  "name": "SHAH ALAM",
+  "address": "-",
+  "contact": "-",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf60c"
+  },
+  "name": "NOWSHIN ENTERPRISE (MOON BHI)",
+  "address": "HAJI AHMED MARKET-ISLAMPUR",
+  "contact": "01798111125",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf60b"
+  },
+  "name": "SULAIMAN GARMENTS",
+  "address": "MOON COMPLEX, PATUATULI, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf60a"
+  },
+  "name": "ZAKIR ENTERPRISE",
+  "address": "EASTERN MOLLIKA",
+  "contact": "01717605866",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf609"
+  },
+  "name": "MR. HUMAYUN",
+  "address": "KALIGANG, DHAKA",
+  "contact": "01716991252",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf608"
+  },
+  "name": "MR MOJIBOR",
+  "address": "ALOM TOWER, KARAJIGANG, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf607"
+  },
+  "name": "GOLAP PANJABI",
+  "address": "EAST BENGAL",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf606"
+  },
+  "name": "JHINAIDAH ENTERPRISE",
+  "address": "HAQ MARKET, ISLAMPUR",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.753Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf605"
+  },
+  "name": "M KHOKON ( ABDUL JALIL)",
+  "address": "ALOM TOWER, KARAJIGANG, DHAKA",
+  "contact": "01712585390",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf604"
+  },
+  "name": "SOUWKHIN TEX ",
+  "address": "ISLAMPUR, CHINA MARKET",
+  "contact": "01988087500",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf603"
+  },
+  "name": "ANIS BHI(MIRPUR)",
+  "address": "MIRPUR",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf602"
+  },
+  "name": "PUTUL PANJABI",
+  "address": "PIR-YAMINI MARKET,GULISTAN",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf601"
+  },
+  "name": "JONNY IQBAL",
+  "address": "MIRPUR, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf600"
+  },
+  "name": "FARUK - ISLAMPUR",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5ff"
+  },
+  "name": "IQBAL",
+  "address": "MOHAMMADPUR",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5fe"
+  },
+  "name": "JOTI GARMENTS",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5fd"
+  },
+  "name": "TAPAN TEXTILE",
+  "address": "1ST FLOOR, MOON COMPLEX, PATUATULI, DHAKA",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5fc"
+  },
+  "name": "CAPITAL CAP( SHOWAN CHOWDHURY)",
+  "address": "CHOCK BAZER, DHAKA",
+  "contact": "01711262619",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5fb"
+  },
+  "name": "JR GARMENTS",
+  "address": "MIRPUR 10",
+  "contact": "01733340326",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5fa"
+  },
+  "name": "MAHI TRADERS",
+  "address": "MOON COMPLEX, PATUATULI, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5f9"
+  },
+  "name": "NICE MAN",
+  "address": "AMENA MENSION, NEW ELEPHANT ROAD, DHAKA",
+  "contact": "01708878889",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5f8"
+  },
+  "name": "ART-X",
+  "address": "CHITTAGANG",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5f7"
+  },
+  "name": "HAMIDA GARMENTS",
+  "address": "EAST BANGLE MARKET, SADARGHAT, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5f6"
+  },
+  "name": "RAJU RIDWAN",
+  "address": "HAQ MARKET, ISLAMPUR",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5f5"
+  },
+  "name": "FABRICS FAIR( SHAH ALAM BHI)",
+  "address": "JAHAN MANSHION, MIRPUR ROAD, DHAKA",
+  "contact": "01303599842",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.754Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5f4"
+  },
+  "name": "AZIZ & SON'S (RASEL BHAI)",
+  "address": "CHINA MARKET (UNDERGROUND), ISLAMPUR",
+  "contact": "01979789797",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5f3"
+  },
+  "name": "ZAKIR BHI",
+  "address": "SATARKUL, UTTAR BADDA, DHAKA",
+  "contact": "01711248950",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5f2"
+  },
+  "name": "BADSHA BHI",
+  "address": "KUSTIA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5f1"
+  },
+  "name": "MAKKA MEDINA PANJABI ( NAHID BHI)",
+  "address": "LALBAGH, DHAKA",
+  "contact": "01675886260",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5f0"
+  },
+  "name": "MEHEDI FASHION (MAHBUB BHAI)",
+  "address": "NEW SUPER MARKET,",
+  "contact": "01819029045",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5ef"
+  },
+  "name": "FAIR PRISE",
+  "address": "SHOP NO.1,2,3, HAQUE MARKET, ISLAMPUR, DHAKA",
+  "contact": "01624187345",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5ee"
+  },
+  "name": "CLICK IMPAX ",
+  "address": "PURANA PANTAN, DHAKA",
+  "contact": "+880 1936-584418",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5ed"
+  },
+  "name": "SUBHAN GARMENTS",
+  "address": "KHAJA -4/B, 3RD FLOOR, KALIGANJ",
+  "contact": "01745156174",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5ec"
+  },
+  "name": "BAGDAD GARMENTS",
+  "address": "CHITTAGANG",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5eb"
+  },
+  "name": "PRIDE GARMENTS",
+  "address": "2ND FLOOR SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01792481224",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5ea"
+  },
+  "name": "N R FABRICS",
+  "address": "NOTUN BAZER, GULSHAN, DHAKA",
+  "contact": "01719258948",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5e9"
+  },
+  "name": "TANYA FASHION",
+  "address": "GROUND FLOOR, TANIA FASHION, SHARIF MARKET",
+  "contact": "01711905301",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5e8"
+  },
+  "name": "AL HERA FABRICS (SHOURAV)",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01672744887",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5e7"
+  },
+  "name": "SUMON MUNSHI",
+  "address": "MOON COMPLEX, PATUATULI, DHAKA",
+  "contact": "01941739740",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5e6"
+  },
+  "name": "TOKYO FASHION",
+  "address": "MOON COMPLEX, PATUATULI, DHAKA",
+  "contact": "01732694116",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5e5"
+  },
+  "name": "KOLIKATA PANJABI",
+  "address": "MOON COMPLEX, PATUATULI, DHAKA",
+  "contact": "01716489673",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5e4"
+  },
+  "name": "APEX GARMENTS",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01716683291",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5e3"
+  },
+  "name": "INSAF ENTERPRISE ( FARHAD BHI)",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01685849332",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5e2"
+  },
+  "name": "JOSO DA",
+  "address": "MOON COMPLEX, PATUATULI, DHAKA",
+  "contact": "017..",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5e1"
+  },
+  "name": "ALI NOOR GARMENTS",
+  "address": "KHAJA MARKET-4, KALIGANG",
+  "contact": "01819467103",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.755Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5e0"
+  },
+  "name": "SARKAR FASHION",
+  "address": "EAST BANGLE MARKET",
+  "contact": "01982116231",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5df"
+  },
+  "name": "FOUR BROTHERS",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01779409911",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5de"
+  },
+  "name": "BABUL BHI-RAMNA",
+  "address": "RAMNA BHABAN, GULISTAN, DHAKA",
+  "contact": "017..",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5dd"
+  },
+  "name": "Q C PANJABI",
+  "address": "ROAD # 8, BLOCK # E, HOUSE # 3,  PALLABI, MIRPUR, DHAKA",
+  "contact": "01938139302",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5dc"
+  },
+  "name": "MASNOOR FASHION",
+  "address": "MIRPUR , DHAKA",
+  "contact": "01798242412",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5db"
+  },
+  "name": "ABUL KALAM AZAD (EMON CLOTH STORE)",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5da"
+  },
+  "name": "N KHAN ( BEST COLLECTION)",
+  "address": "ITC TOWER, ISLAMPUR",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5d9"
+  },
+  "name": "SHAMIM WEAVING ",
+  "address": "NORSINDI",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5d8"
+  },
+  "name": "SHAHIN TEXTILE",
+  "address": "KALIGANG, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5d7"
+  },
+  "name": "SHAON TEXTILE",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5d6"
+  },
+  "name": "DIN ISLAM",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5d5"
+  },
+  "name": "HAQ TRADINGS",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5d4"
+  },
+  "name": "H R GARMENTS",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5d3"
+  },
+  "name": "NAYON GARMENTS",
+  "address": "GROUND, SHARIF MARKET, DHAKA",
+  "contact": "01671456312",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5d2"
+  },
+  "name": "SAJ GHOR",
+  "address": "SHAKHARI BAZER. DHAKA",
+  "contact": "01732484465",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5d1"
+  },
+  "name": "LUTFOR RAHAMAN",
+  "address": "SYLHET",
+  "contact": "01799860856",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5d0"
+  },
+  "name": "PARTHO PANJABI HOUSE",
+  "address": "MIRPUR, DHAKA",
+  "contact": "01..",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5cf"
+  },
+  "name": "DEWAN PANJABI",
+  "address": "23, URDU ROAD, JARINA BHABAN, CHAK BAZER",
+  "contact": "01715078070",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.756Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5ce"
+  },
+  "name": "BISMILLAH ENTERPRISE",
+  "address": "ZINDABAZER, SYLHET",
+  "contact": "01715465969",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5cd"
+  },
+  "name": "KORI SILK",
+  "address": "CONCORD TOWER, CITY COLLEGE , MIRPUR ROAD, DHAKA",
+  "contact": "01711687947",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5cc"
+  },
+  "name": "MR. MONIRUL ISLAM",
+  "address": "CHAPAI NABABGANG",
+  "contact": "01712617107",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5cb"
+  },
+  "name": "NOOR GARMENTS",
+  "address": "RAJSHAHI",
+  "contact": "01911971432",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5ca"
+  },
+  "name": "ANIK TEXTILE ",
+  "address": "PARADISE BHABAN, ISLAMPUR, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5c9"
+  },
+  "name": "BHELA FASHION",
+  "address": "47 AZIZ SUPER MARKET",
+  "contact": "01911508800",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5c8"
+  },
+  "name": "NUR-E-SULTAN",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01917827151",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5c7"
+  },
+  "name": "MR. KABIR KHAN",
+  "address": "UTTARA , DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5c6"
+  },
+  "name": "aABRU GARMENTS",
+  "address": "SHAJAHANPUR, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5c5"
+  },
+  "name": "ISMAIL BHI ",
+  "address": "GOLDEN PLAZA, NEW MARKET",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5c4"
+  },
+  "name": "ROSE FABRICS",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5c3"
+  },
+  "name": "BIRDS EYE",
+  "address": "AZIZ SUPER MARKET, SHAHABAGH, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5c2"
+  },
+  "name": "THREE STAR (IMRAN BHAI)",
+  "address": "ISLAMPUR",
+  "contact": "01822933509",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5c1"
+  },
+  "name": "JEWEL PANJABI",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5c0"
+  },
+  "name": "KARNAFULLY GARMENTS",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5bf"
+  },
+  "name": "NASIR ENTERPRISE ( ABDUR RAHMAN)",
+  "address": "HAQUE MARKET- ISLAMPUR",
+  "contact": "01632262559",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5be"
+  },
+  "name": "ABDULLAH MALABIS(ASLAM BHAI)",
+  "address": "ABDULLAH MALABIS, SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01752813959",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5bd"
+  },
+  "name": "F GAMEMTS",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.757Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5bc"
+  },
+  "name": "MUNA FASHION",
+  "address": "LALBAGH, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5bb"
+  },
+  "name": "KHAN GARMENTS",
+  "address": "KALIGONJ",
+  "contact": "01711661133",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5ba"
+  },
+  "name": "SAMIYA KALAM",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5b9"
+  },
+  "name": "karim fashion house",
+  "address": "17 agamasi lane, majar golli,gulistan",
+  "contact": "01872522319",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5b8"
+  },
+  "name": "LIBAS DHAKA",
+  "address": "GRAND PLAZA, WIRELESS GATE, MOGHBAZER, DHAKA",
+  "contact": "01835881471",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5b7"
+  },
+  "name": "S N",
+  "address": "CHITTAGONG",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5b6"
+  },
+  "name": "R RAHAMAN",
+  "address": "ISLAMPUR, DHAKA",
+  "contact": "01815431413",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5b5"
+  },
+  "name": "PINTU BHI",
+  "address": "HAZATIBAGH, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5b4"
+  },
+  "name": "NEW MAYER DOA",
+  "address": "ABMIA TOWER, SADARGHAT",
+  "contact": "01719083748",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5b3"
+  },
+  "name": "PRETY FASHION (SHOHEL BHI)",
+  "address": "HOUSE-10, ROAD- 16, MIRPUR 10, DHAKA",
+  "contact": "01815009288",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5b2"
+  },
+  "name": "SAJIB GARMENTS",
+  "address": "MOON COMPLEX, PATUATULI, DHAKA",
+  "contact": "01937769901",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5b1"
+  },
+  "name": "RAHAMAD BHAI (AL-MODINA GARMENTS)",
+  "address": "CHAPAI NABABGANG",
+  "contact": "01740966142",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5b0"
+  },
+  "name": "SAGOR GARMENTS",
+  "address": "KALIGANG, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5af"
+  },
+  "name": "PACIFIC FABRICS ( MOJIBUR BHI)",
+  "address": "BIKRUMPUR PLAZA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5ae"
+  },
+  "name": "LILAK GARMENTS",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5ad"
+  },
+  "name": "KOBIR KHAN",
+  "address": "HOUSE-24, ROAD-28, SECTOR-07",
+  "contact": "01405680094",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5ac"
+  },
+  "name": "RAHMANIA CLOTH STORE (A KHALIK BHI )",
+  "address": "BOGURA",
+  "contact": "01711890507",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5ab"
+  },
+  "name": "NEW BADHAN GARMENTS",
+  "address": "KALIGANG, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5aa"
+  },
+  "name": "AYUB GARMENTS",
+  "address": "SHARIF MARKET, SADARGHAT, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.758Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5a9"
+  },
+  "name": "PRINKA ORNA HOUSE(HANIF BHI)",
+  "address": "GHUSIA, NEW MARKET, DHAKA",
+  "contact": "01814454278, 01919066997",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5a8"
+  },
+  "name": "NEW SHAHJALAL GARMENTS",
+  "address": "MOSHIUR ALAM MARKET, KALIGANG, DHAKA",
+  "contact": "01724361814,01828100455",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5a7"
+  },
+  "name": "SUCHI GARMENTS",
+  "address": "ISLAM PLAZA, KERANIGANG",
+  "contact": "01611615384",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5a6"
+  },
+  "name": "SMRAT PANJABI",
+  "address": "PIRYAMINI MARKET, GULISTAN, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5a5"
+  },
+  "name": "NEW FARID GARMENTS",
+  "address": "KALIGANG, DHAKA",
+  "contact": "01711363170",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5a4"
+  },
+  "name": "SRUTI DHARA ( MONIR BHI)",
+  "address": "BOGURA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5a3"
+  },
+  "name": "IDEAL GARMENTS",
+  "address": "KALIGANG, DHAKA",
+  "contact": "01751064090",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5a2"
+  },
+  "name": "SIKDER GARMENTS",
+  "address": "GROUND FLOOR, SHARIF MARKET, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5a1"
+  },
+  "name": "RED COAT (Mizan Bhi)",
+  "address": "SIDDIK BAZER, GULISTAN",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf5a0"
+  },
+  "name": "BISMILLAH GARMENT (KORBAN BHI)",
+  "address": "EAST BANGLE MARKET, SADARGHAT, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf59f"
+  },
+  "name": "MUSLIM CREATION (JUBO)",
+  "address": "MOLLIK TOWER",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf59e"
+  },
+  "name": "KOMOL DA",
+  "address": "INDIA",
+  "contact": "91",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf59d"
+  },
+  "name": "TAJ MAHAL PANJABI",
+  "address": "KALIGANG, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf59c"
+  },
+  "name": "STYLE POINT",
+  "address": "CHITTAGONG",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf59b"
+  },
+  "name": "NEW SHOHAG GARMENTS",
+  "address": "27-28, ISLAM PLAZA (GROUND FLOOR), KALIGANGJ, DHAKA",
+  "contact": "01865061301",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf59a"
+  },
+  "name": "MENS WORLD",
+  "address": "ELEPHANT ROAD",
+  "contact": "01613117702",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf599"
+  },
+  "name": "ANGAN GARMENTS",
+  "address": " BORHAN MARKET ,KALIGONJ BAZAR, KERANIGONJ",
+  "contact": "01711705653",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf598"
+  },
+  "name": "NEW BISMILLAH ENTERPRISE",
+  "address": "HAYAT DOLON COMPLEX, ISLAPUR",
+  "contact": "01774913284",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf597"
+  },
+  "name": "J K PANJABI",
+  "address": "SHAHIDUL ALAM SUPERMARKET, KALIGANG",
+  "contact": "01712567539",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf596"
+  },
+  "name": "SHAHI TRADERS",
+  "address": "MOON COMPLEX, PATUATULI, DHAKA",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.760Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.760Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf595"
+  },
+  "name": "MAMATA GARMENTS",
+  "address": "SHAHIDUL ALAM SUPERMARKET, KALIGANG",
+  "contact": "01777799000",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.760Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.760Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf594"
+  },
+  "name": "F I GARMENTS",
+  "address": "CHITTAGANG",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.760Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.760Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf593"
+  },
+  "name": "BISMILLAH GARMENTS- ISLAMPUR",
+  "address": "DOULOT COMPLEX ISLAMPUR",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.760Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.760Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf592"
+  },
+  "name": "MRIDUL GARMENTS",
+  "address": "ALOM SUPER MARKET",
+  "contact": "01",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.760Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.760Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65ec475a6bb974a7703cf591"
+  },
+  "name": "HOLY FABRICS",
+  "address": "CHITTAGANG",
+  "contact": "017",
+  "isDeleted": false,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-04-21T17:23:49.760Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-21T17:23:49.760Z"
+  }
+}]

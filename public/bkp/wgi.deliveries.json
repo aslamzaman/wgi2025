@@ -1,0 +1,102 @@
+[{
+  "_id": {
+    "$oid": "6607f1d4775d3a764f0e172b"
+  },
+  "dt": {
+    "$date": "2024-03-30T00:00:00.000Z"
+  },
+  "invoiceNo": 28529945,
+  "orderNo": 28525220,
+  "orderDt": {
+    "$date": "2024-03-27T00:00:00.000Z"
+  },
+  "shipment": 54,
+  "deduct": 100,
+  "payment": 200,
+  "customer": {
+    "_id": "65ec475a6bb974a7703cf657",
+    "name": "MOTAHAR BHI",
+    "address": "MOGBAZER, DHAKA",
+    "contact": "0"
+  },
+  "items": [
+    {
+      "name": "SHIRTING BOX",
+      "description": "SHIRTING BOX",
+      "qty": 200,
+      "unit": "Piece",
+      "taka": 5000,
+      "_id": {
+        "$oid": "66039eb21773b89d673fa6fe"
+      }
+    },
+    {
+      "name": "CHANEL FABRICS",
+      "description": "CHANEL FABRICS",
+      "qty": 1,
+      "unit": "Piece",
+      "taka": 5000,
+      "_id": {
+        "$oid": "66039eb21773b89d673fa6ff"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-30T11:04:52.291Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-30T11:04:52.291Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6618c409588241f869db248c"
+  },
+  "dt": {
+    "$date": "2024-04-12T00:00:00.000Z"
+  },
+  "invoiceNo": 28548318,
+  "orderNo": 28548316,
+  "orderDt": {
+    "$date": "2024-04-12T00:00:00.000Z"
+  },
+  "shipment": 23,
+  "deduct": 1000,
+  "payment": 4000,
+  "customer": {
+    "_id": "65ec475a6bb974a7703cf64c",
+    "name": "A KHALID BHI (CHITTAGONJ)",
+    "address": "ISLAMPUR, DHAKA",
+    "contact": "01"
+  },
+  "items": [
+    {
+      "name": "LADIES THAN",
+      "description": "SYNTHETIC, COTTON",
+      "qty": 10,
+      "unit": "Meter",
+      "taka": 500,
+      "_id": {
+        "$oid": "6618c3dbeeaccf21439bf3a6"
+      }
+    },
+    {
+      "name": "DHUPON",
+      "description": "COTTON, SYNTHETIC",
+      "qty": 10,
+      "unit": "Kgs.",
+      "taka": 100,
+      "_id": {
+        "$oid": "6618c3dbeeaccf21439bf3a7"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-04-12T05:18:01.394Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-12T05:18:01.394Z"
+  },
+  "__v": 0
+}]

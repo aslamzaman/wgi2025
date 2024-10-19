@@ -1,0 +1,177 @@
+[{
+  "_id": {
+    "$oid": "65f71c71f4833e1b4bd47cf5"
+  },
+  "dt": {
+    "$date": "2024-03-17T00:00:00.000Z"
+  },
+  "orderno": 1710693478,
+  "customerId": {
+    "$oid": "65ec475a6bb974a7703cf65a"
+  },
+  "itemId": {
+    "$oid": "65ec4c4f6bb974a7703cf681"
+  },
+  "unitId": {
+    "$oid": "65efcf03377aef65af3146c7"
+  },
+  "qty": 10,
+  "taka": 5000,
+  "delivery": [],
+  "createdAt": {
+    "$date": "2024-03-17T16:38:09.419Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-17T16:38:09.419Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f71d5af4833e1b4bd47d0a"
+  },
+  "dt": {
+    "$date": "2024-03-17T00:00:00.000Z"
+  },
+  "orderno": 1710693709,
+  "customerId": {
+    "$oid": "65ec475a6bb974a7703cf657"
+  },
+  "itemId": {
+    "$oid": "65ec4c4f6bb974a7703cf677"
+  },
+  "unitId": {
+    "$oid": "65efcf1c377aef65af3146cf"
+  },
+  "qty": 10,
+  "taka": 15,
+  "delivery": [],
+  "createdAt": {
+    "$date": "2024-03-17T16:42:02.250Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-17T16:42:02.250Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f71d66f4833e1b4bd47d17"
+  },
+  "dt": {
+    "$date": "2024-03-17T00:00:00.000Z"
+  },
+  "orderno": 1710693724,
+  "customerId": {
+    "$oid": "65ec475a6bb974a7703cf65b"
+  },
+  "itemId": {
+    "$oid": "65ec4c4f6bb974a7703cf676"
+  },
+  "unitId": {
+    "$oid": "65efcf0a377aef65af3146cb"
+  },
+  "qty": 15,
+  "taka": 5000,
+  "delivery": [
+    {
+      "id": {
+        "$numberLong": "1710836698836"
+      },
+      "dt": {
+        "$date": "2024-03-19T00:00:00.000Z"
+      },
+      "qty": 2,
+      "_id": {
+        "$oid": "65f94bee7640452708ecfb80"
+      }
+    },
+    {
+      "id": {
+        "$numberLong": "1710836702678"
+      },
+      "dt": {
+        "$date": "2024-03-19T00:00:00.000Z"
+      },
+      "qty": 3,
+      "_id": {
+        "$oid": "65f94bee7640452708ecfb81"
+      }
+    },
+    {
+      "id": {
+        "$numberLong": "1710836706892"
+      },
+      "dt": {
+        "$date": "2024-03-19T00:00:00.000Z"
+      },
+      "qty": 4,
+      "_id": {
+        "$oid": "65f94bee7640452708ecfb82"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-17T16:42:14.238Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-20T05:10:19.283Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f7c9b9ae1a8309333fdc6f"
+  },
+  "dt": {
+    "$date": "2024-03-18T00:00:00.000Z"
+  },
+  "orderno": 1710737827,
+  "customerId": {
+    "$oid": "65ec475a6bb974a7703cf662"
+  },
+  "itemId": {
+    "$oid": "65ec4c4f6bb974a7703cf684"
+  },
+  "unitId": {
+    "$oid": "65efcf0a377aef65af3146cb"
+  },
+  "qty": 600,
+  "taka": 500,
+  "delivery": [],
+  "createdAt": {
+    "$date": "2024-03-18T04:57:29.322Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-18T05:44:01.725Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f94f9e7640452708ecfbc4"
+  },
+  "dt": {
+    "$date": "2024-03-19T00:00:00.000Z"
+  },
+  "orderno": 1710837641,
+  "customerId": {
+    "$oid": "65ec475a6bb974a7703cf657"
+  },
+  "itemId": {
+    "$oid": "65ec4c4f6bb974a7703cf67b"
+  },
+  "unitId": {
+    "$oid": "65efcf1c377aef65af3146cf"
+  },
+  "qty": 103,
+  "taka": 50,
+  "delivery": [],
+  "createdAt": {
+    "$date": "2024-03-19T08:41:02.545Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-19T08:41:13.049Z"
+  },
+  "__v": 0
+}]

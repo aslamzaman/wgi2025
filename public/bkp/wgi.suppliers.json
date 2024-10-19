@@ -1,0 +1,30 @@
+[{
+  "_id": {
+    "$oid": "65ec512d6bb974a7703cf697"
+  },
+  "name": "SARNIKA TRADING",
+  "address": "KOLKATA, INDIA",
+  "contact": "91",
+  "createdAt": {
+    "$date": "2024-03-09T12:08:13.408Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T12:08:13.408Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65ec51436bb974a7703cf69b"
+  },
+  "name": "KDMV",
+  "address": "KOLKATA, INDIA",
+  "contact": "000",
+  "createdAt": {
+    "$date": "2024-03-09T12:08:35.384Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-09T12:08:35.384Z"
+  },
+  "__v": 0
+}]

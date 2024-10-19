@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "65eed8890fb9e30aaab39ba5"
+  },
+  "employee": {
+    "$oid": "65ec3b946bb974a7703cf553"
+  },
+  "month": 202401,
+  "taka": 8000,
+  "deduct": 0,
+  "arear": 500,
+  "note": " ",
+  "createdAt": {
+    "$date": "2024-03-11T10:10:17.938Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-11T10:40:06.111Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65eed9a70fb9e30aaab39bb3"
+  },
+  "employee": {
+    "$oid": "65ec39666bb974a7703cf512"
+  },
+  "month": 202409,
+  "taka": 5000,
+  "deduct": 0,
+  "arear": 300,
+  "note": " ",
+  "createdAt": {
+    "$date": "2024-03-11T10:15:03.835Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-11T10:39:49.072Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65eede640fb9e30aaab39bd3"
+  },
+  "employee": {
+    "$oid": "65ec3bd26bb974a7703cf55a"
+  },
+  "month": 202407,
+  "taka": 5000,
+  "deduct": 0,
+  "arear": 500,
+  "note": " ",
+  "createdAt": {
+    "$date": "2024-03-11T10:35:16.663Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-11T10:35:16.663Z"
+  },
+  "__v": 0
+}]
