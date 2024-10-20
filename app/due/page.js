@@ -2,12 +2,11 @@
 import React, { useState, useEffect } from "react";
 import Details from "@/components/due/Details";
 import { jsPDF } from "jspdf";
-const date_format = dt => new Date(dt).toISOString().split('T')[0];
 
 require("@/lib/fonts/Poppins-Bold-normal");
 require("@/lib/fonts/Poppins-Regular-normal");
 import Add from "@/components/due/Add";
-import { formatedDateDot, inwordEnglish, numberWithComma } from "@/lib/utils";
+import { formatedDate, formatedDateDot, inwordEnglish, numberWithComma, sortArray } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
 
 
@@ -23,25 +22,30 @@ const Customer = () => {
     const [sales, setSales] = useState([]);
     const [newDues, setNewDues] = useState([]);
     const [totalDue, setTotalDue] = useState('0');
+    //-----------------------------------------
+    const [cashtypes, setCashtypes] = useState([]);
 
     useEffect(() => {
         const loadData = async () => {
             setWaitMsg('Please Wait...');
             try {
 
-                const [customers, sales, payments] = await Promise.all([
+                const [customers, sales, payments, cashtypes] = await Promise.all([
                     getDataFromFirebase('customer'),
                     getDataFromFirebase('sale'),
-                    getDataFromFirebase('payment')
+                    getDataFromFirebase('payment'),
+                    getDataFromFirebase('cashtype')
                 ]);
 
-                //    console.log(customers, sales, payments);
+                console.log("Customer: ", customers);
+                console.log("Sale: ", sales);
+
                 setSales(sales);
+                setCashtypes(cashtypes);
 
                 const result = customers.map(customer => {
-                    const matchingSale = sales.filter(sale => sale.customerId._id === customer._id);
-                    const matchingPayment = payments.filter(payment => payment.customerId._id === customer._id);
-
+                    const matchingSale = sales.filter(sale => sale.customerId === customer.id);
+                    const matchingPayment = payments.filter(payment => payment.customerId === customer.id);
 
                     const totalSale = matchingSale.reduce((t, c) => t + (parseFloat(c.weight) * parseFloat(c.rate)), 0);
                     const totalPayment = matchingPayment.reduce((t, c) => t + parseFloat(c.taka), 0);
@@ -55,8 +59,8 @@ const Customer = () => {
                         matchingPayment
                     };
                 });
-                const sortResult = result.sort((a, b) => parseInt(a.balance) < parseInt(b.balance) ? 1 : -1);
-                //  console.log(sortResult);
+                const sortResult = result.sort((a, b) => sortArray(parseInt(b.balance), parseInt(a.balance)));
+                console.log(sortResult);
                 setCustomers(sortResult);
                 setWaitMsg('');
 
@@ -74,7 +78,7 @@ const Customer = () => {
         };
         loadData();
         setDt1('2024-05-01');
-        setDt2(date_format(new Date()));
+        setDt2(formatedDate(new Date()));
     }, [msg]);
 
 
@@ -90,9 +94,9 @@ const Customer = () => {
 
         setWaitMsg('Please Wait...');
         setTimeout(() => {
-            const customer = customers.find(customer => customer._id === id);
+            const customer = customers.find(customer => customer.id === id);
 
-          //  console.log(customer);
+            console.log(customer);
 
             const doc = new jsPDF({
                 orientation: "p",
@@ -127,11 +131,11 @@ const Customer = () => {
             const sale = customer.matchingSale;
             for (let i = 0; i < sale.length; i++) {
                 let subTotal = parseFloat(sale[i].weight) * parseFloat(sale[i].rate);
-                doc.text(`${formatedDateDot(sale[i].dt)}`, 25, y, null, null, "center");
+                doc.text(`${formatedDateDot(sale[i].dt, false)}`, 25, y, null, null, "center");
                 doc.text(`${sale[i].shipment}`, 50, y, null, null, "center");
                 doc.text(`${sale[i].bale} Bale; ${sale[i].meter} Mtr.`, 89, y, null, null, "center");
-                doc.text(`${numberWithCommaWithTwoDigit(sale[i].weight)} @ ${numberWithCommaWithTwoDigit(sale[i].rate)}`, 146, y, null, null, "center");
-                doc.text(`${numberWithCommaWithTwoDigit(subTotal)}`, 196, y, null, null, "right");
+                doc.text(`${numberWithComma(sale[i].weight)} @ ${numberWithComma(sale[i].rate)}`, 146, y, null, null, "center");
+                doc.text(`${numberWithComma(subTotal)}`, 196, y, null, null, "right");
                 gt = gt + subTotal;
                 totalKgs = totalKgs + parseFloat(sale[i].weight);
                 totalMeter = totalMeter + parseFloat(sale[i].meter);
@@ -145,7 +149,7 @@ const Customer = () => {
             doc.setFont("Poppins-Regular", "normal");
             doc.text(`(${totalKgs}kgs at ${itemTimes} Times); [Total: Bale= ${totalBale}; Meter=${totalMeter}]`, 28, y + 1, null, null, "left");
             doc.setFont("Poppins-Bold", "bold");
-            doc.text(`${numberWithCommaWithTwoDigit(gt)}`, 196, y + 1, null, null, "right");
+            doc.text(`${numberWithComma(gt)}`, 196, y + 1, null, null, "right");
             doc.line(12, y + 2.5, 198, y + 2.5);
 
 
@@ -169,9 +173,10 @@ const Customer = () => {
             let paymentTimes = 0;
             const payment = customer.matchingPayment;
             for (let i = 0; i < payment.length; i++) {
-                doc.text(`${formatedDateDot(payment[i].dt)}`, 30, n, null, null, "center");
-                doc.text(`${payment[i].cashtypeId.name}`, 90, n, null, null, "center");
-                doc.text(`${numberWithCommaWithTwoDigit(payment[i].taka)}`, 196, n, null, null, "right");
+                const matchCashType = cashtypes.find(cashType => cashType.id === payment[i].cashtypeId);
+                doc.text(`${formatedDateDot(payment[i].dt, false)}`, 30, n, null, null, "center");
+                doc.text(`${matchCashType.name}`, 90, n, null, null, "center");
+                doc.text(`${numberWithComma(payment[i].taka)}`, 196, n, null, null, "right");
                 paymentTotal = paymentTotal + parseFloat(payment[i].taka);
                 paymentTimes = i + 1;
                 n = n + 5;
@@ -179,7 +184,7 @@ const Customer = () => {
             doc.setFont("Poppins-Bold", "bold");
             doc.line(12, n - 3, 198, n - 3);
             doc.text(`Total: (${paymentTimes} Times)`, 14, n + 1, null, null, "left");
-            doc.text(`${numberWithCommaWithTwoDigit(paymentTotal)}`, 196, n + 1, null, null, "right");
+            doc.text(`${numberWithComma(paymentTotal)}`, 196, n + 1, null, null, "right");
             doc.line(12, n + 2.5, 198, n + 2.5);
 
             doc.line(12, z + 1, 12, n + 2.5);
@@ -190,7 +195,7 @@ const Customer = () => {
             doc.setFont("Poppins-Bold", "bold");
             doc.text(`Total Payable/Balance: (${gt} - ${paymentTotal}) = `, 14, n + 14, null, null, "left");
 
-            doc.text(`${numberWithCommaWithTwoDigit(customer.balance)}`, 196, n + 14, null, null, "right");
+            doc.text(`${numberWithComma(customer.balance)}`, 196, n + 14, null, null, "right");
             doc.line(12, n + 16, 198, n + 16);
 
             doc.line(12, n + 10, 12, n + 16);
@@ -198,9 +203,9 @@ const Customer = () => {
 
 
             doc.setFont("Poppins-Regular", "normal");
-            doc.text(`INWORD: ${inwordEnglish(customer.balance).toUpperCase()}`, 12, n + 21, null, null, "left");
+            doc.text(`INWORD: ${inwordEnglish(customer.balance).toUpperCase()} ONLY`, 12, n + 21, null, null, "left");
 
-            doc.save(`Customer_Details_Created_${date_format(new Date())}.pdf`);
+            doc.save(`Customer_Details_Created_${formatedDate(new Date())}.pdf`);
             setWaitMsg('');
         }, 0);
     }
@@ -213,23 +218,20 @@ const Customer = () => {
         const d2 = new Date(dt2);
 
         // search customer in date ranges
-        const searchSale = sales.filter(sale => {
-            const dataDate = new Date(sale.dt);
+        const searchSale = customers.filter(customer => {
+            const dataDate = new Date(customer.createdAt);
             return dataDate >= d1 && dataDate <= d2;
         })
 
-        const result = newDues.filter(due => searchSale.some(sale => sale.customerId._id === due._id));
-        // console.log(result);
-        setCustomers(result);
-        const total = result.reduce((t, c) => t + parseFloat(c.balance), 0);
+
+        setCustomers(searchSale);
+        const total = searchSale.reduce((t, c) => t + parseFloat(c.balance), 0);
         setTotalDue(total);
 
     }
 
     const refreshClickHandler = () => {
-        setCustomers(newDues);
-        const total = newDues.reduce((t, c) => t + parseFloat(c.balance), 0);
-        setTotalDue(total);
+        setMsg(`Refresh at: ${Date.now()}`);
     }
 
 
@@ -263,25 +265,24 @@ const Customer = () => {
                     </thead>
                     <tbody>
                         {customers.length ? (
-                            customers.map(customer => (
-                                <tr className={`border-b border-gray-200 hover:bg-gray-100 ${customer.isDues ? 'text-black' : 'text-blue-500'}`} key={customer._id}>
+                            customers.map((customer, i) => (
+                                <tr className={`border-b border-gray-200 hover:bg-gray-100 ${customer.isDues ? 'text-black' : 'text-blue-500'}`} key={customer.id}>
                                     <td className="text-start py-2 px-4">
-                                        <span className="font-bold"> {customer.name}</span><br />
+                                        <span className="font-bold">{i+1}. {customer.name}</span><br />
                                         {customer.address}<br />
                                         {customer.contact}
                                     </td>
                                     <td className="text-center py-2 px-4">{numberWithComma(parseFloat(customer.balance))}/-</td>
                                     <td className="text-end py-2 px-4">
                                         <div className="flex justify-end space-x-3">
-
-                                            <button onClick={() => printHandler(customer._id)} className="w-7 h-7 flex justify-center items-center">
+                                            <button onClick={() => printHandler(customer.id)} className="w-7 h-7 flex justify-center items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z" />
                                                 </svg>
                                             </button>
 
-                                            <Add message={messageHandler} id={customer._id} />
-                                            <Details message={messageHandler} id={customer._id} data={customers} />
+                                            <Add message={messageHandler} id={customer.id} />
+                                            <Details message={messageHandler} id={customer.id} data={customer} />
                                         </div>
                                     </td>
                                 </tr>

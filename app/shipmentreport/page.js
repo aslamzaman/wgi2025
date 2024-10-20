@@ -6,6 +6,7 @@ require("@/lib/fonts/Poppins-Bold-normal");
 require("@/lib/fonts/Poppins-Regular-normal");
 import Add from "@/components/shipmentreport/Add";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
+
 const getUniqueValues = (array) => (
     array.filter((currentValue, index, arr) => (
         arr.indexOf(currentValue) === index
@@ -20,6 +21,7 @@ const Shipmentreport = () => {
     const [waitMsg, setWaitMsg] = useState("");
  
     const [sales, setSales] = useState([]);
+    const [customers, setCustomers] = useState([]);
     const [saleSummery, setSaleSummery] = useState([]);
 
 
@@ -29,7 +31,11 @@ const Shipmentreport = () => {
             setWaitMsg('Please Wait...');
             try {
 
-                const sales =  await getDataFromFirebase('sale');
+                const [sales, customers] =  await Promise.all([
+                    getDataFromFirebase('sale'),
+                    getDataFromFirebase('customer')
+                ]); 
+                setCustomers(customers);
 
                 const arrShipment = sales.map(sale => sale.shipment);
                 const shipments = getUniqueValues(arrShipment);
@@ -37,13 +43,14 @@ const Shipmentreport = () => {
 
                 const result = shipments.map(shipment => {
                     const oneSale = sales.find(sale=> sale.shipment=== shipment);
+                    const customerName = customers.find(customer=>customer.id === oneSale.customerId);
                     const matchingSale = sales.filter(sale => sale.shipment === shipment);
                     const totalBale = matchingSale.reduce((t, c) => t + parseFloat(c.bale), 0);
                     const totalThan = matchingSale.reduce((t, c) => t + parseFloat(c.than), 0);
                     const totalMeter = matchingSale.reduce((t, c) => t + parseFloat(c.meter), 0);
                     const totalWeitht = matchingSale.reduce((t, c) => t + parseFloat(c.weight), 0);
                     const totalTaka = matchingSale.reduce((t, c) => t + (parseFloat(c.weight) * parseFloat(c.rate)), 0);
-                    return {customerName: oneSale.customerId.name,
+                    return {customerName: customerName,
                         saleDate: oneSale.dt,
                          shipment, totalBale, totalThan, totalMeter, totalWeitht, totalTaka };
                 });
@@ -84,7 +91,7 @@ const Shipmentreport = () => {
                     <tbody>
                         {saleSummery.length ? (
                             saleSummery.map((customer,i) => (
-                                <tr className={`border-b border-gray-200 hover:bg-gray-100 ${customer.isDues ? 'text-black' : 'text-blue-500'}`} key={customer.shipment}>
+                                <tr className={`border-b border-gray-200 hover:bg-gray-100 ${customer.isDues ? 'text-black' : 'text-blue-500'}`} key={i}>
                                     <td className="text-center py-2 px-4">{i+1}</td>
                                     <td className="text-center py-2 px-4">{customer.shipment}</td>
                                     <td className="text-center py-2 px-4">{numberWithComma(customer.totalBale)}</td>
@@ -94,7 +101,7 @@ const Shipmentreport = () => {
                                     <td className="text-center py-2 px-4">{numberWithComma(customer.totalTaka)}/-</td>
                                     <td className="text-end py-2 px-4">
                                         <div className="flex justify-end space-x-3">
-                                            <Add sales={sales} saleSummery={saleSummery} shipment={customer.shipment} />
+                                            <Add sales={sales} customers={customers} data={customer} />
                                         </div>
                                     </td>
                                 </tr>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TextEn, BtnSubmit, TextDt, DropdownEn, TextEnDisabled, TextNum } from "@/components/Form";
-import { getDataFromFirebase } from "@/lib/firebaseFunction";
+import { addDataToFirebase, getDataFromFirebase } from "@/lib/firebaseFunction";
+import { formatedDate } from "@/lib/utils";
 const date_format = dt => new Date(dt).toISOString().split('T')[0];
 
 
@@ -21,17 +22,18 @@ const Add = ({ message }) => {
     const [cashtypes, setCashtypes] = useState([]);
     const [bankShow, setBankShow] = useState(false);
 
+    const [pointerEvent, setPointerEvent] = useState(true);
 
 
     const resetVariables = () => {
-        setDt(date_format(new Date()));
+        setDt(formatedDate(new Date()));
         setReceiveNo(Math.round(Date.now() / 60000));
         setReceivedFrom('');
         setTaka('');
         setCashtypeId('');
         setBankName('');
         setChequeNo('');
-        setChequeDt(date_format(new Date()));
+        setChequeDt(formatedDate(new Date()));
         setPurpose('');
         setContact('');
         // -------------------------
@@ -68,7 +70,8 @@ const Add = ({ message }) => {
             chequeNo: chequeNo,
             chequeDt: chequeDt,
             purpose: purpose,
-            contact: contact
+            contact: contact,
+            createdAt: new Date().toISOString()
         }
     }
 
@@ -76,23 +79,15 @@ const Add = ({ message }) => {
     const saveHandler = async (e) => {
         e.preventDefault();
         try {
+            setPointerEvent(false);
             const newObject = createObject();
-            const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/moneyreceipt`;
-            const requestOptions = {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(newObject)
-            };
-            const response = await fetch(apiUrl, requestOptions);
-            if (response.ok) {
-                message(`Moneyreceipt is created at ${new Date().toISOString()}`);
-            } else {
-                throw new Error("Failed to create moneyreceipt");
-            }
+            const msg = await addDataToFirebase('moneyreceipt',newObject);
+            message(msg);
         } catch (error) {
             console.error("Error saving moneyreceipt data:", error);
             message("Error saving moneyreceipt data.");
         } finally {
+            setPointerEvent(true);
             setShow(false);
         }
     }
@@ -101,15 +96,15 @@ const Add = ({ message }) => {
         let event = e.target.value;
 
         setCashtypeId(event);
-        if (event === "65ede63629c4f0b23474c123") {
+        if (event === "1yECAMtHPz31hACNVq3j") {
             setBankName('');
             setChequeNo('');
-            setChequeDt(date_format(new Date()));
+            setChequeDt(formatedDate(new Date()));
             setBankShow(true);
         } else {
             setBankName(' ');
             setChequeNo(' ');
-            setChequeDt(date_format(new Date()));
+            setChequeDt(formatedDate(new Date()));
             setBankShow(false);
         }
     }
@@ -138,7 +133,7 @@ const Add = ({ message }) => {
                                     <TextNum Title="Taka" Id="taka" Change={e => setTaka(e.target.value)} Value={taka} Chr={50} />
 
                                     <DropdownEn Title="Cashtype" Id="cashtypeId" Change={cashtypeChangeHandler} Value={cashtypeId}>
-                                        {cashtypes.length ? cashtypes.map(cashtype => <option value={cashtype._id} key={cashtype._id}>{cashtype.name}</option>) : null}
+                                        {cashtypes.length ? cashtypes.map(cashtype => <option value={cashtype.id} key={cashtype.id}>{cashtype.name}</option>) : null}
                                     </DropdownEn>
                                     {bankShow ? (<>
                                         <TextEn Title="Bank Name" Id="bankName" Change={e => setBankName(e.target.value)} Value={bankName} Chr={50} />
@@ -147,7 +142,7 @@ const Add = ({ message }) => {
                                     </>) : null}
                                     <TextEn Title="Purpose" Id="purpose" Change={e => setPurpose(e.target.value)} Value={purpose} Chr={50} />
                                 </div>
-                                <div className="w-full flex justify-start">
+                                <div className={`w-full mt-4 flex justify-start ${pointerEvent ? 'pointer-events-auto' : 'pointer-events-none'}`}>
                                     <input type="button" onClick={closeAddForm} value="Close" className="bg-pink-600 hover:bg-pink-800 text-white text-center mt-3 mx-0.5 px-4 py-2 font-semibold rounded-md focus:ring-1 ring-blue-200 ring-offset-2 duration-300 cursor-pointer" />
                                     <BtnSubmit Title="Save" Class="bg-blue-600 hover:bg-blue-800 text-white" />
                                 </div>

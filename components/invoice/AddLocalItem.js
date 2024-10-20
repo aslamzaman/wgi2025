@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BtnSubmit, DropdownEn, TextNum } from "@/components/Form";
 
-import { localStorageAddItem } from "@/lib/utils";
+import { localStorageAddItem, localStorageGetItem } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
 
 
@@ -62,7 +62,7 @@ const AddLocalItem = ({ message }) => {
         try {
             const newObject = createObject();
             const addnew = localStorageAddItem('localItem', newObject);
-            message(addnew.message);
+            message(addnew);
         } catch (error) {
             console.error("Error saving localItem data:", error);
             message("Error saving localItem data.");
@@ -72,6 +72,8 @@ const AddLocalItem = ({ message }) => {
     }
 
 
+
+    
     return (
         <>
             {show && (
@@ -90,7 +92,7 @@ const AddLocalItem = ({ message }) => {
                                 <div className="grid grid-cols-2 gap-4 my-4">
 
                                     <DropdownEn Title="Item" Id="itemName" Change={e => setItemName(e.target.value)} Value={itemName}>
-                                        {items.length ? items.map(item => <option value={item.name} key={item._id}>{item.name}</option>) : null}
+                                        {items.length ? items.map(item => <option value={item.name} key={item.id}>{item.name}</option>) : null}
                                     </DropdownEn>
                                     <TextNum Title="Bale" Id="bale" Change={e => setBale(e.target.value)} Value={bale} />
                                     <TextNum Title="Than" Id="than" Change={e => setThan(e.target.value)} Value={than} />

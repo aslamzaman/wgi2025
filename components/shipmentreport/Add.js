@@ -1,23 +1,45 @@
 import React, { useState } from "react";
-const date_format = dt => new Date(dt).toISOString().split('T')[0];
-import { numberWithComma } from "@/lib/utils";
+import { formatedDateDot, numberWithComma } from "@/lib/utils";
 
-const Add = ({ sales, saleSummery, shipment }) => {
+
+const Add = ({ sales, customers, data }) => {
     const [show, setShow] = useState(false);
     const [searchSales, setSearchSales] = useState([]);
     const [saleDatas, setSaleDatas] = useState([]);
-  
+    const [totals, setTotals] = useState([]);
+
     //-----------------------------------------------------
 
-    const showAddForm = () => {
+    const showAddForm = async () => {
         setShow(true);
         try {
+
+            const filterSale = sales.filter(sale => sale.shipment === data.shipment);
+            const joinWithCustomer = filterSale.map(sale => {
+                const matchCustomer = customers.find(customer => customer.id === sale.customerId);
+                return {
+                    ...sale,
+                    customer: matchCustomer
+                }
+            })
+            setSaleDatas(joinWithCustomer);
+
+
+            const totalBale = joinWithCustomer.reduce((t, c) => t + parseFloat(c.bale), 0);
+            const totalThan = joinWithCustomer.reduce((t, c) => t + parseFloat(c.than), 0);
+            const totalMeter = joinWithCustomer.reduce((t, c) => t + parseFloat(c.meter), 0);
+            const totalWeitht = joinWithCustomer.reduce((t, c) => t + parseFloat(c.weight), 0);
+            const totalGt = joinWithCustomer.reduce((t, c) => t + (parseFloat(c.rate) * parseFloat(c.weight)), 0);
+            setTotals([totalBale,totalThan,totalMeter,totalWeitht,totalGt]);
+            console.log(totalBale);
+            /*
             console.log(sales, saleSummery, shipment)
             const data = sales.filter(sale => parseInt(sale.shipment) === parseInt(shipment));
             const summery = saleSummery.find(summery => summery.shipment === shipment);
             console.log({ "sales": sales, "data": data, "summery": summery });
             setSaleDatas(data);
             setSearchSales(summery);
+            */
         } catch (error) {
             console.error('Failed to fetch delivery data:', error);
         }
@@ -34,7 +56,7 @@ const Add = ({ sales, saleSummery, shipment }) => {
                 <div className="fixed inset-0 py-16 bg-black bg-opacity-30 backdrop-blur-sm z-10 overflow-auto">
                     <div className="w-11/12 mx-auto mb-10 bg-white border-2 border-gray-300 rounded-md shadow-md duration-300">
                         <div className="px-6 md:px-6 py-2 flex justify-between items-center border-b border-gray-300">
-                            <h1 className="text-xl font-bold text-blue-600">Shipment: {shipment}</h1>
+                            <h1 className="text-xl font-bold text-blue-600">Shipment: {data.shipment}</h1>
                             <button onClick={closeAddForm} className="w-8 h-8 p-0.5 bg-gray-50 hover:bg-gray-300 rounded-md transition duration-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-full h-full stroke-black">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -58,10 +80,10 @@ const Add = ({ sales, saleSummery, shipment }) => {
                                 <tbody>
                                     {saleDatas.length ? (
                                         saleDatas.map((sale, i) => (
-                                            <tr className={`border-b border-gray-200 hover:bg-gray-100`} key={sale._id}>
+                                            <tr className={`border-b border-gray-200 hover:bg-gray-100`} key={sale.id}>
                                                 <td className="text-start py-2 px-4">{(i + 1)}</td>
-                                                <td className="text-start py-2 px-4">{date_format(sale.dt)}</td>
-                                                <td className="text-start py-2 px-4">{sale.customerId.name}</td>
+                                                <td className="text-start py-2 px-4">{formatedDateDot(sale.dt, true)}</td>
+                                                <td className="text-start py-2 px-4">{sale.customer.name}</td>
                                                 <td className="text-center py-2 px-4">{numberWithComma(sale.bale)}</td>
                                                 <td className="text-center py-2 px-4">{numberWithComma(sale.than)}</td>
                                                 <td className="text-center py-2 px-4">{numberWithComma(sale.meter)}</td>
@@ -82,11 +104,11 @@ const Add = ({ sales, saleSummery, shipment }) => {
                                         <td className="text-start py-2 px-4"></td>
                                         <td className="text-start py-2 px-4">Total</td>
                                         <td className="text-start py-2 px-4"></td>
-                                        <td className="text-center py-2 px-4">{numberWithComma(searchSales.totalBale)}</td>
-                                        <td className="text-center py-2 px-4">{numberWithComma(searchSales.totalThan)}</td>
-                                        <td className="text-center py-2 px-4">{numberWithComma(searchSales.totalMeter)}</td>
-                                        <td className="text-center py-2 px-4">{numberWithComma(searchSales.totalWeitht)}</td>
-                                        <td className="text-center py-2 px-4">{numberWithComma(searchSales.totalTaka)}/-</td>
+                                        <td className="text-center py-2 px-4">{numberWithComma(totals[0])}</td>
+                                        <td className="text-center py-2 px-4">{numberWithComma(totals[1])}</td>
+                                        <td className="text-center py-2 px-4">{numberWithComma(totals[2])}</td>
+                                        <td className="text-center py-2 px-4">{numberWithComma(totals[3])}</td>
+                                        <td className="text-center py-2 px-4">{numberWithComma(totals[4])}/-</td>
 
                                     </tr>
 

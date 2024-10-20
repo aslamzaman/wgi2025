@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { numberWithComma } from "@/lib/utils";
+import { formatedDateDot, numberWithComma } from "@/lib/utils";
 const date_format = dt => new Date(dt).toISOString().split('T')[0];
 
 
@@ -16,17 +16,12 @@ const Detail = ({ message, id, data }) => {
 
     const showDetailorm = async () => {
         setShow(true);
-        const findData = data.find(borrower => borrower._id === id);
-        const loanData = findData.matchLoan;
-        const paymentData = findData.matchPayment;
-        const balanceTaka = findData.balance;
-        setBorrower(findData);
-        setLoans(loanData);
-        setPayments(paymentData);
-        setBalance(balanceTaka);
+        console.log(id, data)
 
-
-        console.log(findData, loanData, paymentData, balanceTaka);
+        setLoans(data.matchLoan);
+        setPayments(data.matchPayment);
+        setBalance([data.totalLoan,data.totalPayment,data.balance]);
+       // console.log(data.totalLoan,data.totalPayment,data.balance);
     };
 
 
@@ -35,39 +30,6 @@ const Detail = ({ message, id, data }) => {
     };
 
 
-    const createObject = () => {
-        return {
-            borrowerId: borrowerId,
-            dt: dt,
-            taka: taka,
-            remarks: remarks
-        }
-    }
-
-
-    const saveHandler = async (e) => {
-        e.preventDefault();
-        try {
-            const newObject = createObject();
-            const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/loanpayment/${id}`;
-            const requestOptions = {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(newObject)
-            };
-            const response = await fetch(apiUrl, requestOptions);
-            if (response.ok) {
-                message(`Updated successfully completed at ${new Date().toISOString()}`);
-            } else {
-                throw new Error("Failed to create loanpayment");
-            }
-        } catch (error) {
-            console.error("Error saving loanpayment data:", error);
-            message("Error saving loanpayment data.");
-        } finally {
-            setShow(false);
-        }
-    }
 
 
     return (
@@ -104,9 +66,9 @@ const Detail = ({ message, id, data }) => {
                                                 {
                                                     loans.length ? loans.map((loan, i) => {
                                                         return (
-                                                            <tr className="border-b border-gray-200 hover:bg-gray-100" key={loan._id}>
+                                                            <tr className="border-b border-gray-200 hover:bg-gray-100" key={loan.id}>
                                                                 <td className="text-center py-2 px-4">{i + 1}</td>
-                                                                <td className="text-center py-2 px-4">{date_format(loan.dt)}</td>
+                                                                <td className="text-center py-2 px-4">{formatedDateDot(loan.dt, true)}</td>
                                                                 <td className="text-end py-2 px-4">{numberWithComma(parseFloat(loan.taka))}/-</td>
                                                                 <td className="text-center py-2 px-4">{loan.remarks}</td>
                                                             </tr>
@@ -116,7 +78,7 @@ const Detail = ({ message, id, data }) => {
                                                 }
                                                 <tr className="font-bold border-b border-gray-200 hover:bg-gray-100">
                                                     <td colSpan="2" className="text-start py-2 px-4">Total</td>
-                                                    <td className="text-end py-2 px-4">{numberWithComma(parseFloat(borrower.totalLoan))}/-</td>
+                                                    <td className="text-end py-2 px-4">{numberWithComma(parseFloat(balance[0]))}/-</td>
                                                     <td className="text-center py-2 px-4"></td>
                                                 </tr>
                                             </tbody>
@@ -139,9 +101,9 @@ const Detail = ({ message, id, data }) => {
                                                 {
                                                     payments.length ? payments.map((payment, i) => {
                                                         return (
-                                                            <tr className="border-b border-gray-200 hover:bg-gray-100" key={payment._id}>
+                                                            <tr className="border-b border-gray-200 hover:bg-gray-100" key={payment.id}>
                                                                 <td className="text-center py-2 px-4">{i + 1}</td>
-                                                                <td className="text-center py-2 px-4">{date_format(payment.dt)}</td>
+                                                                <td className="text-center py-2 px-4">{formatedDateDot(payment.dt,true)}</td>
                                                                 <td className="text-end py-2 px-4">{numberWithComma(parseFloat(payment.taka))}/-</td>
                                                                 <td className="text-center py-2 px-4">{payment.remarks}</td>
                                                             </tr>
@@ -151,18 +113,18 @@ const Detail = ({ message, id, data }) => {
                                                 }
                                                 <tr className="font-bold border-b border-gray-200 hover:bg-gray-100">
                                                     <td colSpan="2" className="text-start py-2 px-4">Total</td>
-                                                    <td className="text-end py-2 px-4">{numberWithComma(parseFloat(borrower.totalPayment))}/-</td>
+                                                    <td className="text-end py-2 px-4">{numberWithComma(parseFloat(balance[1]))}/-</td>
                                                     <td className="text-center py-2 px-4"></td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>                               
+                                </div>
                             </div>
 
                             <div className="w-full border-2 mt-4 p-4 shadow-md rounded-md">
-                                    <h1 className="font-bold text-blue-600">Balance/Outstanding: ({numberWithComma(parseFloat(borrower.totalLoan))}-{numberWithComma(parseFloat(borrower.totalPayment))}) = {numberWithComma(parseFloat(borrower.balance))}/-</h1>
-                                </div> 
+                                <h1 className="font-bold text-blue-600">Balance/Outstanding: ({numberWithComma(parseFloat(balance[0]))}-{numberWithComma(parseFloat(balance[1]))}) = {numberWithComma(parseFloat(balance[2]))}/-</h1>
+                            </div>
 
                         </div>
 

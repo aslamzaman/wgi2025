@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { TextEn, BtnSubmit, TextDt, TextBnDisabled, DropdownEn, BtnSubmitSm, TextNum } from "@/components/Form";
-const date_format = dt => new Date(dt).toISOString().split('T')[0];
+import { TextEn, BtnSubmit, TextDt, TextBnDisabled, DropdownEn } from "@/components/Form";
 
-import { localStorageAddItem, localStorageDeleteItem, localStorageGetItem } from "@/lib/utils";
+
+import { formatedDate, localStorageDeleteItem, localStorageGetItem } from "@/lib/utils";
 import AddLocalItem from "./AddLocalItem";
-import { getDataFromFirebase } from "@/lib/firebaseFunction";
+import { addDataToFirebase, getDataFromFirebase } from "@/lib/firebaseFunction";
 
 
 const Add = ({ message }) => {
@@ -16,18 +16,24 @@ const Add = ({ message }) => {
     const [payment, setPayment] = useState('');
 
 
+
     const [show, setShow] = useState(false);
+    const [pointerEvent, setPointerEvent] = useState(true);
+
+    //------------------------------------------------
     const [customers, setCustomers] = useState([]);  // dropdown 
-   
+    //------------------------------------------------------
+
     const [localItems, setLocalItems] = useState([]);  // Local storage items
     const [msg, setMsg] = useState("");
+
 
 
     const resetVariables = () => {
         const inv = Date.now() / 60000;
         setInvoiceNumber(Math.round(inv));
         setCustomerId('');
-        setDt(date_format(new Date()));
+        setDt(formatedDate(new Date()));
         setShipment('');
         setDeduct('');
         setPayment('');
@@ -38,7 +44,7 @@ const Add = ({ message }) => {
         setShow(true);
         resetVariables();
         //------------------------------------------------
-        setLocalItems(getItems('localItem'));
+        setLocalItems(localStorageGetItem('localItem'));
         setMsg('');
         try {
             const responseCustomer = await getDataFromFirebase('customer');
@@ -55,7 +61,7 @@ const Add = ({ message }) => {
 
 
     const createObject = () => {
-        const getLocalData = getItems('localItem');
+        const getLocalData = localStorageGetItem('localItem');
         return {
             invoiceNumber: invoiceNumber,
             customerId: customerId,
@@ -63,38 +69,33 @@ const Add = ({ message }) => {
             shipment: shipment,
             deduct: deduct,
             payment: payment,
-            items: getLocalData
+            items: getLocalData,
+            createdAt: new Date().toISOString()
         }
     }
 
 
     const saveHandler = async (e) => {
         e.preventDefault();
-        const getLocalData = getItems('localItem');
+        const getLocalData = localStorageGetItem('localItem');
         if (getLocalData.length < 1) {
             setMsg("No Items!");
             return false;
         }
 
+
         try {
+            setPointerEvent(false);
             const newObject = createObject();
-            const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/invoice`;
-            const requestOptions = {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(newObject)
-            };
-            const response = await fetch(apiUrl, requestOptions);
-            if (response.ok) {
-                message(`Invoice is created at ${new Date().toISOString()}`);
-            } else {
-                throw new Error("Failed to create invoice");
-            }
+            console.log(newObject)
+            const msg = await addDataToFirebase("invoice", newObject);
+            message(msg);
             localStorage.removeItem('localItem');
         } catch (error) {
             console.error("Error saving invoice data:", error);
             message("Error saving invoice data.");
         } finally {
+            setPointerEvent(true);
             setShow(false);
         }
     }
@@ -105,15 +106,15 @@ const Add = ({ message }) => {
 
     const messageHandler = (data) => {
         setMsg(data);
-        setLocalItems(getItems('localItem'));
+        setLocalItems(localStorageGetItem('localItem'));
     }
 
 
     const removeLocalItemHandeler = (id) => {
         console.log(id);
-        const deleteData = deleteItem('localItem', id);
-        setLocalItems(getItems('localItem'));
-        setMsg(deleteData.message);
+        const deleteData = localStorageDeleteItem('localItem', id);
+        setLocalItems(localStorageGetItem('localItem'));
+        setMsg(deleteData);
     }
 
 
@@ -136,7 +137,7 @@ const Add = ({ message }) => {
                                 <div className="grid grid-cols-2 gap-2 my-1">
                                     <TextBnDisabled Title="Invoice Number (Auto)" Id="invoiceNumber" Change={e => setInvoiceNumber(e.target.value)} Value={invoiceNumber} Chr={50} />
                                     <DropdownEn Title="Customer" Id="customerId" Change={e => setCustomerId(e.target.value)} Value={customerId}>
-                                        {customers.length ? customers.map(customer => <option value={customer._id} key={customer._id}>{customer.name}</option>) : null}
+                                        {customers.length ? customers.map(customer => <option value={customer.id} key={customer.id}>{customer.name}</option>) : null}
                                     </DropdownEn>
                                     <TextDt Title="Date" Id="dt" Change={e => setDt(e.target.value)} Value={dt} />
                                     <TextEn Title="Shipment" Id="shipment" Change={e => setShipment(e.target.value)} Value={shipment} Chr={50} />
@@ -144,51 +145,52 @@ const Add = ({ message }) => {
                                     <TextEn Title="Payment" Id="payment" Change={e => setPayment(e.target.value)} Value={payment} Chr={50} />
 
                                 </div>
-                                <div className="w-full flex justify-start">
+                                <div className={`w-full mt-4 flex justify-start ${pointerEvent ? 'pointer-events-auto' : 'pointer-events-none'}`}>
                                     <input type="button" onClick={closeAddForm} value="Close" className="bg-pink-600 hover:bg-pink-800 text-white text-center mt-3 mx-0.5 px-4 py-2 font-semibold rounded-md focus:ring-1 ring-blue-200 ring-offset-2 duration-300 cursor-pointer" />
                                     <BtnSubmit Title="Save" Class="bg-blue-600 hover:bg-blue-800 text-white" />
                                     <p className="mt-5 ml-4 text-red-600">{msg}</p>
                                 </div>
                             </form>
-                           
-                            <table className="w-full border border-gray-200">
-                                <thead>
-                                    <tr className="w-full bg-gray-200">
-                                        <th className="text-center border-b border-gray-200 px-4 py-2">Item</th>
-                                        <th className="text-center border-b border-gray-200 px-4 py-2">Bal</th>
-                                        <th className="text-center border-b border-gray-200 px-4 py-2">Thn</th>
-                                        <th className="text-center border-b border-gray-200 px-4 py-2">Mtr</th>
-                                        <th className="text-center border-b border-gray-200 px-4 py-2">Wgt</th>
-                                        <th className="text-center border-b border-gray-200 px-4 py-2">Rate</th>
-                                        <th className="w-[100px] font-normal">
-                                            <div className="w-full flex justify-end py-0.5 pr-1">
-                                                <AddLocalItem message={ messageHandler} />
-                                            </div>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {localItems.length ? (
-                                        localItems.map(item => (
-                                            <tr className="border-b border-gray-200 hover:bg-gray-100" key={item.id}>
-                                                <td className="text-center py-2 px-4">{item.itemName}</td>
-                                                <td className="text-center py-2 px-4">{item.bale}</td>
-                                                <td className="text-center py-2 px-4">{item.than}</td>
-                                                <td className="text-center py-2 px-4">{item.meter}</td>
-                                                <td className="text-center py-2 px-4">{item.weight}</td>
-                                                <td className="text-center py-2 px-4">{item.taka}</td>
-                                                <td className="h-8 flex justify-end items-center space-x-1 mt-1 mr-2">
-                                                    <button onClick={() => removeLocalItemHandeler(item.id)} className="w-6 h-6 p-0.5 bg-gray-50 hover:bg-gray-300 rounded-md transition duration-500">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-full h-full stroke-black">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                                        </svg>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))
-                                    ) : null}
-                                </tbody>
-                            </table>
+                            <div className="w-full overflow-auto">
+                                <table className="w-full border border-gray-200">
+                                    <thead>
+                                        <tr className="w-full bg-gray-200">
+                                            <th className="text-center border-b border-gray-200 px-4 py-2">Item</th>
+                                            <th className="text-center border-b border-gray-200 px-4 py-2">Bal</th>
+                                            <th className="text-center border-b border-gray-200 px-4 py-2">Thn</th>
+                                            <th className="text-center border-b border-gray-200 px-4 py-2">Mtr</th>
+                                            <th className="text-center border-b border-gray-200 px-4 py-2">Wgt</th>
+                                            <th className="text-center border-b border-gray-200 px-4 py-2">Rate</th>
+                                            <th className="w-[100px] font-normal">
+                                                <div className="w-full flex justify-end py-0.5 pr-1">
+                                                    <AddLocalItem message={messageHandler} />
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {localItems.length ? (
+                                            localItems.map(item => (
+                                                <tr className="border-b border-gray-200 hover:bg-gray-100" key={item.id}>
+                                                    <td className="text-center py-2 px-4">{item.itemName}</td>
+                                                    <td className="text-center py-2 px-4">{item.bale}</td>
+                                                    <td className="text-center py-2 px-4">{item.than}</td>
+                                                    <td className="text-center py-2 px-4">{item.meter}</td>
+                                                    <td className="text-center py-2 px-4">{item.weight}</td>
+                                                    <td className="text-center py-2 px-4">{item.taka}</td>
+                                                    <td className="h-8 flex justify-end items-center space-x-1 mt-1 mr-2">
+                                                        <button onClick={() => removeLocalItemHandeler(item.id)} className="w-6 h-6 p-0.5 bg-gray-50 hover:bg-gray-300 rounded-md transition duration-500">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-full h-full stroke-black">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                            </svg>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        ) : null}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

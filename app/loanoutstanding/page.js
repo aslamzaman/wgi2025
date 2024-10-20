@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Payment from "@/components/loanoutstanding/Payment";
 import Detail from "@/components/loanoutstanding/Detail";
-import { numberWithComma } from "@/lib/utils";
+import { numberWithComma, sortArray } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
 
 
@@ -26,8 +26,8 @@ const Borrower = () => {
                 ]);
                 // console.log(borrowerResponse, loanResponse);
                 const borrowerJoin = borrowerResponse.map(borrower => {
-                    const matchLoan = loanResponse.filter(loan => loan.borrowerId._id === borrower._id);
-                    const matchPayment = loanpaymentResponse.filter(payment => payment.borrowerId._id === borrower._id);
+                    const matchLoan = loanResponse.filter(loan => loan.borrowerId === borrower.id);
+                    const matchPayment = loanpaymentResponse.filter(payment => payment.borrowerId === borrower.id);
                     const totalLoan = matchLoan.reduce((t, c) => t + parseFloat(c.taka), 0);
                     const totalPayment = matchPayment.reduce((t, c) => t + parseFloat(c.taka), 0);
                     return {
@@ -40,14 +40,10 @@ const Borrower = () => {
 
                     }
                 })
-
-                const borrowerFilter = borrowerJoin.filter(borrower => loanResponse.some(loan => loan.borrowerId._id === borrower._id));
-                const sortBorrower = borrowerFilter.sort((a, b) => a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1);
-                console.log(sortBorrower);
-                setBorrowers(sortBorrower);
-                const OutstandingTaka = sortBorrower.reduce((t,c)=>t + parseFloat(c.balance),0);
-                setTotalOutstanding(OutstandingTaka); 
-                //-------------------------------------------------------------------------
+                const sorted = borrowerJoin.sort((a, b) => sortArray(a.name.toUpperCase(), b.name.toUpperCase()));
+                const totalTaka = sorted.reduce((t,c)=>t + parseFloat(c.balance),0);
+                  setBorrowers(sorted);
+                  setTotalOutstanding(totalTaka);
                 setWaitMsg('');
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -87,13 +83,13 @@ const Borrower = () => {
                         <tbody>
                             {borrowers.length ? (
                                 borrowers.map(borrower => (
-                                    <tr className="border-b border-gray-200 hover:bg-gray-100" key={borrower._id}>
+                                    <tr className="border-b border-gray-200 hover:bg-gray-100" key={borrower.id}>
                                         <td className="text-center py-2 px-4">{borrower.name}</td>
                                         <td className="text-center py-2 px-4">{borrower.contact}</td>
                                         <td className="text-center py-2 px-4">{numberWithComma(parseFloat(borrower.balance))}</td>
                                         <td className="h-8 flex justify-end items-center space-x-1 mt-1 mr-2">
-                                            <Payment message={messageHandler} id={borrower._id} />
-                                            <Detail message={messageHandler} id={borrower._id} data={borrowers} />
+                                            <Payment message={messageHandler} id={borrower.id} />
+                                            <Detail message={messageHandler} id={borrower.id} data={borrower} />
                                         </td>
                                     </tr>
                                 ))

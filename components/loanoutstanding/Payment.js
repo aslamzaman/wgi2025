@@ -1,28 +1,27 @@
 import React, { useState } from "react";
 import { TextEn, BtnSubmit, TextDt, TextNum } from "@/components/Form";
-const date_format = dt => new Date(dt).toISOString().split('T')[0];
+import { formatedDate } from "@/lib/utils";
+import { addDataToFirebase } from "@/lib/firebaseFunction";
+
 
 
 
 
 const Payment = ({ message, id }) => {
-    const [borrowerId, setBorrowerId] = useState('');
     const [dt, setDt] = useState('');
     const [taka, setTaka] = useState('');
     const [remarks, setRemarks] = useState('');
 
     const [show, setShow] = useState(false);
-    const [borrowers, setBorrowers] = useState([]);
 
     const resetVariables = () => {
-        setBorrowerId(id);
-        setDt(date_format(new Date()));
+        setDt(formatedDate(new Date()));
         setTaka('');
         setRemarks('');
     }
 
 
-    const showAddForm =  () => {
+    const showAddForm = () => {
         setShow(true);
         resetVariables();
     }
@@ -35,10 +34,11 @@ const Payment = ({ message, id }) => {
 
     const createObject = () => {
         return {
-            borrowerId: borrowerId,
+            borrowerId: id,
             dt: dt,
             taka: taka,
-            remarks: remarks
+            remarks: remarks,
+            createdAt: new Date().toISOString()
         }
     }
 
@@ -47,18 +47,8 @@ const Payment = ({ message, id }) => {
         e.preventDefault();
         try {
             const newObject = createObject();
-            const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/loanpayment`;
-            const requestOptions = {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(newObject)
-            };
-            const response = await fetch(apiUrl, requestOptions);
-            if (response.ok) {
-                message(`Loanpayment is created at ${new Date().toISOString()}`);
-            } else {
-                throw new Error("Failed to create loanpayment");
-            }
+            const msg = await addDataToFirebase('loanpayment', newObject);
+            message(msg);
         } catch (error) {
             console.error("Error saving loanpayment data:", error);
             message("Error saving loanpayment data.");

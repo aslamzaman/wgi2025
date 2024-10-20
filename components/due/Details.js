@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 const date_format = dt => new Date(dt).toISOString().split('T')[0];
-import { numberWithComma } from "@/lib/utils";
+import { formatedDateDot, numberWithComma } from "@/lib/utils";
+import { getDataFromFirebase } from "@/lib/firebaseFunction";
 
 
 
@@ -8,7 +9,7 @@ const Details = ({ message, id, data }) => {
     const [show, setShow] = useState(false);
 
 
-    const [customers, setCustomers] = useState({});
+    const [cashtypes, setCashtypes] = useState({});
     const [sales, setSales] = useState([]);
     const [payments, setPayments] = useState([]);
 
@@ -22,23 +23,21 @@ const Details = ({ message, id, data }) => {
     // Payment
     const [totalTaka, setTotalTaka] = useState('0');
 
-
-
-    const showDetailsForm = () => {
+    const showDetailsForm = async () => {
         setShow(true);
+        console.log(id, data);
         try {
+            const cashTypeData = await getDataFromFirebase('cashtype');
+            setCashtypes(cashTypeData);
+            //-----------------------------------------------
             console.log(data)
-            const customer = data.find(customer => customer._id === id) || { name: "" };
-            console.log(customer)
-            setCustomers(customer);
-            setSales(customer.matchingSale);
-
-            const sale = customer.matchingSale;
+            const sale = data.matchingSale;
             const tb = sale.reduce((t, c) => t + parseFloat(c.bale), 0);
             const tt = sale.reduce((t, c) => t + parseFloat(c.than), 0);
             const tm = sale.reduce((t, c) => t + parseFloat(c.meter), 0);
             const tw = sale.reduce((t, c) => t + parseFloat(c.weight), 0);
             const gt = sale.reduce((t, c) => t + (parseFloat(c.weight) * parseFloat(c.rate)), 0);
+            setSales(sale);
             setTotalBale(tb);
             setTotalThaan(tt);
             setTotalMeter(tm);
@@ -46,9 +45,9 @@ const Details = ({ message, id, data }) => {
             setTotalAmount(gt);
 
 
-            setPayments(customer.matchingPayment);
-            const payment = customer.matchingPayment;
+            const payment = data.matchingPayment;
             const tPayment = payment.reduce((t, c) => t + parseFloat(c.taka), 0);
+            setPayments(payment);
             setTotalTaka(tPayment);
             message("Ready to delete");
         }
@@ -80,9 +79,9 @@ const Details = ({ message, id, data }) => {
 
                         </div>
                         <div className="px-4 lg:px-6 overflow-auto">
-                            <p className="w-full mt-4 text-start"><span className="font-bold">{customers.name}</span><br />
-                                {customers.address}<br />
-                                    {customers.contact}
+                            <p className="w-full mt-4 text-start"><span className="font-bold">{data.name}</span><br />
+                                {data.address}<br />
+                                    {data.contact}
                                     </p>
                                 </div>
 
@@ -108,9 +107,9 @@ const Details = ({ message, id, data }) => {
                                         <tbody>
                                             {sales.length ? (
                                                 sales.map((sale, i) => (
-                                                    <tr className={`border-b border-gray-200 hover:bg-gray-100`} key={sale._id}>
+                                                    <tr className={`border-b border-gray-200 hover:bg-gray-100`} key={sale.id}>
                                                         <td className="text-start py-2 px-4">{i + 1}</td>
-                                                        <td className="text-start py-2 px-4">{date_format(sale.dt)}</td>
+                                                        <td className="text-start py-2 px-4">{formatedDateDot(sale.dt,true)}</td>
                                                         <td className="text-center py-2 px-4">{sale.shipment}</td>
                                                         <td className="text-end py-2 px-4">{numberWithComma(sale.bale)}</td>
                                                         <td className="text-end py-2 px-4">{numberWithComma(sale.meter)}</td>
@@ -158,14 +157,16 @@ const Details = ({ message, id, data }) => {
                                         </thead>
                                         <tbody>
                                             {payments.length ? (
-                                                payments.map((payment, i) => (
-                                                    <tr className={`border-b border-gray-200 hover:bg-gray-100`} key={payment._id}>
+                                                payments.map((payment, i) => {
+                                                    const cashType = cashtypes.find(cashType=>cashType.id===payment.cashtypeId);
+                                                    return(
+                                                    <tr className={`border-b border-gray-200 hover:bg-gray-100`} key={payment.id}>
                                                         <td className="text-start py-2 px-4">{i + 1}</td>
                                                         <td className="text-start py-2 px-4">{date_format(payment.dt)}</td>
-                                                        <td className="text-center py-2 px-4">{payment.cashtypeId.name}</td>
+                                                        <td className="text-center py-2 px-4">{cashType.name}</td>
                                                         <td className="text-end py-2 px-4">{parseFloat(payment.taka).toFixed(2)}</td>
                                                     </tr>
-                                                ))
+                                                )})
                                             ) : (
                                                 <tr>
                                                     <td colSpan={4} className="text-center py-10 px-4">
@@ -198,7 +199,7 @@ const Details = ({ message, id, data }) => {
 
                                             <tr className={`border-b border-gray-200 hover:bg-gray-100 font-bold`}>
                                                 <td className="text-start py-2 px-4">Total Payable: ({numberWithComma(totalAmount)} - {numberWithComma(totalTaka)}) = </td>
-                                                <td className="text-end py-2 px-4">{numberWithComma(customers.balance)}</td>
+                                                <td className="text-end py-2 px-4">{numberWithComma(data.balance)}</td>
                                             </tr>
                                         </tbody>
                                     </table>
