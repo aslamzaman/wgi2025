@@ -2,13 +2,11 @@
 import React, { useState, useEffect } from "react";
 import Add from "@/components/invoice/Add";
 import Delete from "@/components/invoice/Delete";
-const date_format = dt => new Date(dt).toISOString().split('T')[0];
 import jsPDF from "jspdf";
-import { formatedDate, formatedDateDot, inwordEnglish, sortArray } from "@/lib/utils";
+import { filterDataInPeriod, formatedDate, formatedDateDot, inwordEnglish, sortArray } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
 require("@/lib/fonts/Poppins-Bold-normal");
 require("@/lib/fonts/Poppins-Regular-normal");
-
 
 
 
@@ -16,6 +14,9 @@ const Invoice = () => {
     const [invoices, setInvoices] = useState([]);
     const [msg, setMsg] = useState("Data ready");
     const [waitMsg, setWaitMsg] = useState("");
+
+    //-------- Data display year --------
+    const [yr, setYr] = useState('');
 
 
     useEffect(() => {
@@ -35,10 +36,19 @@ const Invoice = () => {
                     }
                 })
 
-                const sorted = joinWithCustomer.sort((a, b)=> sortArray(new Date(b.createdAt),new Date(a.createdAt)));
+               // periodic data ------------------
+               const getDataInPeriod = filterDataInPeriod(joinWithCustomer);
+
+                const sorted = getDataInPeriod.sort((a, b)=> sortArray(new Date(b.createdAt),new Date(a.createdAt)));
 
                 console.log("join table", sorted);
                 setInvoices(sorted);
+
+               //---------- Session Storage Year ----------------
+               const period = sessionStorage.getItem('yr');
+               setYr(period);
+
+
                 setWaitMsg('');
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -172,7 +182,7 @@ const Invoice = () => {
     return (
         <>
             <div className="w-full mb-3 mt-8">
-                <h1 className="w-full text-xl lg:text-3xl font-bold text-center text-blue-700">Bill/ INVOICE</h1>
+                <h1 className="w-full text-xl lg:text-3xl font-bold text-center text-blue-700">Bill/ INVOICE-{yr}</h1>
                 <p className="w-full text-center text-blue-300">&nbsp;{waitMsg}&nbsp;</p>
             </div>
             <div className="px-4 lg:px-6">

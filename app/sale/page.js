@@ -3,10 +3,9 @@ import React, { useState, useEffect } from "react";
 import Add from "@/components/sale/Add";
 import Edit from "@/components/sale/Edit";
 import Delete from "@/components/sale/Delete";
-import { numberWithComma } from "@/lib/utils";
+import { filterDataInPeriod, formatedDateDot, numberWithComma } from "@/lib/utils";
 import { DropdownEn } from "@/components/Form";
 import { sortArray } from "@/lib/utils";
-const date_format = dt => new Date(dt).toISOString().split('T')[0];
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
 
 
@@ -18,22 +17,25 @@ const Sale = () => {
     const [waitMsg, setWaitMsg] = useState("");
 
     const [totalSale, setTotalSale] = useState('0');
-    //---------------------------------------------------
+
+    //------------ Dropdown for search----------------
     const [customers, setCustomers] = useState([]);
     const [searchDropdown, setSearchDropdown] = useState('');
+
+    //-------- Data display year --------
+    const [yr, setYr] = useState('');
 
 
     useEffect(() => {
         const getData = async () => {
             setWaitMsg('Please Wait...');
             try {
-
-               const [responseSale, responseCustomer, responseItem] = await Promise.all([
+                const [responseSale, responseCustomer, responseItem] = await Promise.all([
                     getDataFromFirebase('sale'),
                     getDataFromFirebase('customer'),
                     getDataFromFirebase('item')
                 ]);
-              //  console.log(responseSale, responseCustomer, responseItem);
+                //  console.log(responseSale, responseCustomer, responseItem);
                 const joinTable = responseSale.map(sale => {
                     return {
                         ...sale,
@@ -42,17 +44,29 @@ const Sale = () => {
                     }
                 })
 
-              //   console.log("joinTable: ", joinTable);
+                // periodic data ------------------
+                const getDataInPeriod = filterDataInPeriod(joinTable);
 
-                setSales(joinTable);
-                setSales1(joinTable);
+                // console.log("Data in period: ", getDataInPeriod);
+
+                // console.log("joinTable: ", getDataInPeriod);
+
+                setSales(getDataInPeriod);
+
+                // -------- Storage for search ----------------------
+                setSales1(getDataInPeriod);
 
                 // -------- This is for search dropdown ----------------------
-                const sortCustomer = responseCustomer.sort((a, b)=>sortArray(a.name, b.name));
+                const sortCustomer = responseCustomer.sort((a, b) => sortArray(a.name, b.name));
                 setCustomers(sortCustomer);
+
                 //-----------------Total sale taka----------------------------------
-                const total = joinTable.reduce((t, c) => t + (parseFloat(c.weight) * parseFloat(c.rate)), 0);
+                const total = getDataInPeriod.reduce((t, c) => t + (parseFloat(c.weight) * parseFloat(c.rate)), 0);
                 setTotalSale(total);
+
+                //---------- Session Storage Year ----------------
+                const period = sessionStorage.getItem('yr');
+                setYr(period);
 
                 setWaitMsg('');
             } catch (error) {
@@ -83,7 +97,7 @@ const Sale = () => {
     return (
         <>
             <div className="w-full mb-3 mt-8">
-                <h1 className="w-full text-xl lg:text-3xl font-bold text-center text-blue-700">Sale</h1>
+                <h1 className="w-full text-xl lg:text-3xl font-bold text-center text-blue-700">Sale-{yr}</h1>
                 <h1 className="w-full text-xl lg:text-2xl font-bold text-center text-gray-400">Total = {numberWithComma(parseFloat(totalSale))}/-</h1>
 
 
@@ -123,7 +137,7 @@ const Sale = () => {
                             {sales.length ? (
                                 sales.map(sale => (
                                     <tr className="border-b border-gray-200 hover:bg-gray-100" key={sale.id}>
-                                        <td className="text-center py-2 px-4">{date_format(sale.dt)}</td>
+                                        <td className="text-center py-2 px-4">{formatedDateDot(sale.dt, true)}</td>
                                         <td className="text-center py-2 px-4">{sale.shipment}</td>
                                         <td className="text-center py-2 px-4">{sale.customer.name}</td>
                                         <td className="text-center py-2 px-4">{sale.weight}</td>

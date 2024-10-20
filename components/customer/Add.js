@@ -6,7 +6,7 @@ import { addDataToFirebase } from "@/lib/firebaseFunction";
 const Add = ({ message }) => {
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
-    const [contact, setContact] = useState('');    
+    const [contact, setContact] = useState('');
 
     const [show, setShow] = useState(false);
     const [pointerEvent, setPointerEvent] = useState(true);
@@ -23,18 +23,18 @@ const Add = ({ message }) => {
 
 
     const resetVariables = () => {
-       setName('');
-       setAddress('');
-       setContact('');
+        setName('');
+        setAddress('');
+        setContact('');
     }
 
 
     const createObject = () => {
         return {
-              name: name,
-              address: address,
-              contact: contact,
-              createdAt: new Date().toISOString()
+            name: name,
+            address: address,
+            contact: contact,
+            createdAt: new Date().toISOString()
         }
     }
 
@@ -76,7 +76,7 @@ const Add = ({ message }) => {
                                         <div className="grid grid-cols-1 gap-4">
                                             <TextEn Title="Name" Id="name" Change={e => setName(e.target.value)} Value={name} Chr={50} />
                                             <TextEn Title="Address" Id="address" Change={e => setAddress(e.target.value)} Value={address} Chr={50} />
-                                            <TextEn Title="Contact" Id="contact" Change={e => setContact(e.target.value)} Value={contact} Chr={50} />                                    
+                                            <TextEn Title="Contact" Id="contact" Change={e => setContact(e.target.value)} Value={contact} Chr={50} />
                                         </div>
                                         <div className={`w-full mt-4 flex justify-start ${pointerEvent ? 'pointer-events-auto' : 'pointer-events-none'}`}>
                                             <input type="button" onClick={closeAddForm} value="Close" className="bg-pink-600 hover:bg-pink-800 text-white text-center mt-3 mx-0.5 px-4 py-2 font-semibold rounded-md focus:ring-1 ring-blue-200 ring-offset-2 duration-300 cursor-pointer" />
@@ -98,4 +98,4 @@ const Add = ({ message }) => {
     )
 }
 export default Add;
-  
+

@@ -4,7 +4,6 @@ import { formatedDateDot, numberWithComma } from "@/lib/utils";
 
 const Add = ({ sales, customers, data }) => {
     const [show, setShow] = useState(false);
-    const [searchSales, setSearchSales] = useState([]);
     const [saleDatas, setSaleDatas] = useState([]);
     const [totals, setTotals] = useState([]);
 
@@ -32,14 +31,7 @@ const Add = ({ sales, customers, data }) => {
             const totalGt = joinWithCustomer.reduce((t, c) => t + (parseFloat(c.rate) * parseFloat(c.weight)), 0);
             setTotals([totalBale,totalThan,totalMeter,totalWeitht,totalGt]);
             console.log(totalBale);
-            /*
-            console.log(sales, saleSummery, shipment)
-            const data = sales.filter(sale => parseInt(sale.shipment) === parseInt(shipment));
-            const summery = saleSummery.find(summery => summery.shipment === shipment);
-            console.log({ "sales": sales, "data": data, "summery": summery });
-            setSaleDatas(data);
-            setSearchSales(summery);
-            */
+
         } catch (error) {
             console.error('Failed to fetch delivery data:', error);
         }

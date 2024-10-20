@@ -3,9 +3,8 @@ import React, { useState, useEffect } from "react";
 import Add from "@/components/loanpayment/Add";
 import Edit from "@/components/loanpayment/Edit";
 import Delete from "@/components/loanpayment/Delete";
-// import Print from "@/components/loanpayment/Print";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
-import { formatedDateDot, sortArray } from "@/lib/utils";
+import { filterDataInPeriod, formatedDateDot, numberWithComma, sortArray } from "@/lib/utils";
 
 
 
@@ -13,6 +12,10 @@ const Loanpayment = () => {
     const [loanpayments, setLoanpayments] = useState([]);
     const [waitMsg, setWaitMsg] = useState("");
     const [msg, setMsg] = useState("Data ready");
+
+
+    const [total, setTotal] = useState("");
+    const [yr, setYr] = useState("");
 
 
     useEffect(() => {
@@ -31,10 +34,20 @@ const Loanpayment = () => {
                        borrower : borrowers.find(borrower => borrower.id ===loanpayment.borrowerId) || {}
                     }
                 });
-    
-                const sortedData = joinCollection.sort((a, b) => sortArray(new Date(b.createdAt), new Date(a.createdAt)));
+                const filterInPeriod = filterDataInPeriod(joinCollection);
+
+                const sortedData = filterInPeriod.sort((a, b) => sortArray(new Date(b.createdAt), new Date(a.createdAt)));
                 console.log(sortedData);
                 setLoanpayments(sortedData);
+
+                //---------------Total Loan ------------
+                const totalTaka = sortedData.reduce((t, c) => t + parseFloat(c.taka), 0);
+                setTotal(totalTaka);
+
+               //---------------Period ------------ 
+               setYr(sessionStorage.getItem('yr')); 
+
+
                 setWaitMsg('');
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -52,7 +65,8 @@ const Loanpayment = () => {
     return (
         <>
             <div className="w-full mb-3 mt-8">
-                <h1 className="w-full text-xl lg:text-3xl font-bold text-center text-blue-700">Loan Payment</h1>
+                <h1 className="w-full text-xl lg:text-3xl font-bold text-center text-blue-700">Loan Payment-{yr}</h1>
+                <h1 className="w-full text-xl lg:text-2xl font-bold text-center text-gray-400">Total = {numberWithComma(parseFloat(total))}/-</h1>
                 <p className="w-full text-center text-blue-300">&nbsp;{waitMsg}&nbsp;</p>
                 <p className="w-full text-sm text-center text-pink-600">&nbsp;{msg}&nbsp;</p>
             </div>

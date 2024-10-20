@@ -6,7 +6,7 @@ import { jsPDF } from "jspdf";
 require("@/lib/fonts/Poppins-Bold-normal");
 require("@/lib/fonts/Poppins-Regular-normal");
 import Add from "@/components/due/Add";
-import { formatedDate, formatedDateDot, inwordEnglish, numberWithComma, sortArray } from "@/lib/utils";
+import { filterDataInPeriod, formatedDate, formatedDateDot, inwordEnglish, numberWithComma, sortArray } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
 
 
@@ -19,11 +19,13 @@ const Customer = () => {
     const [dt1, setDt1] = useState("");
     const [dt2, setDt2] = useState("");
 
-    const [sales, setSales] = useState([]);
-    const [newDues, setNewDues] = useState([]);
+
+    //------- Total Taka in dues----------------------
     const [totalDue, setTotalDue] = useState('0');
-    //-----------------------------------------
+
+    //------- For dropdown ----------------------
     const [cashtypes, setCashtypes] = useState([]);
+    const [yr, setYr] = useState("");
 
     useEffect(() => {
         const loadData = async () => {
@@ -37,10 +39,10 @@ const Customer = () => {
                     getDataFromFirebase('cashtype')
                 ]);
 
-                console.log("Customer: ", customers);
-                console.log("Sale: ", sales);
+                //   console.log("Customer: ", customers);
+                //  console.log("Sale: ", sales);
 
-                setSales(sales);
+
                 setCashtypes(cashtypes);
 
                 const result = customers.map(customer => {
@@ -59,18 +61,20 @@ const Customer = () => {
                         matchingPayment
                     };
                 });
-                const sortResult = result.sort((a, b) => sortArray(parseInt(b.balance), parseInt(a.balance)));
+
+                // --------- Period range ----------
+                const filterInPeriod = filterDataInPeriod(result);
+
+                const sortResult = filterInPeriod.sort((a, b) => sortArray(parseInt(b.balance), parseInt(a.balance)));
                 console.log(sortResult);
                 setCustomers(sortResult);
-                setWaitMsg('');
 
-                //---------------------------------------------------
-
-                setNewDues(sortResult);
+                //--------- Tota taka ------------------------------------------
                 const total = sortResult.reduce((t, c) => t + parseFloat(c.balance), 0);
                 setTotalDue(total);
+                setYr(sessionStorage.getItem('yr'));
 
-
+                setWaitMsg('');
             } catch (error) {
                 console.error("Error fetching data:", error);
                 setMsg("Failed to fetch data");
@@ -113,9 +117,10 @@ const Customer = () => {
             doc.text(`Date: ${formatedDateDot(new Date())}`, 198, 35, null, null, "right");
             doc.setFont("Poppins-Bold", "bold");
             doc.text("Sales Information", 12, 37, null, null, "left");
-            doc.text("Date", 25, 43, null, null, "center");
-            doc.text("Shipment", 50, 43, null, null, "center");
-            doc.text("Bale & Meter", 89, 43, null, null, "center");
+            doc.text("SL", 18, 43, null, null, "center");
+            doc.text("Date", 35, 43, null, null, "center");
+            doc.text("Shipment", 60, 43, null, null, "center");
+            doc.text("Bale & Meter", 97, 43, null, null, "center");
             doc.text("Description", 146, 43, null, null, "center");
             doc.text("Amount(Taka)", 196, 43, null, null, "right");
             doc.line(12, 39, 198, 39);
@@ -131,9 +136,11 @@ const Customer = () => {
             const sale = customer.matchingSale;
             for (let i = 0; i < sale.length; i++) {
                 let subTotal = parseFloat(sale[i].weight) * parseFloat(sale[i].rate);
-                doc.text(`${formatedDateDot(sale[i].dt, false)}`, 25, y, null, null, "center");
-                doc.text(`${sale[i].shipment}`, 50, y, null, null, "center");
-                doc.text(`${sale[i].bale} Bale; ${sale[i].meter} Mtr.`, 89, y, null, null, "center");
+
+                doc.text(`${i+1}.`, 18, y, null, null, "center");
+                doc.text(`${formatedDateDot(sale[i].dt, false)}`, 35, y, null, null, "center");
+                doc.text(`${sale[i].shipment}`, 60, y, null, null, "center");
+                doc.text(`${sale[i].bale} Bale; ${sale[i].meter} Mtr.`, 97, y, null, null, "center");
                 doc.text(`${numberWithComma(sale[i].weight)} @ ${numberWithComma(sale[i].rate)}`, 146, y, null, null, "center");
                 doc.text(`${numberWithComma(subTotal)}`, 196, y, null, null, "right");
                 gt = gt + subTotal;
@@ -147,7 +154,7 @@ const Customer = () => {
             doc.line(12, y - 3, 198, y - 3);
             doc.text("Total:", 14, y + 1, null, null, "left");
             doc.setFont("Poppins-Regular", "normal");
-            doc.text(`(${totalKgs}kgs at ${itemTimes} Times); [Total: Bale= ${totalBale}; Meter=${totalMeter}]`, 28, y + 1, null, null, "left");
+            doc.text(`(Total: Kgs= ${totalKgs}; Bale= ${totalBale}; Meter=${totalMeter})`, 28, y + 1, null, null, "left");
             doc.setFont("Poppins-Bold", "bold");
             doc.text(`${numberWithComma(gt)}`, 196, y + 1, null, null, "right");
             doc.line(12, y + 2.5, 198, y + 2.5);
@@ -162,8 +169,9 @@ const Customer = () => {
             doc.setFont("Poppins-Bold", "bold");
             doc.text("Payments Information", 12, z, null, null, "left");
             doc.line(12, z + 1, 198, z + 1);
-            doc.text("Date", 30, z + 5, null, null, "center");
-            doc.text("Cash Type", 90, z + 5, null, null, "center");
+            doc.text("SL", 24, z + 5, null, null, "center");
+            doc.text("Date", 64, z + 5, null, null, "center");
+            doc.text("Cash Type", 122, z + 5, null, null, "center");
             doc.text("Amount", 196, z + 5, null, null, "right");
             doc.line(12, z + 6.5, 198, z + 6.5);
 
@@ -174,8 +182,9 @@ const Customer = () => {
             const payment = customer.matchingPayment;
             for (let i = 0; i < payment.length; i++) {
                 const matchCashType = cashtypes.find(cashType => cashType.id === payment[i].cashtypeId);
-                doc.text(`${formatedDateDot(payment[i].dt, false)}`, 30, n, null, null, "center");
-                doc.text(`${matchCashType.name}`, 90, n, null, null, "center");
+                doc.text(`${i+1}.`, 24, n, null, null, "center");
+                doc.text(`${formatedDateDot(payment[i].dt, false)}`, 64, n, null, null, "center");
+                doc.text(`${matchCashType.name}`, 122, n, null, null, "center");
                 doc.text(`${numberWithComma(payment[i].taka)}`, 196, n, null, null, "right");
                 paymentTotal = paymentTotal + parseFloat(payment[i].taka);
                 paymentTimes = i + 1;
@@ -183,7 +192,7 @@ const Customer = () => {
             }
             doc.setFont("Poppins-Bold", "bold");
             doc.line(12, n - 3, 198, n - 3);
-            doc.text(`Total: (${paymentTimes} Times)`, 14, n + 1, null, null, "left");
+            doc.text(`Total:`, 14, n + 1, null, null, "left");
             doc.text(`${numberWithComma(paymentTotal)}`, 196, n + 1, null, null, "right");
             doc.line(12, n + 2.5, 198, n + 2.5);
 
@@ -209,7 +218,6 @@ const Customer = () => {
             setWaitMsg('');
         }, 0);
     }
-
 
 
 
@@ -239,7 +247,7 @@ const Customer = () => {
     return (
         <>
             <div className="w-full mb-3 mt-8">
-                <h1 className="w-full text-xl lg:text-3xl font-bold text-center text-blue-700">Customer Dues</h1>
+                <h1 className="w-full text-xl lg:text-3xl font-bold text-center text-blue-700">Customer Dues-{yr}</h1>
                 <h1 className="w-full text-xl lg:text-2xl font-bold text-center text-gray-400">Total = {numberWithComma(parseFloat(totalDue))}/-</h1>
                 <p className="w-full text-center text-blue-300">&nbsp;{waitMsg}&nbsp;</p>
             </div>
@@ -268,7 +276,7 @@ const Customer = () => {
                             customers.map((customer, i) => (
                                 <tr className={`border-b border-gray-200 hover:bg-gray-100 ${customer.isDues ? 'text-black' : 'text-blue-500'}`} key={customer.id}>
                                     <td className="text-start py-2 px-4">
-                                        <span className="font-bold">{i+1}. {customer.name}</span><br />
+                                        <span className="font-bold">{i + 1}. {customer.name}</span><br />
                                         {customer.address}<br />
                                         {customer.contact}
                                     </td>

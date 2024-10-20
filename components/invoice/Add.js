@@ -87,7 +87,6 @@ const Add = ({ message }) => {
         try {
             setPointerEvent(false);
             const newObject = createObject();
-            console.log(newObject)
             const msg = await addDataToFirebase("invoice", newObject);
             message(msg);
             localStorage.removeItem('localItem');

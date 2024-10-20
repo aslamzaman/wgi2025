@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import Add from "@/components/payment/Add";
 import Edit from "@/components/payment/Edit";
 import Delete from "@/components/payment/Delete";
-import { numberWithComma, sortArray } from "@/lib/utils";
+import { filterDataInPeriod, formatedDate, formatedDateDot, numberWithComma, sortArray } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
-const date_format = dt => new Date(dt).toISOString().split('T')[0];
+
 
 
 
@@ -18,6 +18,9 @@ const Payment = () => {
     const [dt2, setDt2] = useState("");
     const [newPayments, setNewPayments] = useState([]);
     const [totalPayment, setTotalPayment] = useState('0');
+
+    //-------- Data display year --------
+    const [yr, setYr] = useState('');
 
 
     useEffect(() => {
@@ -39,24 +42,33 @@ const Payment = () => {
                     }
                 });
 
-                const sortedData = joinCollection.sort((a, b) => sortArray(new Date(b.createdAt), new Date(a.createdAt)));
+                // periodic data ------------------
+                const getDataInPeriod = filterDataInPeriod(joinCollection);
+
+                const sortedData = getDataInPeriod.sort((a, b) => sortArray(new Date(b.createdAt), new Date(a.createdAt)));
 
                 console.log(sortedData.length);
                 setPayments(sortedData);
-                setWaitMsg('');
 
-                //---------------------------------------------------
+                //---------- Storage data for searcing -----------------------
                 setNewPayments(sortedData)
                 const total = sortedData.reduce((t, c) => t + parseFloat(c.taka), 0);
                 setTotalPayment(total);
 
+                //---------- Session Storage Year ----------------
+                const period = sessionStorage.getItem('yr');
+                setYr(period);
+
+                setWaitMsg('');
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
         };
         getData();
+
+        // Period for search input -----------------
         setDt1('2024-05-01');
-        setDt2(date_format(new Date()));
+        setDt2(formatedDate(new Date()));
     }, [msg]);
 
 
@@ -82,9 +94,7 @@ const Payment = () => {
     }
 
     const refreshClickHandler = () => {
-        setPayments(newPayments);
-        const total = newPayments.reduce((t, c) => t + parseFloat(c.taka), 0);
-        setTotalPayment(total);
+        setMsg(`Refreshed data: ${Date.now()}`);
     }
 
 
@@ -92,7 +102,7 @@ const Payment = () => {
     return (
         <>
             <div className="w-full mb-3 mt-8">
-                <h1 className="w-full text-xl lg:text-3xl font-bold text-center text-blue-700">Payment</h1>
+                <h1 className="w-full text-xl lg:text-3xl font-bold text-center text-blue-700">Payment-{yr}</h1>
                 <h1 className="w-full text-xl lg:text-2xl font-bold text-center text-gray-400">Total = {numberWithComma(parseFloat(totalPayment))}/-</h1>
                 <p className="w-full text-center text-blue-300">&nbsp;{waitMsg}&nbsp;</p>
             </div>
@@ -125,7 +135,7 @@ const Payment = () => {
                             {payments.length ? (
                                 payments.map(payment => (
                                     <tr className="border-b border-gray-200 hover:bg-gray-100" key={payment.id}>
-                                        <td className="text-center py-2 px-4">{date_format(payment.dt)}</td>
+                                        <td className="text-center py-2 px-4">{formatedDateDot(payment.dt,true)}</td>
                                         <td className="text-center py-2 px-4">{payment.customer.name}</td>
                                         <td className="text-center py-2 px-4">{payment.cashtype.name}</td>
                                         <td className="text-center py-2 px-4">{payment.taka}</td>

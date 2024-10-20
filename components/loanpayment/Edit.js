@@ -13,7 +13,8 @@ const Edit = ({ message, id, data }) => {
 
     const [show, setShow] = useState(false);
     const [pointerEvent, setPointerEvent] = useState(true);
-    //-------------------------------
+    
+    //------- For Dropdown ------------------------
     const [borrowers, setBorrowers] = useState([]);
 
 

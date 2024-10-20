@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { TextEn, BtnSubmit, DropdownEn, TextNum, TextDt  } from "@/components/Form";
+import { TextEn, BtnSubmit, DropdownEn, TextNum, TextDt } from "@/components/Form";
 import { addDataToFirebase, getDataFromFirebase } from "@/lib/firebaseFunction";
 import { formatedDate } from "@/lib/utils";
-const date_format = dt => new Date(dt).toISOString().split('T')[0];
+
 
 
 const Add = ({ message, id }) => {
@@ -23,11 +23,12 @@ const Add = ({ message, id }) => {
 
     const resetVariables = () => {
         setDt(formatedDate(new Date()));
-        setCashtypeId('');
+        setCashtypeId('1yECAMtHPz31hACNVq3j');
         setBank('');
         setChequeNo('');
         setChequeDt(formatedDate(new Date()));
         setTaka('');
+        setBankShow(false);
     }
 
 

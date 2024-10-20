@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { BtnSubmit, TextEn, TextPw } from "@/components/Form";
+import { BtnSubmit, DropdownEn, TextEn, TextPw } from "@/components/Form";
 import { useRouter } from "next/navigation";
 import { getDataFromFirebaseForLog, uploadDataToFirebase } from "@/lib/firebaseFunction";
 import { wgi2024_unittypes } from "@/lib/wgi2024";
 
 
 export default function Home() {
+  const [yr, setYr] = useState("");
   const [user, setUser] = useState("");
   const [pw, setPw] = useState("");
   const [msg, setMsg] = useState("");
@@ -44,6 +45,7 @@ export default function Home() {
       setPw('');
     } else {
       sessionStorage.setItem('log', 1);
+      sessionStorage.setItem('yr', yr);
       router.push('/dashboard');
     }
   };
@@ -51,7 +53,7 @@ export default function Home() {
 
 
 
-
+/*
   const ddget = async () => {
     const data = await getDataFromFirebaseForLog('unittype');
     const obj = data[0];
@@ -80,7 +82,7 @@ export default function Home() {
 
     }
   }
-
+*/
 
 
   return (
@@ -94,6 +96,20 @@ export default function Home() {
           <p className="py-2 text-center text-red-500">{msg}</p>
           <form onSubmit={submitHandler}>
             <div className="grid grid-cols-1 gap-4">
+            <DropdownEn Title="Year" Id="yr" Change={e => setYr(e.target.value)} Value={yr} >
+              <option value="all">All</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+              <option value="2029">2029</option>
+              <option value="2030">2030</option>
+              <option value="2031">2031</option>
+              <option value="2032">2032</option>
+              <option value="2033">2033</option>
+
+            </DropdownEn>
               <TextEn Title="User Name" Id="user" Change={e => setUser(e.target.value)} Value={user} Chr={50} />
               <TextPw Title="Password" Id="pw" Change={e => setPw(e.target.value)} Value={pw} Chr={50} />
             </div>

@@ -30,7 +30,7 @@ const Add = ({ message }) => {
         setReceiveNo(Math.round(Date.now() / 60000));
         setReceivedFrom('');
         setTaka('');
-        setCashtypeId('');
+        setCashtypeId('1yECAMtHPz31hACNVq3j');
         setBankName('');
         setChequeNo('');
         setChequeDt(formatedDate(new Date()));
@@ -46,6 +46,7 @@ const Add = ({ message }) => {
         resetVariables();
         try {
             const responseCashtype = await getDataFromFirebase('cashtype');
+            console.log(responseCashtype);
             setCashtypes(responseCashtype);
         } catch (error) {
             console.error('Failed to fetch delivery data:', error);
@@ -94,18 +95,17 @@ const Add = ({ message }) => {
 
     const cashtypeChangeHandler = (e) => {
         let event = e.target.value;
-
         setCashtypeId(event);
         if (event === "1yECAMtHPz31hACNVq3j") {
-            setBankName('');
-            setChequeNo('');
-            setChequeDt(formatedDate(new Date()));
-            setBankShow(true);
-        } else {
             setBankName(' ');
             setChequeNo(' ');
             setChequeDt(formatedDate(new Date()));
             setBankShow(false);
+        } else {
+            setBankName('');
+            setChequeNo('');
+            setChequeDt(formatedDate(new Date()));
+            setBankShow(true);
         }
     }
 

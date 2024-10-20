@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { formatedDateDot, numberWithComma } from "@/lib/utils";
-const date_format = dt => new Date(dt).toISOString().split('T')[0];
 
 
 
-
-const Detail = ({ message, id, data }) => {
-    const [borrower, setBorrower] = useState([]);
+const Detail = ({ id, data }) => {
     const [loans, setLoans] = useState([]);
     const [payments, setPayments] = useState([]);
-    const [balance, setBalance] = useState('0');
+    const [balance, setBalance] = useState([]);
 
 
     const [show, setShow] = useState(false);
@@ -17,11 +14,10 @@ const Detail = ({ message, id, data }) => {
     const showDetailorm = async () => {
         setShow(true);
         console.log(id, data)
-
+        //------------------------
         setLoans(data.matchLoan);
         setPayments(data.matchPayment);
-        setBalance([data.totalLoan,data.totalPayment,data.balance]);
-       // console.log(data.totalLoan,data.totalPayment,data.balance);
+        setBalance([data.totalLoan, data.totalPayment, data.balance]);
     };
 
 
@@ -103,7 +99,7 @@ const Detail = ({ message, id, data }) => {
                                                         return (
                                                             <tr className="border-b border-gray-200 hover:bg-gray-100" key={payment.id}>
                                                                 <td className="text-center py-2 px-4">{i + 1}</td>
-                                                                <td className="text-center py-2 px-4">{formatedDateDot(payment.dt,true)}</td>
+                                                                <td className="text-center py-2 px-4">{formatedDateDot(payment.dt, true)}</td>
                                                                 <td className="text-end py-2 px-4">{numberWithComma(parseFloat(payment.taka))}/-</td>
                                                                 <td className="text-center py-2 px-4">{payment.remarks}</td>
                                                             </tr>

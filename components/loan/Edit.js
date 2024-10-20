@@ -21,8 +21,10 @@ const Edit = ({ message, id, data }) => {
     const showEditForm = async () => {
         setShow(true);
         try {
+           //------ For Dropdown -------------------
             const responseBorrower = await getDataFromFirebase("borrower");
             setBorrowers(responseBorrower);
+            
             //-----------------------------
             const { borrowerId, dt, taka, remarks, createdAt } = data;
             setBorrowerId(borrowerId);

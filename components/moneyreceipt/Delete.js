@@ -1,61 +1,41 @@
 import React, { useState } from "react";
 import { BtnEn } from "@/components/Form";
+import { deleteDataFromFirebase } from "@/lib/firebaseFunction";
 
 
 const Delete = ({ message, id, data }) => {
-    const [receiveNo, setReceiveNo] = useState("");   
+    const [receiveNo, setReceiveNo] = useState("");
     const [show, setShow] = useState(false);
+
+    const [pointerEvent, setPointerEvent] = useState(true);
+
 
     const showDeleteForm = () => {
         setShow(true);
-        const { receiveNo } = data.find(moneyreceipt => moneyreceipt._id === id) || { receiveNo: "" };
-
-        setReceiveNo(receiveNo); 
+        const { receiveNo } = data;
+        setReceiveNo(receiveNo);
     }
 
 
     const closeDeleteForm = () => {
-        setShow(false);           
+        setShow(false);
     }
 
-/*
-    const softDeleteHandler = async () => {
-        try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/moneyreceipt/${id}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" }
-            });
-            if (!response.ok) {
-                throw new Error("Failed to fetch data");
-            }
-            const data = await response.json();
-           // console.log(data)
-            message(`Deleted successfully completed. id: ${id}`);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }finally{
-            setShow(false);          
-        }
-    }
-*/
 
     const hardDeleteHandler = async () => {
         try {
-            const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/moneyreceipt/${id}`;
-            const requestOptions = { method: "DELETE" };
-            const response = await fetch(apiUrl, requestOptions);
-            if (response.ok) {
-                message(`Deleted successfully completed. id: ${id}`);
-            } else {
-                throw new Error("Failed to delete moneyreceipt");
-            }         
+            setPointerEvent(false);
+            const msg = await deleteDataFromFirebase('moneyreceipt', id);
+            message(msg);
         } catch (error) {
             console.log(error);
             message("Data deleting error");
+        } finally {
+            setPointerEvent(true);
+            setShow(false);
         }
-        setShow(false);
     }
-   
+
     return (
         <>
             {show && (
@@ -65,13 +45,13 @@ const Delete = ({ message, id, data }) => {
                             <h1 className="text-xl font-bold text-blue-600">Delete Existing Data</h1>
                             <button onClick={closeDeleteForm} className="w-8 h-8 p-0.5 bg-gray-50 hover:bg-gray-300 rounded-md transition duration-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-full h-full stroke-black">
-                                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
 
                         </div>
                         <div className="p-4 lg:p-6 flex flex-col space-y-4">
-                            <div className="w-full">    
+                            <div className="w-full">
                                 <svg height="60" width="60" xmlns="http://www.w3.org/2000/svg" className="bg-white-100 mx-auto">
                                     <path d="M30 3 L3 57 L57 57 Z" className="fill-none stroke-red-700 stroke-[5px]" />
                                     <path d="M30 23 L30 40" className="fill-none stroke-red-700 stroke-[5px]" />

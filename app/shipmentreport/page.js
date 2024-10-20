@@ -1,17 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { numberWithComma } from "@/lib/utils";
+import { filterDataInPeriod, numberWithComma, sortArray } from "@/lib/utils";
 
 require("@/lib/fonts/Poppins-Bold-normal");
 require("@/lib/fonts/Poppins-Regular-normal");
 import Add from "@/components/shipmentreport/Add";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
-
-const getUniqueValues = (array) => (
-    array.filter((currentValue, index, arr) => (
-        arr.indexOf(currentValue) === index
-    ))
-)
 
 
 
@@ -19,10 +13,13 @@ const getUniqueValues = (array) => (
 const Shipmentreport = () => {
     const [msg, setMsg] = useState("Data ready");
     const [waitMsg, setWaitMsg] = useState("");
- 
+
     const [sales, setSales] = useState([]);
     const [customers, setCustomers] = useState([]);
     const [saleSummery, setSaleSummery] = useState([]);
+
+    //-------- Data display year --------
+    const [yr, setYr] = useState('');
 
 
 
@@ -31,31 +28,47 @@ const Shipmentreport = () => {
             setWaitMsg('Please Wait...');
             try {
 
-                const [sales, customers] =  await Promise.all([
+                const [sales, customers] = await Promise.all([
                     getDataFromFirebase('sale'),
                     getDataFromFirebase('customer')
-                ]); 
+                ]);
                 setCustomers(customers);
 
-                const arrShipment = sales.map(sale => sale.shipment);
-                const shipments = getUniqueValues(arrShipment);
+                //----------- Period ------------
+                const periodicSale = filterDataInPeriod(sales);
+
+
+                const arrShipment = periodicSale.map(sale => sale.shipment);
+                const shipments = Array.from(new Set(arrShipment));
+
                 setSales(sales);
 
                 const result = shipments.map(shipment => {
-                    const oneSale = sales.find(sale=> sale.shipment=== shipment);
-                    const customerName = customers.find(customer=>customer.id === oneSale.customerId);
+                    const oneSale = sales.find(sale => sale.shipment === shipment);
+                    const customerName = customers.find(customer => customer.id === oneSale.customerId);
                     const matchingSale = sales.filter(sale => sale.shipment === shipment);
                     const totalBale = matchingSale.reduce((t, c) => t + parseFloat(c.bale), 0);
                     const totalThan = matchingSale.reduce((t, c) => t + parseFloat(c.than), 0);
                     const totalMeter = matchingSale.reduce((t, c) => t + parseFloat(c.meter), 0);
                     const totalWeitht = matchingSale.reduce((t, c) => t + parseFloat(c.weight), 0);
                     const totalTaka = matchingSale.reduce((t, c) => t + (parseFloat(c.weight) * parseFloat(c.rate)), 0);
-                    return {customerName: customerName,
+                    return {
+                        customerName: customerName,
                         saleDate: oneSale.dt,
-                         shipment, totalBale, totalThan, totalMeter, totalWeitht, totalTaka };
+                        shipment, totalBale, totalThan, totalMeter, totalWeitht, totalTaka
+                    };
                 });
-                console.log(result);
-                setSaleSummery(result);
+
+                const sortData = result.sort((a, b) => sortArray(parseInt(a.shipment), parseInt(b.shipment)));
+
+                console.log(sortData);
+                setSaleSummery(sortData);
+
+                //---------- Session Storage Year ----------------
+                const period = sessionStorage.getItem('yr');
+                setYr(period);
+
+
                 setWaitMsg('');
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -63,14 +76,14 @@ const Shipmentreport = () => {
             }
         }
         loadData();
-       
+
     }, [msg]);
 
 
     return (
         <>
             <div className="w-full mb-3 mt-8">
-                <h1 className="w-full text-xl lg:text-3xl font-bold text-center text-blue-700">Report Summery on Shipment</h1>
+                <h1 className="w-full text-xl lg:text-3xl font-bold text-center text-blue-700">Report on Shipment-{yr}</h1>
                 <p className="w-full text-center text-blue-300">&nbsp;{waitMsg}&nbsp;</p>
             </div>
 
@@ -90,9 +103,9 @@ const Shipmentreport = () => {
                     </thead>
                     <tbody>
                         {saleSummery.length ? (
-                            saleSummery.map((customer,i) => (
+                            saleSummery.map((customer, i) => (
                                 <tr className={`border-b border-gray-200 hover:bg-gray-100 ${customer.isDues ? 'text-black' : 'text-blue-500'}`} key={i}>
-                                    <td className="text-center py-2 px-4">{i+1}</td>
+                                    <td className="text-center py-2 px-4">{i + 1}</td>
                                     <td className="text-center py-2 px-4">{customer.shipment}</td>
                                     <td className="text-center py-2 px-4">{numberWithComma(customer.totalBale)}</td>
                                     <td className="text-center py-2 px-4">{numberWithComma(customer.totalThan)}</td>
