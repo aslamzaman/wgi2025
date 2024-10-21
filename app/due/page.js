@@ -133,7 +133,8 @@ const Customer = () => {
             let totalMeter = 0;
             let totalBale = 0;
             let itemTimes = 0;
-            const sale = customer.matchingSale;
+            const saleMatch = customer.matchingSale;
+            const sale = saleMatch.sort((a, b) => sortArray(new Date(a.dt), new Date(b.dt)));
             for (let i = 0; i < sale.length; i++) {
                 let subTotal = parseFloat(sale[i].weight) * parseFloat(sale[i].rate);
 
@@ -179,7 +180,8 @@ const Customer = () => {
             let n = z + 11;
             let paymentTotal = 0;
             let paymentTimes = 0;
-            const payment = customer.matchingPayment;
+            const paymentMatch = customer.matchingPayment;
+            const payment = paymentMatch.sort((a, b) => sortArray(new Date(a.dt), new Date(b.dt)));
             for (let i = 0; i < payment.length; i++) {
                 const matchCashType = cashtypes.find(cashType => cashType.id === payment[i].cashtypeId);
                 doc.text(`${i+1}.`, 24, n, null, null, "center");

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextEn, BtnSubmit, DropdownEn, TextDt, TextNum } from "@/components/Form";
 import { updateDataToFirebase, getDataFromFirebase } from "@/lib/firebaseFunction";
-import { formatedDate } from "@/lib/utils";
+import { formatedDate, sortArray } from "@/lib/utils";
 
 
 
@@ -23,7 +23,8 @@ const Edit = ({ message, id, data }) => {
         try {
            //------ For Dropdown -------------------
             const responseBorrower = await getDataFromFirebase("borrower");
-            setBorrowers(responseBorrower);
+            const sortedBorrower = responseBorrower.sort((a,b)=>sortArray(a.name.toUpperCase(), b.name.toUpperCase()));
+            setBorrowers(sortedBorrower);
             
             //-----------------------------
             const { borrowerId, dt, taka, remarks, createdAt } = data;

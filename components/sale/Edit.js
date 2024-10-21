@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BtnSubmit, DropdownEn, TextNum, TextDt } from "@/components/Form";
 const date_format = dt => new Date(dt).toISOString().split('T')[0];
 import { getDataFromFirebase, updateDataToFirebase } from "@/lib/firebaseFunction";
-import { formatedDate } from "@/lib/utils";
+import { formatedDate, sortArray } from "@/lib/utils";
 
 
 const Edit = ({ message, id, data }) => {
@@ -34,8 +34,11 @@ const Edit = ({ message, id, data }) => {
                 getDataFromFirebase('item')
             ]);
 
-            setCustomers(responseCustomer);
-            setItems(responseItem);
+            const sortedCustomer = responseCustomer.sort((a,b)=>sortArray(a.name.toUpperCase(), b.name.toUpperCase()));
+            const sortedIems = responseItem.sort((a,b)=>sortArray(a.name.toUpperCase(), b.name.toUpperCase()));
+
+            setCustomers(sortedCustomer);
+            setItems(sortedIems);
 
             //---------------------------------------------
             const { customerId, shipment, itemId, dt, bale, than, meter, weight, rate, createdAt } = data;

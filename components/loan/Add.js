@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextEn, BtnSubmit, DropdownEn, TextDt, TextNum } from "@/components/Form";
 import { addDataToFirebase, getDataFromFirebase } from "@/lib/firebaseFunction";
-import { formatedDate } from "@/lib/utils";
+import { formatedDate, sortArray } from "@/lib/utils";
 
 
 const Add = ({ message }) => {
@@ -20,7 +20,8 @@ const Add = ({ message }) => {
         resetVariables();
         try {
             const responseBorrower = await getDataFromFirebase("borrower");
-            setBorrowers(responseBorrower);
+            const sortedBorrower = responseBorrower.sort((a,b)=>sortArray(a.name.toUpperCase(), b.name.toUpperCase()));
+            setBorrowers(sortedBorrower);
         } catch (error) {
             console.error('Failed to fetch delivery data:', error);
         }

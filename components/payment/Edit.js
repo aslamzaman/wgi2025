@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextEn, BtnSubmit, DropdownEn, TextDt, TextNum } from "@/components/Form";
 import { updateDataToFirebase, getDataFromFirebase } from "@/lib/firebaseFunction";
-import { formatedDate } from "@/lib/utils";
+import { formatedDate, sortArray } from "@/lib/utils";
 
 
 const Edit = ({ message, id, data }) => {
@@ -29,7 +29,9 @@ const Edit = ({ message, id, data }) => {
                 getDataFromFirebase("customer"),
                 getDataFromFirebase("cashtype")
             ]);
-            setCustomers(responseCustomer);
+            const sortedCustomer = responseCustomer.sort((a,b)=>sortArray(a.name.toUpperCase(), b.name.toUpperCase()));
+
+            setCustomers(sortedCustomer);
             setCashtypes(responseCashtype);
             //-----------------------------------------
             const { customerId, dt, cashtypeId, bank, chequeNo, chequeDt, taka, createdAt } = data;

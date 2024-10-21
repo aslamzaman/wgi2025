@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextEn, BtnSubmit, DropdownEn, TextDt, TextNum } from "@/components/Form";
 import { addDataToFirebase, getDataFromFirebase } from "@/lib/firebaseFunction";
-import { formatedDate } from "@/lib/utils";
+import { formatedDate, sortArray } from "@/lib/utils";
 
 
 const Add = ({ message }) => {
@@ -29,7 +29,10 @@ const Add = ({ message }) => {
                 getDataFromFirebase("customer"),
                 getDataFromFirebase("cashtype")
             ]);
-            setCustomers(responseCustomer);
+
+            const sortedCustomer = responseCustomer.sort((a,b)=>sortArray(a.name.toUpperCase(), b.name.toUpperCase()));
+
+            setCustomers(sortedCustomer);
             setCashtypes(responseCashtype);
         } catch (error) {
             console.error('Failed to fetch delivery data:', error);

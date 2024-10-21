@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { formatedDateDot, numberWithComma } from "@/lib/utils";
+import { formatedDateDot, numberWithComma, sortArray } from "@/lib/utils";
 
 
 const Add = ({ sales, customers, data }) => {
@@ -21,7 +21,9 @@ const Add = ({ sales, customers, data }) => {
                     customer: matchCustomer
                 }
             })
-            setSaleDatas(joinWithCustomer);
+
+            const sortedCustomer = joinWithCustomer.sort((a, b) => sortArray(new Date(a.dt), new Date(b.dt)));
+            setSaleDatas(sortedCustomer);
 
 
             const totalBale = joinWithCustomer.reduce((t, c) => t + parseFloat(c.bale), 0);
