@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { BtnSubmit, DropdownEn, TextEn, TextPw } from "@/components/Form";
 import { useRouter } from "next/navigation";
-import { getDataFromFirebaseForLog, uploadDataToFirebase } from "@/lib/firebaseFunction";
+import { getDataFromFirebase, getDataFromFirebaseForLog, uploadDataToFirebase } from "@/lib/firebaseFunction";
 import { wgi2024_unittypes } from "@/lib/wgi2024";
 
 
@@ -52,23 +52,23 @@ export default function Home() {
 
 
 
-
 /*
   const ddget = async () => {
-    const data = await getDataFromFirebaseForLog('unittype');
-    const obj = data[0];
-    const keys = Object.keys(obj);
-    let str = "";
-    for (let i = 0; i < keys.length - 1; i++) {
-      str += `${keys[i]}: ${keys[i]},\n`;
-    }
-    str += `${keys[keys.length - 1]}: ${keys[keys.length - 1]}`;
-    console.log(str);
+
+    const allCollections = "borrower,cashtype,customer,employee,invoice,item,lc,loan,loanpayment,moneyreceipt,payment,post,salary,sale,shipment,supplier,unittype";
+    const sp = allCollections.split(',');
+    const result = await Promise.all(sp.map(async (s)=>{
+      return{
+        [s]: await getDataFromFirebase(s)
+      }
+    }));
+   
+    console.log(result);
   }
 
+*/
 
-
-
+/*
   const dd = async () => {
     for (let i = 0; i < wgi2024_unittypes.length; i++) {
       const id = wgi2024_unittypes[i].id;
@@ -91,7 +91,7 @@ export default function Home() {
         <div className="w-full border-b-2">
           <h1 className="py-3 text-center text-2xl font-bold">Log In</h1>
         </div>
-   
+     
         <div className="px-4 py-6">
           <p className="py-2 text-center text-red-500">{msg}</p>
           <form onSubmit={submitHandler}>

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { MenuData } from '@/lib/MenuData';
+import { formatedDate } from '@/lib/utils';
+import { getDataFromFirebase } from '@/lib/firebaseFunction';
 
 
 
@@ -56,6 +58,27 @@ const Layout = ({ children }) => {
         }
     }
 
+    const backupDatabaseHandler = async () => {
+
+        const allCollections = "borrower,cashtype,customer,employee,invoice,item,lc,loan,loanpayment,moneyreceipt,payment,post,salary,sale,shipment,supplier,unittype";
+        const sp = allCollections.split(',');
+        const result = await Promise.all(sp.map(async (s)=>{
+            return{
+              [s]: await getDataFromFirebase(s)
+            }
+          }));
+
+        const blob = new Blob([JSON.stringify(result)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `wgi2025_Backup_Database_${formatedDate(new Date())}.json`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+    }
+
+
     return (
         <>
             <header id="top" className="fixed h-[60px] top-0 left-0 right-0 px-4 lg:px-6 bg-gray-100 border-b-2 border-white flex justify-between items-center shadow-lg z-20">
@@ -90,6 +113,8 @@ const Layout = ({ children }) => {
                             }
                             <MenuWraper Title="Log">
                                 <button onClick={logOutHandler} className="px-1 mb-2 hover:border-l-2 border-indigo-400 underline-offset-4 decoration-4 decoration-indigo-300 hover:text-indigo-400">Log Out</button>
+
+                                <button onClick={backupDatabaseHandler} className="px-1 mb-2 hover:border-l-2 border-indigo-400 underline-offset-4 decoration-4 decoration-indigo-300 hover:text-indigo-400">Backup Database</button>
                             </MenuWraper>
                         </div>
                     </div>
