@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TextEn, BtnSubmit, TextDt, TextBnDisabled, DropdownEn } from "@/components/Form";
 
 
-import { formatedDate, localStorageDeleteItem, localStorageGetItem } from "@/lib/utils";
+import { formatedDate, localStorageDeleteItem, localStorageGetItem, sortArray } from "@/lib/utils";
 import AddLocalItem from "./AddLocalItem";
 import { addDataToFirebase, getDataFromFirebase } from "@/lib/firebaseFunction";
 
@@ -48,7 +48,8 @@ const Add = ({ message }) => {
         setMsg('');
         try {
             const responseCustomer = await getDataFromFirebase('customer');
-            setCustomers(responseCustomer);
+						const sortedCustomer = responseCustomer.sort((a,b)=>sortArray(a.name.toUpperCase(), b.name.toUpperCase()));
+            setCustomers(sortedCustomer);
         } catch (error) {
             console.error('Failed to fetch delivery data:', error);
         }

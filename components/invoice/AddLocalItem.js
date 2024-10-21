@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BtnSubmit, DropdownEn, TextNum } from "@/components/Form";
 
-import { localStorageAddItem, localStorageGetItem } from "@/lib/utils";
+import { localStorageAddItem, localStorageGetItem, sortArray } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
 
 
@@ -32,7 +32,8 @@ const AddLocalItem = ({ message }) => {
         resetVariables();
         try {
             const responseItem = await getDataFromFirebase('item');
-            setItems(responseItem);
+						const sortedIems = responseItem.sort((a,b)=>sortArray(a.name.toUpperCase(), b.name.toUpperCase()));
+            setItems(sortedIems);
         } catch (error) {
             console.error('Failed to fetch delivery data:', error);
         }
