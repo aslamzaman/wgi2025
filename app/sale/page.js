@@ -50,18 +50,20 @@ const Sale = () => {
                 // console.log("Data in period: ", getDataInPeriod);
 
                 // console.log("joinTable: ", getDataInPeriod);
-
-                setSales(getDataInPeriod);
+                
+                const sortedTable = getDataInPeriod.sort((a,b)=>sortArray(new Date(b.createdAt),new Date(a.createdAt)));
+console.log("sale: ", sortedTable);
+                setSales(sortedTable);
 
                 // -------- Storage for search ----------------------
-                setSales1(getDataInPeriod);
+                setSales1(sortedTable);
 
                 // -------- This is for search dropdown ----------------------
                 const sortCustomer = responseCustomer.sort((a, b) => sortArray(a.name, b.name));
                 setCustomers(sortCustomer);
 
                 //-----------------Total sale taka----------------------------------
-                const total = getDataInPeriod.reduce((t, c) => t + (parseFloat(c.weight) * parseFloat(c.rate)), 0);
+                const total = sortedTable.reduce((t, c) => t + (parseFloat(c.weight) * parseFloat(c.rate)), 0);
                 setTotalSale(total);
 
                 //---------- Session Storage Year ----------------

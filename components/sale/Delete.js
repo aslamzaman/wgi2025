@@ -5,12 +5,15 @@ import { deleteDataFromFirebase } from "@/lib/firebaseFunction";
 
 const Delete = ({ message, id, data }) => {
     const [customerId, setCustomerId] = useState("");
+
     const [show, setShow] = useState(false);
+    const [pointerEvent, setPointerEvent] = useState(true);
+
 
     const showDeleteForm = () => {
         setShow(true);
-        const { customerId } = data;
-        setCustomerId(customerId.name);
+        const {customer} = data;
+        setCustomerId(customer.name);
     }
 
 
@@ -19,16 +22,20 @@ const Delete = ({ message, id, data }) => {
     }
 
 
-    const hardDeleteHandler = async () => {
+    const deleteClick = async () => {
         try {
-            const msg = deleteDataFromFirebase('sale', id);
+            setPointerEvent(false);
+            const msg = await deleteDataFromFirebase('sale', id);
             message(msg);
         } catch (error) {
             console.log(error);
             message("Data deleting error");
+        } finally {
+            setPointerEvent(true);
+            setShow(false);
         }
-        setShow(false);
     }
+
 
 
     return (
@@ -57,9 +64,9 @@ const Delete = ({ message, id, data }) => {
                                     Are you sure to proceed with the deletion?</h1>
                                 <h1 className="text-center text-gray-600 font-bold">{customerId}</h1>
                             </div>
-                            <div className="w-full flex justify-start">
+                            <div className={`w-full mt-4 flex justify-start ${pointerEvent ? 'pointer-events-auto' : 'pointer-events-none'}`}>
                                 <BtnEn Title="Close" Click={closeDeleteForm} Class="bg-pink-700 hover:bg-pink-900 text-white mr-1" />
-                                <BtnEn Title="Yes Delete" Click={hardDeleteHandler} Class="bg-blue-600 hover:bg-blue-800 text-white" />
+                                <BtnEn Title="Yes Delete" Click={deleteClick} Class="bg-blue-600 hover:bg-blue-800 text-white" />
                             </div>
                         </div>
                     </div>
@@ -74,5 +81,6 @@ const Delete = ({ message, id, data }) => {
     )
 }
 export default Delete;
+    
 
-
+    

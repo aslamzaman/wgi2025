@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { BtnSubmit, DropdownEn, TextNum, TextDt } from "@/components/Form";
 import { addDataToFirebase, getDataFromFirebase } from "@/lib/firebaseFunction";
-const date_format = dt => new Date(dt).toISOString().split('T')[0];
+import { formatedDate } from "@/lib/utils";
+
 
 
 const Add = ({ message }) => {
@@ -16,6 +17,9 @@ const Add = ({ message }) => {
     const [rate, setRate] = useState('');
 
     const [show, setShow] = useState(false);
+    const [pointerEvent, setPointerEvent] = useState(true);
+
+    //--------------------------------------------
 
     const [customers, setCustomers] = useState([]);
     const [items, setItems] = useState([]);
@@ -25,7 +29,7 @@ const Add = ({ message }) => {
         setCustomerId('');
         setShipment('');
         setItemId('');
-        setDt(date_format(new Date()));
+        setDt(formatedDate(new Date()));
         setBale('');
         setThan('');
         setMeter('');
@@ -57,15 +61,15 @@ const Add = ({ message }) => {
 
     const createObject = () => {
         return {
-            bale: bale,
             customerId: customerId,
-            dt: dt,
-            itemId: itemId,
-            meter: meter,
-            rate: rate,
             shipment: shipment,
+            itemId: itemId,
+            dt: dt,
+            bale: bale,
             than: than,
+            meter: meter,
             weight: weight,
+            rate: rate,
             createdAt: new Date().toISOString()
         }
     }
@@ -74,13 +78,15 @@ const Add = ({ message }) => {
     const saveHandler = async (e) => {
         e.preventDefault();
         try {
+            setPointerEvent(false);
             const newObject = createObject();
-            const msg = await addDataToFirebase('sale',newObject);
+            const msg = await addDataToFirebase("sale", newObject);
             message(msg);
         } catch (error) {
             console.error("Error saving sale data:", error);
             message("Error saving sale data.");
         } finally {
+            setPointerEvent(true);
             setShow(false);
         }
     }
@@ -118,7 +124,7 @@ const Add = ({ message }) => {
                                     <TextNum Title="Weight" Id="weight" Change={e => setWeight(e.target.value)} Value={weight} />
                                     <TextNum Title="Rate" Id="rate" Change={e => setRate(e.target.value)} Value={rate} />
                                 </div>
-                                <div className="w-full flex justify-start">
+                                <div className={`w-full mt-4 flex justify-start ${pointerEvent ? 'pointer-events-auto' : 'pointer-events-none'}`}>
                                     <input type="button" onClick={closeAddForm} value="Close" className="bg-pink-600 hover:bg-pink-800 text-white text-center mt-3 mx-0.5 px-4 py-2 font-semibold rounded-md focus:ring-1 ring-blue-200 ring-offset-2 duration-300 cursor-pointer" />
                                     <BtnSubmit Title="Save" Class="bg-blue-600 hover:bg-blue-800 text-white" />
                                 </div>

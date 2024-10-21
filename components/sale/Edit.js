@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BtnSubmit, DropdownEn, TextNum, TextDt } from "@/components/Form";
 const date_format = dt => new Date(dt).toISOString().split('T')[0];
 import { getDataFromFirebase, updateDataToFirebase } from "@/lib/firebaseFunction";
+import { formatedDate } from "@/lib/utils";
 
 
 const Edit = ({ message, id, data }) => {
@@ -14,9 +15,10 @@ const Edit = ({ message, id, data }) => {
     const [meter, setMeter] = useState('');
     const [weight, setWeight] = useState('');
     const [rate, setRate] = useState('');
+    const [createdAt, setCreatedAt] = useState('');
 
     const [show, setShow] = useState(false);
-
+    const [pointerEvent, setPointerEvent] = useState(true);
 
     const [customers, setCustomers] = useState([]);
     const [items, setItems] = useState([]);
@@ -31,21 +33,22 @@ const Edit = ({ message, id, data }) => {
                 getDataFromFirebase('customer'),
                 getDataFromFirebase('item')
             ]);
-       
+
             setCustomers(responseCustomer);
             setItems(responseItem);
-//---------------------------------------------
-            const { customer, shipment, item, dt, bale, than, meter, weight, rate } = data;
-            setCustomerId(customer.id);
+
+            //---------------------------------------------
+            const { customerId, shipment, itemId, dt, bale, than, meter, weight, rate, createdAt } = data;
+            setCustomerId(customerId);
             setShipment(shipment);
-            setItemId(item.id);
-            setDt(date_format(dt));
+            setItemId(itemId);
+            setDt(formatedDate(dt));
             setBale(bale);
             setThan(than);
             setMeter(meter);
             setWeight(weight);
             setRate(rate);
-
+            setCreatedAt(createdAt);
         } catch (error) {
             console.error('Failed to fetch delivery data:', error);
         }
@@ -60,15 +63,15 @@ const Edit = ({ message, id, data }) => {
 
     const createObject = () => {
         return {
-            bale: bale,
             customerId: customerId,
-            dt: dt,
-            itemId: itemId,
-            meter: meter,
-            rate: rate,
             shipment: shipment,
+            itemId: itemId,
+            dt: dt,
+            bale: bale,
             than: than,
+            meter: meter,
             weight: weight,
+            rate: rate,
             createdAt: createdAt
         }
     }
@@ -77,16 +80,19 @@ const Edit = ({ message, id, data }) => {
     const saveHandler = async (e) => {
         e.preventDefault();
         try {
+            setPointerEvent(false);
             const newObject = createObject();
-            const msg = updateDataToFirebase('sale', id, newObject);
+            const msg = await updateDataToFirebase("sale", id, newObject);
             message(msg);
         } catch (error) {
             console.error("Error saving sale data:", error);
             message("Error saving sale data.");
         } finally {
+            setPointerEvent(true);
             setShow(false);
         }
     }
+
 
 
     return (
@@ -121,7 +127,7 @@ const Edit = ({ message, id, data }) => {
                                     <TextNum Title="Weight" Id="weight" Change={e => setWeight(e.target.value)} Value={weight} />
                                     <TextNum Title="Rate" Id="rate" Change={e => setRate(e.target.value)} Value={rate} />
                                 </div>
-                                <div className="w-full flex justify-start">
+                                <div className={`w-full mt-4 flex justify-start ${pointerEvent ? 'pointer-events-auto' : 'pointer-events-none'}`}>
                                     <input type="button" onClick={closeEditForm} value="Close" className="bg-pink-600 hover:bg-pink-800 text-white text-center mt-3 mx-0.5 px-4 py-2 font-semibold rounded-md focus:ring-1 ring-blue-200 ring-offset-2 duration-300 cursor-pointer" />
                                     <BtnSubmit Title="Save" Class="bg-blue-600 hover:bg-blue-800 text-white" />
                                 </div>

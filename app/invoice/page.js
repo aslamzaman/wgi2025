@@ -28,6 +28,7 @@ const Invoice = () => {
                     getDataFromFirebase('customer')
                 ]);
 
+               console.log("Invoice ", responseInvoice) 
                 const joinWithCustomer = responseInvoice.map(invoice => {
                     const matchCustomer = responseCustomer.find(customer => customer.id === invoice.customerId);
                     return {
