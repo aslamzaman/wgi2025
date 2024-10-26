@@ -62,12 +62,10 @@ const Layout = ({ children }) => {
 
         const allCollections = "borrower,cashtype,customer,employee,invoice,item,lc,loan,loanpayment,moneyreceipt,payment,post,salary,sale,shipment,supplier,unittype";
         const sp = allCollections.split(',');
-        const result = await Promise.all(sp.map(async (s)=>{
-            return{
-              [s]: await getDataFromFirebase(s)
-            }
-          }));
-
+        const result = {};
+        for(let i = 0; i < sp.length; i++){
+			result[sp[i]] = await getDataFromFirebase(sp[i]);
+		   }
         const blob = new Blob([JSON.stringify(result)], { type: "application/json" });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
