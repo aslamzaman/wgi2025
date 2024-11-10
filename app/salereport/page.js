@@ -6,6 +6,7 @@ require("@/lib/fonts/Poppins-Bold-normal");
 require("@/lib/fonts/Poppins-Regular-normal");
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
 import jsPDF from "jspdf";
+import { jsPDFPrintMultiPage, jsPDFPrintOnePage } from "@/lib/JspdfPrintPage";
 
 
 
@@ -85,10 +86,9 @@ const Salereport = () => {
 
         // search customer in date ranges
         const searchSale = sales.filter(sale => {
-            const dataDate = new Date(sale.createdAt);
+            const dataDate = new Date(sale.dt);
             return dataDate >= d1 && dataDate <= d2;
         })
-
 
         setSales(searchSale);
         const total = searchSale.reduce((t, c) => t + parseFloat(c.total), 0);
@@ -100,12 +100,6 @@ const Salereport = () => {
         setMsg(`Refresh at: ${Date.now()}`);
     }
 
-
-    const msgHandler = (data) => {
-        console.log("Print" + data);
-    }
-
-
     const printMultiplePageHandler = async () => {
         const doc = new jsPDF({
             orientation: "p",
@@ -114,98 +108,88 @@ const Salereport = () => {
             putOnlyUsedFonts: true,
             floatPrecision: 16
         });
+        const salesNormalize = sales.map(sale => {
+            const dt = formatedDateDot(sale.dt, true);
+            const rate = `${sale.weight}@${sale.weight}`;
+            const total = numberWithComma(sale.total);
+            const nm = sale.customer;
+            const itm = sale.item;
+            const customer = nm.length >= 25 ? nm.substring(0, 23) + "..." : nm;
+            const item = itm.length >= 15 ? itm.substring(0, 15) + "..." : itm;
+            return {
+                ...sale,
+                customer, item, dt, rate, total
+            }
+        })
 
-        const colA = 20;
-        const colB = 36;
-        const colC = 50;
-        const colD = 110;
-        const colE = 151;
-        const colF = 175;
-        const colG = 194;
 
-        let sl = 1;
-        const margin = 30;
-        const linePerPage = 50;
-        let y = margin;
-        doc.setFontSize(10);
+        const addTotal = [...salesNormalize, { dt: "", customer: 'Total', item: "", shipment: "", rate: "", total: numberWithComma(totalTaka) }];
+
+        const firsPage = addTotal.slice(0, 49);
+        const restPage = addTotal.slice(49, addTotal.length);
+
+        const margin = 20;
+        const linePerPage = 54;
+        const colsObject = [
+            {
+                fld: 'dt',
+                pos: 26,
+                aln: 'center'
+            },
+            {
+                fld: 'customer',
+                pos: 43,
+                aln: 'left'
+            },
+            {
+                fld: 'item',
+                pos: 100,
+                aln: 'left'
+            },
+            {
+                fld: 'shipment',
+                pos: 140,
+                aln: 'center'
+            },
+            {
+                fld: 'rate',
+                pos: 160,
+                aln: 'center'
+            },
+            {
+                fld: 'total',
+                pos: 194,
+                aln: 'right'
+            }
+        ]
+
+        doc.setFontSize(16);
         doc.setFont("times", "bold");
+        doc.text("SALES REPORT", 105, 15, 'center');
+        doc.setFontSize(10);
 
-        const firsPage = sales.slice(0, 48);
-        const restPage = sales.slice(48, sales.length);
-        const gt = sales.reduce((t, c) => t + parseFloat(c.total), 0);
-        console.log(gt);
-
-        doc.text("SALES REPORT", 105, y - 20, 'center');
-
-        doc.text("SL", colA, y, 'center');
-        doc.text("Date", colB, y, 'center');
-        doc.text("Customer", colC, y, 'left');
-        doc.text("Item", colD, y, 'left');
-        doc.text("Ship.", colE, y, 'center');
-        doc.text("Rate", colF, y, 'right');
-        doc.text("Total", colG, y, 'right');
-
+        //----- Headers -----------------------------
+        doc.text("Date", colsObject[0].pos, 35, 'center');
+        doc.text("Customer", colsObject[1].pos, 35, 'left');
+        doc.text("Item", colsObject[2].pos, 35, 'left');
+        doc.text("Ship.", colsObject[3].pos, 35, 'center');
+        doc.text("Rate", colsObject[4].pos, 35, 'right');
+        doc.text("Total", colsObject[5].pos, 35, 'right');
 
         doc.setFont("times", "normal");
-        doc.text(`Date: ${formatedDateDot(new Date())}`, colG, y - 5, 'right');
+        doc.text(`Period: ${formatedDateDot(dt1)}-${formatedDateDot(dt2)}`, 105, 20, 'center');
+        doc.text(`Print Date: ${formatedDateDot(new Date())}`, 194, 30, 'right');
 
-        y = y + 5;
-        for (let i = 0; i < firsPage.length; i++) {
-            const customerName = firsPage[i].customer;
-            const customerItem = firsPage[i].item;
-            let name = customerName.length > 23 ? `${customerName.substring(0, 25)}...` : customerName;
-            let item = customerItem.length > 16 ? `${customerItem.substring(0, 16)}...` : customerItem;
-            doc.text(`${sl}`, colA, y, 'center');
-            doc.text(`${formatedDateDot(firsPage[i].dt, true)}`, colB, y, 'center');
-            doc.text(`${name}`, colC, y, 'left');
-            doc.text(`${item}`, colD, y, 'left');
-            doc.text(`${firsPage[i].shipment}`, colE, y, 'center');
-            doc.text(`${numberWithComma(firsPage[i].weight)}x${numberWithComma(firsPage[i].rate)}`, colF, y, 'right');
-            doc.text(`${numberWithComma(firsPage[i].total)}`, colG, y, 'right');
-            y += 5;
-            sl++;
-
+         //----- Tables -----------------------------
+        jsPDFPrintOnePage({ doc }, firsPage, colsObject, 40);
+        if (firsPage.length >= 49) {
+            doc.addPage();
+            jsPDFPrintMultiPage({ doc }, restPage, colsObject, margin, linePerPage);
         }
 
-        doc.addPage();
-
-        y = margin;
-
-
-        for (let i = 0; i < restPage.length; i++) {
-            const customerName = restPage[i].customer;
-            const customerItem = restPage[i].item;
-            let name = customerName.length > 23 ? `${customerName.substring(0, 25)}...` : customerName;
-            let item = customerItem.length > 16 ? `${customerItem.substring(0, 16)}...` : customerItem;
-            doc.text(`${sl}`, colA, y, 'center');
-            doc.text(`${formatedDateDot(restPage[i].dt, true)}`, colB, y, 'center');
-            doc.text(`${name}`, colC, y, 'left');
-            doc.text(`${item}`, colD, y, 'left');
-            doc.text(`${restPage[i].shipment}`, colE, y, 'center');
-            doc.text(`${numberWithComma(restPage[i].weight)}x${numberWithComma(restPage[i].rate)}`, colF, y, 'right');
-            doc.text(`${numberWithComma(restPage[i].total)}`, colG, y, 'right');
-            y += 5;
-            sl++;
-            if ((i + 1) % linePerPage === 0) {
-                if (i !== restPage.length - 1) {
-                    doc.addPage();
-                    y = margin;
-                }
-            }
-        }
-        const pageCount = doc.internal.getNumberOfPages();
-        for (let i = 0; i < pageCount; i++) {
-            doc.setPage(i + 1);
-            doc.text(`Page: ${i + 1}/${pageCount}`, 199, 288, null, null, 'right');
-        }
-        if(sales.length < 49){
-            doc.deletePage(2);
-        }
-       // doc.setFont("times", "bold");
-      //  doc.text("Total", colB, y, 'right');
-      //  doc.text(`${numberWithComma(gt)}`, colG, y, 'right');
         doc.save("Sales_reports.pdf");
     }
+
 
 
     return (
