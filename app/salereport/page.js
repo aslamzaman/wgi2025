@@ -35,7 +35,7 @@ const Salereport = () => {
                     getDataFromFirebase('customer'),
                     getDataFromFirebase('item')
                 ]);
-                console.log({ sales, customers, items });
+                //      console.log({ sales, customers, items });
 
                 const result = sales.map(sale => {
                     const matchCustomer = customers.find(customer => customer.id === sale.customerId);
@@ -50,9 +50,9 @@ const Salereport = () => {
                     };
                 });
 
-                const sortData = result.sort((a, b) => sortArray(new Date(a.createdAt), new Date(b.createdAt)));
+                const sortData = result.sort((a, b) => sortArray(new Date(a.dt), new Date(b.dt)));
 
-                console.log(sortData);
+                //   console.log(sortData);
                 setSales(sortData);
 
                 //---------- Session Storage Year ----------------
@@ -62,8 +62,6 @@ const Salereport = () => {
                 const gt = sortData.reduce((t, c) => t + parseFloat(c.total), 0);
                 console.log({ gt, sortData })
                 setTotalTaka(gt);
-
-
 
                 setWaitMsg('');
             } catch (error) {
@@ -101,6 +99,135 @@ const Salereport = () => {
     }
 
     const printMultiplePageHandler = async () => {
+        const doc = new jsPDF({
+            orientation: "p",
+            unit: "mm",
+            format: "a4",
+            putOnlyUsedFonts: true,
+            floatPrecision: 16
+        });
+        const salesNormalize = sales.map(sale => {
+            const dt = formatedDateDot(sale.dt, true);
+            const rate = `${sale.weight}@${sale.weight}`;
+            const total = numberWithComma(sale.total);
+            const nm = sale.customer;
+            const itm = sale.item;
+            const customer = nm.length >= 25 ? nm.substring(0, 23) + "..." : nm;
+            const item = itm.length >= 15 ? itm.substring(0, 15) + "..." : itm;
+            return {
+                ...sale,
+                customer, item, dt, rate, total
+            }
+        })
+
+
+        const addTotal = [...salesNormalize, { dt: "", customer: 'Total', item: "", shipment: "", rate: "", total: numberWithComma(totalTaka) }];
+
+   
+
+        const firsPage = addTotal.slice(0, 49);
+        const restPage = addTotal.slice(49, addTotal.length);
+
+        const margin = 20;
+        const linePerPage = 54;
+        const colsObject = [
+            {
+                fld: 'dt',
+                pos: 26,
+                aln: 'center'
+            },
+            {
+                fld: 'customer',
+                pos: 43,
+                aln: 'left'
+            },
+            {
+                fld: 'item',
+                pos: 100,
+                aln: 'left'
+            },
+            {
+                fld: 'shipment',
+                pos: 140,
+                aln: 'center'
+            },
+            {
+                fld: 'rate',
+                pos: 160,
+                aln: 'center'
+            },
+            {
+                fld: 'total',
+                pos: 194,
+                aln: 'right'
+            }
+        ]
+
+        doc.setFontSize(16);
+        doc.setFont("times", "bold");
+        doc.text("SALES REPORT", 105, 15, 'center');
+        doc.setFontSize(10);
+
+        //----- Headers -----------------------------
+        /*
+        doc.text("Date", colsObject[0].pos, 35, 'center');
+        doc.text("Customer", colsObject[1].pos, 35, 'left');
+        doc.text("Item", colsObject[2].pos, 35, 'left');
+        doc.text("Ship.", colsObject[3].pos, 35, 'center');
+        doc.text("Rate", colsObject[4].pos, 35, 'right');
+        doc.text("Total", colsObject[5].pos, 35, 'right');
+*/
+        doc.setFont("times", "normal");
+        doc.text(`Period: ${formatedDateDot(dt1)}-${formatedDateDot(dt2)}`, 105, 20, 'center');
+        doc.text(`Print Date: ${formatedDateDot(new Date())}`, 194, 30, 'right');
+
+        //----- Tables -----------------------------
+        if (addTotal.length <= 49) {
+            jsPDFPrintOnePage({ doc }, firsPage, colsObject, 40);
+        } else {
+            jsPDFPrintOnePage({ doc }, firsPage, colsObject, 40);
+            doc.addPage();
+            jsPDFPrintMultiPage({ doc }, restPage, colsObject, margin, linePerPage);
+        }
+        // header footer add
+        doc.setFont("times", "bold");
+        const pageCount = doc.internal.getNumberOfPages();
+        if (pageCount === 1) {
+            doc.setPage(1);
+            doc.text("Date", colsObject[0].pos, 35, 'center');
+            doc.text("Customer", colsObject[1].pos, 35, 'left');
+            doc.text("Item", colsObject[2].pos, 35, 'left');
+            doc.text("Ship.", colsObject[3].pos, 35, 'center');
+            doc.text("Rate", colsObject[4].pos, 35, 'right');
+            doc.text("Total", colsObject[5].pos, 35, 'right');
+        }
+        else {
+            doc.setPage(1);
+            doc.text("Date", colsObject[0].pos, 35, 'center');
+            doc.text("Customer", colsObject[1].pos, 35, 'left');
+            doc.text("Item", colsObject[2].pos, 35, 'left');
+            doc.text("Ship.", colsObject[3].pos, 35, 'center');
+            doc.text("Rate", colsObject[4].pos, 35, 'right');
+            doc.text("Total", colsObject[5].pos, 35, 'right');
+            for (let i = 1; i < pageCount; i++) {
+                doc.setPage(i+1);
+                doc.text("Date", colsObject[0].pos, 15, 'center');
+                doc.text("Customer", colsObject[1].pos, 15, 'left');
+                doc.text("Item", colsObject[2].pos, 15, 'left');
+                doc.text("Ship.", colsObject[3].pos, 15, 'center');
+                doc.text("Rate", colsObject[4].pos, 15, 'right');
+                doc.text("Total", colsObject[5].pos, 15, 'right');
+
+            }
+        }
+
+        doc.save("Sales_reports.pdf");
+    }
+
+
+
+
+    const printMultiplePageHandler1 = async () => {
         const doc = new jsPDF({
             orientation: "p",
             unit: "mm",
@@ -180,7 +307,7 @@ const Salereport = () => {
         doc.text(`Period: ${formatedDateDot(dt1)}-${formatedDateDot(dt2)}`, 105, 20, 'center');
         doc.text(`Print Date: ${formatedDateDot(new Date())}`, 194, 30, 'right');
 
-         //----- Tables -----------------------------
+        //----- Tables -----------------------------
         jsPDFPrintOnePage({ doc }, firsPage, colsObject, 40);
         if (firsPage.length >= 49) {
             doc.addPage();
@@ -189,6 +316,8 @@ const Salereport = () => {
 
         doc.save("Sales_reports.pdf");
     }
+
+
 
 
 
@@ -211,7 +340,6 @@ const Salereport = () => {
 
 
                 </div>
-
                 <table className="w-full border border-gray-200">
                     <thead>
                         <tr className="w-full bg-gray-200">
