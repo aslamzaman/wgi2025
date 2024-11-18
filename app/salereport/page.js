@@ -98,7 +98,7 @@ const Salereport = () => {
         setMsg(`Refresh at: ${Date.now()}`);
     }
 
-    const printMultiplePageHandler = async () => {
+    const printMultiplePageHandler1 =  () => {
         const doc = new jsPDF({
             orientation: "p",
             unit: "mm",
@@ -108,8 +108,10 @@ const Salereport = () => {
         });
         const salesNormalize = sales.map(sale => {
             const dt = formatedDateDot(sale.dt, true);
-            const rate = `${sale.weight}@${sale.weight}`;
-            const total = numberWithComma(sale.total);
+            const wgt = parseFloat(sale.weight).toFixed(2);
+            const rte = parseFloat(sale.rate).toFixed(2);
+            const rate = `${wgt}@${rte}`;
+            const total = parseFloat(sale.total).toFixed(2);
             const nm = sale.customer;
             const itm = sale.item;
             const customer = nm.length >= 25 ? nm.substring(0, 23) + "..." : nm;
@@ -121,7 +123,7 @@ const Salereport = () => {
         })
 
 
-        const addTotal = [...salesNormalize, { dt: "", customer: 'Total', item: "", shipment: "", rate: "", total: numberWithComma(totalTaka) }];
+        const addTotal = [...salesNormalize, { dt: "", customer: 'Total', item: "", shipment: "", rate: "", total: numberWithComma(totalTaka,true) }];
 
    
 
@@ -148,12 +150,12 @@ const Salereport = () => {
             },
             {
                 fld: 'shipment',
-                pos: 140,
+                pos: 135,
                 aln: 'center'
             },
             {
                 fld: 'rate',
-                pos: 160,
+                pos: 155,
                 aln: 'center'
             },
             {
@@ -226,96 +228,154 @@ const Salereport = () => {
 
 
 
-
-    const printMultiplePageHandler1 = async () => {
-        const doc = new jsPDF({
-            orientation: "p",
-            unit: "mm",
-            format: "a4",
-            putOnlyUsedFonts: true,
-            floatPrecision: 16
+// Function to print the first page
+const jsPDFPrintFirstPage = ({ doc }, data, dataFormat, margin) => {
+    data.forEach(element => {
+        dataFormat.forEach(item => {
+            doc.text(
+                `${element[item.fld]}`, // Dynamic field value
+                item.pos,              // X-position
+                margin,                // Y-position
+                item.aln               // Alignment
+            );
         });
-        const salesNormalize = sales.map(sale => {
-            const dt = formatedDateDot(sale.dt, true);
-            const rate = `${sale.weight}@${sale.weight}`;
-            const total = numberWithComma(sale.total);
-            const nm = sale.customer;
-            const itm = sale.item;
-            const customer = nm.length >= 25 ? nm.substring(0, 23) + "..." : nm;
-            const item = itm.length >= 15 ? itm.substring(0, 15) + "..." : itm;
-            return {
-                ...sale,
-                customer, item, dt, rate, total
-            }
-        })
+        margin += 5; // Increment margin for next row
+    });
+};
 
+// Function to print subsequent pages
+const jsPDFPrintOtherPage = ({ doc }, data, dataFormat, margin, linesPerPage) => {
+    let currentY = margin;
 
-        const addTotal = [...salesNormalize, { dt: "", customer: 'Total', item: "", shipment: "", rate: "", total: numberWithComma(totalTaka) }];
+    data.forEach((element, index) => {
+        dataFormat.forEach(item => {
+            doc.text(
+                `${element[item.fld]}`, 
+                item.pos, 
+                currentY, 
+                item.aln
+            );
+        });
 
-        const firsPage = addTotal.slice(0, 49);
-        const restPage = addTotal.slice(49, addTotal.length);
+        currentY += 5; // Increment for next row
 
-        const margin = 20;
-        const linePerPage = 54;
-        const colsObject = [
-            {
-                fld: 'dt',
-                pos: 26,
-                aln: 'center'
-            },
-            {
-                fld: 'customer',
-                pos: 43,
-                aln: 'left'
-            },
-            {
-                fld: 'item',
-                pos: 100,
-                aln: 'left'
-            },
-            {
-                fld: 'shipment',
-                pos: 140,
-                aln: 'center'
-            },
-            {
-                fld: 'rate',
-                pos: 160,
-                aln: 'center'
-            },
-            {
-                fld: 'total',
-                pos: 194,
-                aln: 'right'
-            }
-        ]
-
-        doc.setFontSize(16);
-        doc.setFont("times", "bold");
-        doc.text("SALES REPORT", 105, 15, 'center');
-        doc.setFontSize(10);
-
-        //----- Headers -----------------------------
-        doc.text("Date", colsObject[0].pos, 35, 'center');
-        doc.text("Customer", colsObject[1].pos, 35, 'left');
-        doc.text("Item", colsObject[2].pos, 35, 'left');
-        doc.text("Ship.", colsObject[3].pos, 35, 'center');
-        doc.text("Rate", colsObject[4].pos, 35, 'right');
-        doc.text("Total", colsObject[5].pos, 35, 'right');
-
-        doc.setFont("times", "normal");
-        doc.text(`Period: ${formatedDateDot(dt1)}-${formatedDateDot(dt2)}`, 105, 20, 'center');
-        doc.text(`Print Date: ${formatedDateDot(new Date())}`, 194, 30, 'right');
-
-        //----- Tables -----------------------------
-        jsPDFPrintOnePage({ doc }, firsPage, colsObject, 40);
-        if (firsPage.length >= 49) {
-            doc.addPage();
-            jsPDFPrintMultiPage({ doc }, restPage, colsObject, margin, linePerPage);
+        // Check if the current page limit is reached
+        if ((index + 1) % linesPerPage === 0) {
+            doc.addPage(); // Add a new page
+            doc.text("Date", dataFormat[0].pos, 15, 'center');
+            doc.text("Customer", dataFormat[1].pos, 15, 'left');
+            doc.text("Item", dataFormat[2].pos, 15, 'left');
+            doc.text("Ship.", dataFormat[3].pos, 15, 'center');
+            doc.text("Rate", dataFormat[4].pos, 15, 'right');
+            doc.text("Total", dataFormat[5].pos, 15, 'right');
+            currentY = margin; // Reset Y-position for new page
         }
+    });
 
-        doc.save("Sales_reports.pdf");
+    // Remove the last empty page if it was added unnecessarily
+    const totalPages = doc.internal.getNumberOfPages();
+    const remainingLines = data.length % linesPerPage;
+    if (remainingLines === 0) {
+        doc.deletePage(totalPages);
     }
+};
+
+// Print handler
+const printMultiplePageHandler = () => {
+    const doc = new jsPDF({
+        orientation: 'p',    // Portrait orientation
+        unit: 'mm',          // Unit of measurement in millimeters
+        format: 'a4',        // A4 paper size
+        putOnlyUsedFonts: true,
+        floatPrecision: 16   // High precision for measurements
+    });
+
+
+    const salesNormalize = sales.map(sale => {
+        const dt = formatedDateDot(sale.dt, true);
+        const wgt = parseFloat(sale.weight).toFixed(2);
+        const rte = parseFloat(sale.rate).toFixed(2);
+        const rate = `${wgt}@${rte}`;
+        const total = parseFloat(sale.total).toFixed(2);
+        const nm = sale.customer;
+        const itm = sale.item;
+        const customer = nm.length >= 25 ? nm.substring(0, 23) + "..." : nm;
+        const item = itm.length >= 15 ? itm.substring(0, 15) + "..." : itm;
+        return {
+            ...sale,
+            customer, item, dt, rate, total
+        }
+    })
+
+
+    const addTotal = [...salesNormalize, { dt: "", customer: 'Total', item: "", shipment: "", rate: "", total: numberWithComma(totalTaka,true) }];
+
+
+    const dataFormat = [
+        {
+            fld: 'dt',
+            pos: 26,
+            aln: 'center'
+        },
+        {
+            fld: 'customer',
+            pos: 43,
+            aln: 'left'
+        },
+        {
+            fld: 'item',
+            pos: 100,
+            aln: 'left'
+        },
+        {
+            fld: 'shipment',
+            pos: 135,
+            aln: 'center'
+        },
+        {
+            fld: 'rate',
+            pos: 155,
+            aln: 'center'
+        },
+        {
+            fld: 'total',
+            pos: 194,
+            aln: 'right'
+        }
+    ]
+
+    doc.setFontSize(16);
+    doc.setFont("times", "bold");
+    doc.text("SALES REPORT", 105, 15, 'center');
+    doc.setFontSize(10);
+    doc.setFont("times", "normal");
+    doc.text(`Period: ${formatedDateDot(dt1)}-${formatedDateDot(dt2)}`, 105, 20, 'center');
+    doc.text(`Print Date: ${formatedDateDot(new Date())}`, 194, 30, 'right');
+    doc.text("Date", dataFormat[0].pos, 35, 'center');
+    doc.text("Customer", dataFormat[1].pos, 35, 'left');
+    doc.text("Item", dataFormat[2].pos, 35, 'left');
+    doc.text("Ship.", dataFormat[3].pos, 35, 'center');
+    doc.text("Rate", dataFormat[4].pos, 35, 'right');
+    doc.text("Total", dataFormat[5].pos, 35, 'right');
+
+
+
+
+    const firstPageData = addTotal.slice(0, 49);  // First 20 rows
+    const otherPageData = addTotal.slice(49);     // Remaining rows
+
+    // Print the first page
+    jsPDFPrintFirstPage({ doc }, firstPageData, dataFormat, 40);
+
+    // Add a new page and print subsequent pages
+    if (otherPageData.length > 0) {
+        doc.addPage();
+        jsPDFPrintOtherPage({ doc }, otherPageData, dataFormat, 20, 54);
+    }
+
+    // Save the PDF with a timestamped filename
+    doc.save(`${new Date().toISOString()}.pdf`);
+};
 
 
 
@@ -350,6 +410,7 @@ const Salereport = () => {
                             <th className="text-center border-b border-gray-200 px-4 py-2">Item</th>
                             <th className="text-center border-b border-gray-200 px-4 py-2">weight</th>
                             <th className="text-center border-b border-gray-200 px-4 py-2">Rate</th>
+                            <th className="text-center border-b border-gray-200 px-4 py-2">Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -361,8 +422,9 @@ const Salereport = () => {
                                     <td className="text-center py-2 px-4">{sale.customer}</td>
                                     <td className="text-center py-2 px-4">{sale.shipment}</td>
                                     <td className="text-center py-2 px-4">{sale.item}</td>
-                                    <td className="text-center py-2 px-4">{numberWithComma(sale.weight)}</td>
-                                    <td className="text-center py-2 px-4">{numberWithComma(sale.rate)}</td>
+                                    <td className="text-center py-2 px-4">{parseFloat(sale.weight).toFixed(2)}</td>
+                                    <td className="text-center py-2 px-4">{parseFloat(sale.rate).toFixed(2)}</td>
+                                    <td className="text-center py-2 px-4">{parseFloat(sale.total).toFixed(2)}</td>
                                 </tr>
                             ))
                         ) : (
