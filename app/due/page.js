@@ -142,8 +142,8 @@ const Customer = () => {
                 doc.text(`${formatedDateDot(sale[i].dt, false)}`, 35, y, null, null, "center");
                 doc.text(`${sale[i].shipment}`, 60, y, null, null, "center");
                 doc.text(`${sale[i].bale} Bale; ${sale[i].meter} Mtr.`, 97, y, null, null, "center");
-                doc.text(`${numberWithComma(sale[i].weight)} @ ${numberWithComma(sale[i].rate)}`, 146, y, null, null, "center");
-                doc.text(`${numberWithComma(subTotal)}`, 196, y, null, null, "right");
+                doc.text(`${numberWithComma(sale[i].weight,true)} @ ${numberWithComma(sale[i].rate,true)}`, 146, y, null, null, "center");
+                doc.text(`${numberWithComma(subTotal,true)}`, 196, y, null, null, "right");
                 gt = gt + subTotal;
                 totalKgs = totalKgs + parseFloat(sale[i].weight);
                 totalMeter = totalMeter + parseFloat(sale[i].meter);
@@ -154,8 +154,8 @@ const Customer = () => {
             doc.setFont("Poppins-Bold", "bold");
             doc.line(12, y - 3, 198, y - 3);
             doc.text("Total:", 14, y + 1, null, null, "left");
-            doc.setFont("Poppins-Regular", "normal");
-            doc.text(`(Total: Kgs= ${totalKgs}; Bale= ${totalBale}; Meter=${totalMeter})`, 28, y + 1, null, null, "left");
+            doc.setFont("Poppins-Regular", "normal");     
+            doc.text(`(Total: Kgs= ${totalKgs.toFixed(2)}; Bale= ${totalBale.toFixed(2)}; Meter=${totalMeter.toFixed(2)})`, 28, y + 1, null, null, "left");
             doc.setFont("Poppins-Bold", "bold");
             doc.text(`${numberWithComma(gt)}`, 196, y + 1, null, null, "right");
             doc.line(12, y + 2.5, 198, y + 2.5);
