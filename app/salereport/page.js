@@ -43,14 +43,11 @@ const Salereport = () => {
                         ...sale,
                         customer: matchCustomer.name,
                         item: matchItem.name,
-                        matchCustomer, matchItem,
                         total
                     };
                 });
 
                 const sortData = result.sort((a, b) => sortArray(new Date(a.dt), new Date(b.dt)));
-
-                //   console.log(sortData);
                 setSales(sortData);
 
                 //---------- Session Storage Year ----------------
@@ -58,9 +55,7 @@ const Salereport = () => {
                 setYr(period);
                 //--------------------------------------------
                 const gt = sortData.reduce((t, c) => t + parseFloat(c.total), 0);
-                console.log({ gt, sortData })
                 setTotalTaka(gt);
-
                 setWaitMsg('');
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -72,30 +67,6 @@ const Salereport = () => {
         setDt1('2024-05-01');
         setDt2(formatedDate(new Date()));
     }, [msg]);
-
-
-
-
-    const searchClickHandler = () => {
-        const d1 = new Date(dt1);
-        const d2 = new Date(dt2);
-
-        // search customer in date ranges
-        const searchSale = sales.filter(sale => {
-            const dataDate = new Date(sale.dt);
-            return dataDate >= d1 && dataDate <= d2;
-        })
-
-        setSales(searchSale);
-        const total = searchSale.reduce((t, c) => t + parseFloat(c.total), 0);
-        setTotalTaka(total);
-
-    }
-
-    const refreshClickHandler = () => {
-        setMsg(`Refresh at: ${Date.now()}`);
-    }
-
 
 
     return (
@@ -111,10 +82,7 @@ const Salereport = () => {
                     <input onChange={e => setDt1(e.target.value)} value={dt1} type="date" id='dt1' name="dt1" required className="w-[155px] px-4 py-1.5 text-gray-600 ring-1 focus:ring-4 ring-blue-300 outline-none rounded duration-300" />
                     <span>To</span>
                     <input onChange={e => setDt2(e.target.value)} value={dt2} type="date" id='dt2' name="dt2" required className="w-[155px] px-4 py-1.5 text-gray-600 ring-1 focus:ring-4 ring-blue-300 outline-none rounded duration-300" />
-                    <button onClick={searchClickHandler} className="text-center mx-0.5 px-4 py-2 bg-green-600 hover:bg-green-800 text-white font-semibold rounded-md focus:ring-1 ring-blue-200 ring-offset-2 duration-300  cursor-pointer">Search</button>
-                    <button onClick={refreshClickHandler} className="text-center mx-0.5 px-4 py-2 bg-violet-600 hover:bg-violet-800 text-white font-semibold rounded-md focus:ring-1 ring-blue-200 ring-offset-2 duration-300  cursor-pointer">Refresh</button>
-                  
-                    <PrintPage data={{sales,totalTaka}} />
+                    <PrintPage data={{ sales, dt1, dt2 }} />
                 </div>
                 <table className="w-full border border-gray-200">
                     <thead>

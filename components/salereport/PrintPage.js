@@ -1,5 +1,3 @@
-
-// npm install react-to-print@3.0.2
 import React, { useState, useRef, useCallback } from "react";
 import { useReactToPrint } from "react-to-print";
 import { formatedDateDot, numberWithComma } from "@/lib/utils";
@@ -7,12 +5,37 @@ import { formatedDateDot, numberWithComma } from "@/lib/utils";
 
 
 const PrintPage = ({ data }) => {
+    const [sales, setSales] = useState([]);
+    const [gtTaka, setGtTaka] = useState("");
+    const [d1, setD1] = useState("");
+    const [d2, setD2] = useState("");
     const [show, setShow] = useState(false);
+
+
+
+
     const componentRef = useRef(null);
 
     const showPrintForm = async () => {
         setShow(true);
-        console.log(data)
+        console.log(data);
+
+        // sales, dt1, dt2
+        const salesData = data.sales;
+        const salesD1 = new Date(data.dt1);
+        const salesD2 = new Date(data.dt2);
+
+        const searchSale = salesData.filter(sale => {
+            const dataDate = new Date(sale.dt);
+            return dataDate >= salesD1 && dataDate <= salesD2;
+        })
+
+        const total = searchSale.reduce((t, c) => t + parseFloat(c.total), 0);
+
+        setSales(searchSale);
+        setGtTaka(total);
+        setD1(salesD1);
+        setD2(salesD2);
     }
 
     const closePrintForm = () => {
@@ -40,12 +63,14 @@ const PrintPage = ({ data }) => {
     const printFn = useReactToPrint({
         contentRef: componentRef,
         pageStyle: pageStyle,
-        documentTitle: `${new Date().toISOString()}_Invoice`,
+        documentTitle: `${new Date().toISOString()}_sales_reports`,
     });
 
     const printHandler = useCallback(() => {
         printFn();
     }, [printFn]);
+
+
 
     return (
         <>
@@ -70,63 +95,64 @@ const PrintPage = ({ data }) => {
                             </div>
 
                         </div>
-                        <div className="w-full h-auto p-16">
+                        <div className="w-full h-auto p-16 overflow-auto">
                             <div ref={componentRef} className="w-full h-full text-black">
-                                <h1 className="mt-[30px] text-center font-bold uppercase text-[20px]">SALES REPOR</h1>
+                                <h1 className="mt-[30px] text-center font-bold uppercase text-[20px]">SALES REPORTS</h1>
+                                <p className="text-center">Period: {formatedDateDot(new Date(d1), true)}-{formatedDateDot(new Date(d2), true)}</p>
                                 <p className="text-center">Date: {formatedDateDot(new Date(), true)}</p>
 
                                 <br />
-
-                                <table className="w-full text-[12px] border border-gray-200">
-                                    <thead>
-                                        <tr className="w-full bg-gray-200">
-                                            <th className="text-center border-b border-gray-200 px-4 py-2">Date</th>
-                                            <th className="text-start border-b border-gray-200 px-4 py-2">Customer</th>
-                                            <th className="text-start border-b border-gray-200 px-4 py-2">Item</th>
-                                            <th className="text-center border-b border-gray-200 px-4 py-2">Shipment</th>
-                                            <th className="text-end border-b border-gray-200 px-4 py-2">Weight</th>
-                                            <th className="text-end border-b border-gray-200 px-4 py-2">Rate</th>
-                                            <th className="text-end border-b border-gray-200 px-4 py-2">Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {data.sales.length ? (
-                                            data.sales.map((sale, i) => (
-                                                <tr className="border-b border-gray-200 hover:bg-gray-100" key={i}>
-                                                    <td className="text-center py-0.5 px-4">{formatedDateDot(sale.dt, true)}</td>
-                                                    <td className="text-start py-0.5 px-4">{sale.customer}</td>
-                                                    <td className="text-start py-0.5 px-4">{sale.item}</td>
-                                                    <td className="text-center py-0.5 px-4">{sale.shipment}</td>
-                                                    <td className="text-end py-0.5 px-4">{numberWithComma(sale.weight, true)}</td>
-                                                    <td className="text-end py-0.5 px-4">{numberWithComma(sale.rate, true)}</td>
-                                                    <td className="text-end py-0.5 px-4">{numberWithComma(sale.total, true)}</td>
-                                                </tr>
-                                            ))
-                                        ) : (
-                                            <tr>
-                                                <td colSpan={7} className="text-center py-10 px-4">
-                                                    Data not available.
-                                                </td>
+                                <div className="w-full h-auto p-1 overflow-auto">
+                                    <table className="w-full text-[12px] border border-gray-400">
+                                        <thead>
+                                            <tr className="w-full bg-gray-200 border border-gray-400">
+                                                <th className="text-center px-2 py-2">Date</th>
+                                                <th className="text-start px-2 py-2">Customer</th>
+                                                <th className="text-start px-2 py-2">Item</th>
+                                                <th className="text-center px-2 py-2">Shipment</th>
+                                                <th className="text-end px-2 py-2">Weight</th>
+                                                <th className="text-end px-2 py-2">Rate</th>
+                                                <th className="text-end px-2 py-2">Total</th>
                                             </tr>
-                                        )}
+                                        </thead>
+                                        <tbody>
+                                            {sales.length ? (
+                                                sales.map((sale, i) => (
+                                                    <tr className="border border-gray-400 hover:bg-gray-100" key={i}>
+                                                        <td className="text-center px-2 py-0.5">{formatedDateDot(sale.dt, true)}</td>
+                                                        <td className="text-start px-2 py-0.5">{sale.customer}</td>
+                                                        <td className="text-start px-2 py-0.5">{sale.item}</td>
+                                                        <td className="text-center px-2 py-0.5">{sale.shipment}</td>
+                                                        <td className="text-end px-2 py-0.5">{numberWithComma(sale.weight, true)}</td>
+                                                        <td className="text-end px-2 py-0.5">{numberWithComma(sale.rate, true)}</td>
+                                                        <td className="text-end px-2 py-0.5">{numberWithComma(sale.total, true)}</td>
+                                                    </tr>
+                                                ))
+                                            ) : (
+                                                <tr>
+                                                    <td colSpan={7} className="text-center py-10 px-4">
+                                                        Data not available.
+                                                    </td>
+                                                </tr>
+                                            )}
 
-                                        <tr className="font-bold border-b border-gray-200 hover:bg-gray-100">
-                                            <td className="text-center py-0.5 px-4"></td>
-                                            <td className="text-start py-0.5 px-4">Total</td>
-                                            <td className="text-center py-0.5 px-4"></td>
-                                            <td className="text-center py-0.5 px-4"></td>
-                                            <td className="text-center py-0.5 px-4"></td>
-                                            <td className="text-center py-0.5 px-4"></td>
-                                            <td className="text-end py-0.5 px-4">{numberWithComma(data.totalTaka, true)}</td>
-                                        </tr>
+                                            <tr className="font-bold border border-gray-400 hover:bg-gray-100">
+                                                <td className="text-center px-2 py-0.5"></td>
+                                                <td className="text-start px-2 py-0.5">Total</td>
+                                                <td className="text-center px-2 py-0.5"></td>
+                                                <td className="text-center px-2 py-0.5"></td>
+                                                <td className="text-center px-2 py-0.5"></td>
+                                                <td className="text-center px-2 py-0.5"></td>
+                                                <td className="text-end px-2 py-0.5">{numberWithComma(gtTaka, true)}</td>
+                                            </tr>
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
 
-                                <br />
-                                <br />
-                                <p><span className="font-bold">Note: </span>Thank you for choosing us</p>
-
+                                    <br />
+                                    <br />
+                                    <p><span className="font-bold">Note: </span>Thank you for choosing us</p>
+                                </div>
 
                             </div>
                         </div>
