@@ -27,60 +27,68 @@ const Customer = () => {
     const [cashtypes, setCashtypes] = useState([]);
     const [yr, setYr] = useState("");
 
+
+    const loadData = async (initD1, initD2) => {
+        setWaitMsg('Please Wait...');
+        try {
+
+            const [customers, sales, payments, cashtypes] = await Promise.all([
+                getDataFromFirebase('customer'),
+                getDataFromFirebase('sale'),
+                getDataFromFirebase('payment'),
+                getDataFromFirebase('cashtype')
+            ]);
+
+            //   console.log("Customer: ", customers);
+            //  console.log("Sale: ", sales);
+
+
+            setCashtypes(cashtypes);
+
+            const result = customers.map(customer => {
+                // dataDate >= d1 && dataDate <= d2
+                const matchingSale = sales.filter(sale => new Date(sale.dt) >= initD1 && new Date(sale.dt) <= initD2 && sale.customerId === customer.id);
+                const matchingPayment = payments.filter(payment => new Date(payment.dt) >= initD1 && new Date(payment.dt) <= initD2 && payment.customerId === customer.id);
+
+                const totalSale = matchingSale.reduce((t, c) => t + (parseFloat(c.weight) * parseFloat(c.rate)), 0);
+                const totalPayment = matchingPayment.reduce((t, c) => t + parseFloat(c.taka), 0);
+                const balance = totalSale - totalPayment;
+                const isDues = balance > 0 ? true : false;
+                return {
+                    ...customer,
+                    balance,
+                    isDues,
+                    matchingSale,
+                    matchingPayment
+                };
+            });
+
+            // --------- Period range ----------
+            const filterInPeriod = filterDataInPeriod(result);
+
+            const sortResult = filterInPeriod.sort((a, b) => sortArray(parseInt(b.balance), parseInt(a.balance)));
+            console.log(sortResult);
+            setCustomers(sortResult);
+
+            //--------- Tota taka ------------------------------------------
+            const total = sortResult.reduce((t, c) => t + parseFloat(c.balance), 0);
+            setTotalDue(total);
+            setYr(sessionStorage.getItem('yr'));
+
+            setWaitMsg('');
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            setMsg("Failed to fetch data");
+        }
+    };
+
+
+
+
     useEffect(() => {
-        const loadData = async () => {
-            setWaitMsg('Please Wait...');
-            try {
-
-                const [customers, sales, payments, cashtypes] = await Promise.all([
-                    getDataFromFirebase('customer'),
-                    getDataFromFirebase('sale'),
-                    getDataFromFirebase('payment'),
-                    getDataFromFirebase('cashtype')
-                ]);
-
-                //   console.log("Customer: ", customers);
-                //  console.log("Sale: ", sales);
-
-
-                setCashtypes(cashtypes);
-
-                const result = customers.map(customer => {
-                    const matchingSale = sales.filter(sale => sale.customerId === customer.id);
-                    const matchingPayment = payments.filter(payment => payment.customerId === customer.id);
-
-                    const totalSale = matchingSale.reduce((t, c) => t + (parseFloat(c.weight) * parseFloat(c.rate)), 0);
-                    const totalPayment = matchingPayment.reduce((t, c) => t + parseFloat(c.taka), 0);
-                    const balance = totalSale - totalPayment;
-                    const isDues = balance > 0 ? true : false;
-                    return {
-                        ...customer,
-                        balance,
-                        isDues,
-                        matchingSale,
-                        matchingPayment
-                    };
-                });
-
-                // --------- Period range ----------
-                const filterInPeriod = filterDataInPeriod(result);
-
-                const sortResult = filterInPeriod.sort((a, b) => sortArray(parseInt(b.balance), parseInt(a.balance)));
-                console.log(sortResult);
-                setCustomers(sortResult);
-
-                //--------- Tota taka ------------------------------------------
-                const total = sortResult.reduce((t, c) => t + parseFloat(c.balance), 0);
-                setTotalDue(total);
-                setYr(sessionStorage.getItem('yr'));
-
-                setWaitMsg('');
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                setMsg("Failed to fetch data");
-            }
-        };
-        loadData();
+        const initD1 = new Date("1900-01-01");
+        const initD2 = new Date("2050-01-01");
+        loadData(initD1, initD2);
         setDt1('2024-05-01');
         setDt2(formatedDate(new Date()));
     }, [msg]);
@@ -226,18 +234,7 @@ const Customer = () => {
     const searchClickHandler = () => {
         const d1 = new Date(dt1);
         const d2 = new Date(dt2);
-
-        // search customer in date ranges
-        const searchSale = customers.filter(customer => {
-            const dataDate = new Date(customer.createdAt);
-            return dataDate >= d1 && dataDate <= d2;
-        })
-
-
-        setCustomers(searchSale);
-        const total = searchSale.reduce((t, c) => t + parseFloat(c.balance), 0);
-        setTotalDue(total);
-
+        loadData(d1, d2);
     }
 
     const refreshClickHandler = () => {
