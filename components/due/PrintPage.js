@@ -130,10 +130,10 @@ const PrintPage = ({ data, id }) => {
                                         <thead>
                                             <tr className="w-full bg-gray-200 border border-gray-400">
                                                 <th className="text-center px-2 py-2">SL</th>
-                                                <th className="text-start px-2 py-2">Date</th>
-                                                <th className="text-start px-2 py-2">Shipment</th>
-                                                <th className="text-center px-2 py-2">Bale & Meter</th>
-                                                <th className="text-end px-2 py-2">Description</th>
+                                                <th className="text-center px-2 py-2">Date</th>
+                                                <th className="text-center px-2 py-2">Shipment</th>
+                                                <th className="text-start px-2 py-2">Bale & Meter</th>
+                                                <th className="text-start px-2 py-2">Description</th>
                                                 <th className="text-end px-2 py-2">Amount(Taka)</th>
                                             </tr>
                                         </thead>
