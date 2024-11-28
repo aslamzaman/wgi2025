@@ -1,11 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Details from "@/components/due/Details";
 import { jsPDF } from "jspdf";
 
 require("@/lib/fonts/Poppins-Bold-normal");
 require("@/lib/fonts/Poppins-Regular-normal");
 import Add from "@/components/due/Add";
+import PrintPage from "@/components/due/PrintPage";
 import { filterDataInPeriod, formatedDate, formatedDateDot, inwordEnglish, numberWithComma, sortArray } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
 
@@ -138,12 +138,12 @@ const Customer = () => {
             for (let i = 0; i < sale.length; i++) {
                 let subTotal = parseFloat(sale[i].weight) * parseFloat(sale[i].rate);
 
-                doc.text(`${i+1}.`, 18, y, null, null, "center");
+                doc.text(`${i + 1}.`, 18, y, null, null, "center");
                 doc.text(`${formatedDateDot(sale[i].dt, false)}`, 35, y, null, null, "center");
                 doc.text(`${sale[i].shipment}`, 60, y, null, null, "center");
                 doc.text(`${sale[i].bale} Bale; ${sale[i].meter} Mtr.`, 97, y, null, null, "center");
-                doc.text(`${numberWithComma(sale[i].weight,true)} @ ${numberWithComma(sale[i].rate,true)}`, 146, y, null, null, "center");
-                doc.text(`${numberWithComma(subTotal,true)}`, 196, y, null, null, "right");
+                doc.text(`${numberWithComma(sale[i].weight, true)} @ ${numberWithComma(sale[i].rate, true)}`, 146, y, null, null, "center");
+                doc.text(`${numberWithComma(subTotal, true)}`, 196, y, null, null, "right");
                 gt = gt + subTotal;
                 totalKgs = totalKgs + parseFloat(sale[i].weight);
                 totalMeter = totalMeter + parseFloat(sale[i].meter);
@@ -154,7 +154,7 @@ const Customer = () => {
             doc.setFont("Poppins-Bold", "bold");
             doc.line(12, y - 3, 198, y - 3);
             doc.text("Total:", 14, y + 1, null, null, "left");
-            doc.setFont("Poppins-Regular", "normal");     
+            doc.setFont("Poppins-Regular", "normal");
             doc.text(`(Total: Kgs= ${totalKgs.toFixed(2)}; Bale= ${totalBale.toFixed(2)}; Meter=${totalMeter.toFixed(2)})`, 28, y + 1, null, null, "left");
             doc.setFont("Poppins-Bold", "bold");
             doc.text(`${numberWithComma(gt)}`, 196, y + 1, null, null, "right");
@@ -184,7 +184,7 @@ const Customer = () => {
             const payment = paymentMatch.sort((a, b) => sortArray(new Date(a.dt), new Date(b.dt)));
             for (let i = 0; i < payment.length; i++) {
                 const matchCashType = cashtypes.find(cashType => cashType.id === payment[i].cashtypeId);
-                doc.text(`${i+1}.`, 24, n, null, null, "center");
+                doc.text(`${i + 1}.`, 24, n, null, null, "center");
                 doc.text(`${formatedDateDot(payment[i].dt, false)}`, 64, n, null, null, "center");
                 doc.text(`${matchCashType.name}`, 122, n, null, null, "center");
                 doc.text(`${numberWithComma(payment[i].taka)}`, 196, n, null, null, "right");
@@ -245,7 +245,6 @@ const Customer = () => {
     }
 
 
-
     return (
         <>
             <div className="w-full mb-3 mt-8">
@@ -285,14 +284,8 @@ const Customer = () => {
                                     <td className="text-center py-2 px-4">{numberWithComma(parseFloat(customer.balance))}/-</td>
                                     <td className="text-end py-2 px-4">
                                         <div className="flex justify-end space-x-3">
-                                            <button onClick={() => printHandler(customer.id)} className="w-7 h-7 flex justify-center items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z" />
-                                                </svg>
-                                            </button>
-
+                                            <PrintPage data={customers} id={customer.id} />
                                             <Add message={messageHandler} id={customer.id} />
-                                            <Details message={messageHandler} id={customer.id} data={customer} />
                                         </div>
                                     </td>
                                 </tr>
