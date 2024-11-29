@@ -144,8 +144,8 @@ const PrintPage = ({ data, id }) => {
                                                         <td className="text-center px-2 py-0.5">{i + 1}</td>
                                                         <td className="text-center px-2 py-0.5">{formatedDateDot(sale.dt, false)}</td>
                                                         <td className="text-center px-2 py-0.5">{sale.shipment}</td>
-                                                        <td className="text-start px-2 py-0.5">{numberWithComma(sale.bale, true)} bale; {numberWithComma(sale.meter, true)} Mtr.</td>
-                                                        <td className="text-start px-2 py-0.5">{numberWithComma(sale.weight, true)} Wgt.@ {numberWithComma(sale.rate, true)} Rate.</td>
+                                                        <td className="text-start px-2 py-0.5">{numberWithComma(sale.bale, true)} Bale; {numberWithComma(sale.meter, true)} Mtr.</td>
+                                                        <td className="text-start px-2 py-0.5">{numberWithComma(sale.weight, true)} Kgs.@ {numberWithComma(sale.rate, true)} Rate.</td>
                                                         <td className="text-end px-2 py-0.5">{numberWithComma((parseFloat(sale.weight) * parseFloat(sale.rate)), true)}</td>
                                                     </tr>
                                                 ))
