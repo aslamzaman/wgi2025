@@ -44,7 +44,7 @@ const PrintPage = ({ data, id }) => {
         setPayments(paymentSort);
         //--------------------------------------------
 
-        setPayments(paymentData);
+       // setPayments(paymentData);
 
         const totalKg = saleData.reduce((t, c) => t + parseFloat(c.weight), 0);
         const totalBale = saleData.reduce((t, c) => t + parseFloat(c.bale), 0);
