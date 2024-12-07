@@ -97,9 +97,9 @@ const DuePrint = () => {
     return (
         <>
 
-            <div className="px-6 md:px-6 py-2 flex justify-between items-center border-b border-gray-300">
+            <div id="noPrint" className="w-full px-4 py-2 flex justify-between items-center border-b border-gray-300">
 
-                <h1 className="text-xl font-bold text-blue-600">Print Process Form</h1>
+                <h1  className="text-xl font-bold text-blue-600">Print Process Form</h1>
                 <div className="w-auto flex items-center space-x-4">
                     <button onClick={printHandler} className="w-8 h-8 p-0.5 bg-gray-50 hover:bg-gray-300 rounded-md ring-1 ring-gray-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-full h-full p-[2px] stroke-black">
@@ -117,7 +117,7 @@ const DuePrint = () => {
             </div>
 
 
-            <div className="w-full h-auto p-16 overflow-auto">
+            <div className="w-full h-auto p-4 overflow-auto">
                 <div ref={componentRef} className="w-full h-full text-black">
                     <h1 className="text-center font-bold uppercase text-[20px]">DUES REPORTS</h1>
                     <p className="text-center">Date: {formatedDateDot(new Date(), true)}</p>
