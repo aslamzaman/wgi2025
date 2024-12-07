@@ -1,13 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { jsPDF } from "jspdf";
-
-require("@/lib/fonts/Poppins-Bold-normal");
-require("@/lib/fonts/Poppins-Regular-normal");
 import Add from "@/components/due/Add";
-import PrintPage from "@/components/due/PrintPage";
 import { filterDataInPeriod, formatedDate, formatedDateDot, inwordEnglish, numberWithComma, sortArray } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
+import { useRouter } from "next/navigation";
 
 
 
@@ -26,6 +23,9 @@ const Customer = () => {
     //------- For dropdown ----------------------
     const [cashtypes, setCashtypes] = useState([]);
     const [yr, setYr] = useState("");
+
+    const router = useRouter();
+
 
 
     const loadData = async (initD1, initD2) => {
@@ -67,7 +67,7 @@ const Customer = () => {
             const filterInPeriod = filterDataInPeriod(result);
 
             const sortResult = filterInPeriod.sort((a, b) => sortArray(parseInt(b.balance), parseInt(a.balance)));
-            console.log(sortResult);
+           // console.log(sortResult);
             setCustomers(sortResult);
 
             //--------- Tota taka ------------------------------------------
@@ -101,136 +101,6 @@ const Customer = () => {
     }
 
 
-    const printHandler = (id) => {
-        // console.log(customers, id)
-
-        setWaitMsg('Please Wait...');
-        setTimeout(() => {
-            const customer = customers.find(customer => customer.id === id);
-
-            console.log(customer);
-
-            const doc = new jsPDF({
-                orientation: "p",
-                unit: "mm",
-                format: "a4",
-                putOnlyUsedFonts: true,
-                floatPrecision: 16
-            });
-            doc.setFont("Poppins-Regular", "normal");
-            doc.setFontSize(10);
-            doc.text(`${customer.name}`, 12, 20, null, null, "left");
-            doc.text(`${customer.address}`, 12, 25, null, null, "left");
-            doc.text(`${customer.contact}`, 12, 30, null, null, "left");
-            doc.text(`Date: ${formatedDateDot(new Date())}`, 198, 35, null, null, "right");
-            doc.setFont("Poppins-Bold", "bold");
-            doc.text("Sales Information", 12, 37, null, null, "left");
-            doc.text("SL", 18, 43, null, null, "center");
-            doc.text("Date", 35, 43, null, null, "center");
-            doc.text("Shipment", 60, 43, null, null, "center");
-            doc.text("Bale & Meter", 97, 43, null, null, "center");
-            doc.text("Description", 146, 43, null, null, "center");
-            doc.text("Amount(Taka)", 196, 43, null, null, "right");
-            doc.line(12, 39, 198, 39);
-            doc.line(12, 45, 198, 45);
-            doc.setFont("Poppins-Regular", "normal");
-            doc.setFontSize(10);
-            let y = 49;
-            let gt = 0;
-            let totalKgs = 0;
-            let totalMeter = 0;
-            let totalBale = 0;
-            let itemTimes = 0;
-            const saleMatch = customer.matchingSale;
-            const sale = saleMatch.sort((a, b) => sortArray(new Date(a.dt), new Date(b.dt)));
-            for (let i = 0; i < sale.length; i++) {
-                let subTotal = parseFloat(sale[i].weight) * parseFloat(sale[i].rate);
-
-                doc.text(`${i + 1}.`, 18, y, null, null, "center");
-                doc.text(`${formatedDateDot(sale[i].dt, false)}`, 35, y, null, null, "center");
-                doc.text(`${sale[i].shipment}`, 60, y, null, null, "center");
-                doc.text(`${sale[i].bale} Bale; ${sale[i].meter} Mtr.`, 97, y, null, null, "center");
-                doc.text(`${numberWithComma(sale[i].weight, true)} @ ${numberWithComma(sale[i].rate, true)}`, 146, y, null, null, "center");
-                doc.text(`${numberWithComma(subTotal, true)}`, 196, y, null, null, "right");
-                gt = gt + subTotal;
-                totalKgs = totalKgs + parseFloat(sale[i].weight);
-                totalMeter = totalMeter + parseFloat(sale[i].meter);
-                totalBale = totalBale + parseFloat(sale[i].bale);
-                itemTimes = i + 1;
-                y = y + 5;
-            }
-            doc.setFont("Poppins-Bold", "bold");
-            doc.line(12, y - 3, 198, y - 3);
-            doc.text("Total:", 14, y + 1, null, null, "left");
-            doc.setFont("Poppins-Regular", "normal");
-            doc.text(`(Total: Kgs= ${totalKgs.toFixed(2)}; Bale= ${totalBale.toFixed(2)}; Meter=${totalMeter.toFixed(2)})`, 28, y + 1, null, null, "left");
-            doc.setFont("Poppins-Bold", "bold");
-            doc.text(`${numberWithComma(gt)}`, 196, y + 1, null, null, "right");
-            doc.line(12, y + 2.5, 198, y + 2.5);
-
-
-            doc.line(12, 39, 12, y + 2.5);
-            doc.line(198, 39, 198, y + 2.5);
-
-            // -------------------------------------------------------------
-
-            let z = y + 10;
-            doc.setFont("Poppins-Bold", "bold");
-            doc.text("Payments Information", 12, z, null, null, "left");
-            doc.line(12, z + 1, 198, z + 1);
-            doc.text("SL", 24, z + 5, null, null, "center");
-            doc.text("Date", 64, z + 5, null, null, "center");
-            doc.text("Cash Type", 122, z + 5, null, null, "center");
-            doc.text("Amount", 196, z + 5, null, null, "right");
-            doc.line(12, z + 6.5, 198, z + 6.5);
-
-            doc.setFont("Poppins-Regular", "normal");
-            let n = z + 11;
-            let paymentTotal = 0;
-            let paymentTimes = 0;
-            const paymentMatch = customer.matchingPayment;
-            const payment = paymentMatch.sort((a, b) => sortArray(new Date(a.dt), new Date(b.dt)));
-            for (let i = 0; i < payment.length; i++) {
-                const matchCashType = cashtypes.find(cashType => cashType.id === payment[i].cashtypeId);
-                doc.text(`${i + 1}.`, 24, n, null, null, "center");
-                doc.text(`${formatedDateDot(payment[i].dt, false)}`, 64, n, null, null, "center");
-                doc.text(`${matchCashType.name}`, 122, n, null, null, "center");
-                doc.text(`${numberWithComma(payment[i].taka)}`, 196, n, null, null, "right");
-                paymentTotal = paymentTotal + parseFloat(payment[i].taka);
-                paymentTimes = i + 1;
-                n = n + 5;
-            }
-            doc.setFont("Poppins-Bold", "bold");
-            doc.line(12, n - 3, 198, n - 3);
-            doc.text(`Total:`, 14, n + 1, null, null, "left");
-            doc.text(`${numberWithComma(paymentTotal)}`, 196, n + 1, null, null, "right");
-            doc.line(12, n + 2.5, 198, n + 2.5);
-
-            doc.line(12, z + 1, 12, n + 2.5);
-            doc.line(198, z + 1, 198, n + 2.5);
-
-
-            doc.line(12, n + 10, 198, n + 10);
-            doc.setFont("Poppins-Bold", "bold");
-            doc.text(`Total Payable/Balance: (${gt} - ${paymentTotal}) = `, 14, n + 14, null, null, "left");
-
-            doc.text(`${numberWithComma(customer.balance)}`, 196, n + 14, null, null, "right");
-            doc.line(12, n + 16, 198, n + 16);
-
-            doc.line(12, n + 10, 12, n + 16);
-            doc.line(198, n + 10, 198, n + 16);
-
-
-            doc.setFont("Poppins-Regular", "normal");
-            doc.text(`INWORD: ${inwordEnglish(customer.balance).toUpperCase()} ONLY`, 12, n + 21, null, null, "left");
-
-            doc.save(`Customer_Details_Created_${formatedDate(new Date())}.pdf`);
-            setWaitMsg('');
-        }, 0);
-    }
-
-
-
     const searchClickHandler = () => {
         const d1 = new Date(dt1);
         const d2 = new Date(dt2);
@@ -240,6 +110,14 @@ const Customer = () => {
     const refreshClickHandler = () => {
         setMsg(`Refresh at: ${Date.now()}`);
     }
+
+
+
+    const gotToPrintPage = (data) => {
+        localStorage.setItem('customerData', JSON.stringify(data));
+        router.push('/dueprint');
+    }
+
 
 
     return (
@@ -281,7 +159,11 @@ const Customer = () => {
                                     <td className="text-center py-2 px-4">{numberWithComma(parseFloat(customer.balance))}/-</td>
                                     <td className="text-end py-2 px-4">
                                         <div className="flex justify-end space-x-3">
-                                            <PrintPage data={customer} />
+                                            <button title="Details" onClick={() => gotToPrintPage(customer)} className={`w-8 h-8 p-0.5 bg-gray-50 hover:bg-gray-300 rounded-md ring-1 ring-gray-300`}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-full h-full p-[1px] stroke-black">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                                                </svg>
+                                            </button>
                                             <Add message={messageHandler} id={customer.id} />
                                         </div>
                                     </td>

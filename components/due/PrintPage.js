@@ -3,10 +3,7 @@
 import React, { useState, useRef, useCallback } from "react";
 import { useReactToPrint } from "react-to-print";
 import { formatedDateDot, numberWithComma, sortArray } from "@/lib/utils";
-import { Tiro_Bangla } from 'next/font/google';
-import { BtnEn } from "../Form";
-import { Info } from "../Icons";
-const tiro = Tiro_Bangla({ subsets: ['bengali'], weight: "400" });
+
 
 
 const PrintPage = ({ data }) => {
