@@ -281,7 +281,7 @@ const Customer = () => {
                                     <td className="text-center py-2 px-4">{numberWithComma(parseFloat(customer.balance))}/-</td>
                                     <td className="text-end py-2 px-4">
                                         <div className="flex justify-end space-x-3">
-                                            <PrintPage data={customers} id={customer.id} />
+                                            <PrintPage data={customer} />
                                             <Add message={messageHandler} id={customer.id} />
                                         </div>
                                     </td>

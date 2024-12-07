@@ -9,7 +9,7 @@ import { Info } from "../Icons";
 const tiro = Tiro_Bangla({ subsets: ['bengali'], weight: "400" });
 
 
-const PrintPage = ({ data, id }) => {
+const PrintPage = ({ data }) => {
     const [sales, setSales] = useState([]);
     const [payments, setPayments] = useState([]);
     const [kgTotal, setKgTotal] = useState("0");
@@ -31,7 +31,7 @@ const PrintPage = ({ data, id }) => {
         setShow(true);
         console.log(data);
 
-        const singleCustomerData = data.find(customer => customer.id === id);
+        const singleCustomerData = data;
         setSingleCustomer(singleCustomerData);
 
         const saleData = singleCustomerData.matchingSale;
