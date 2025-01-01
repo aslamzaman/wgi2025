@@ -1,8 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { jsPDF } from "jspdf";
 import Add from "@/components/due/Add";
-import { filterDataInPeriod, formatedDate, formatedDateDot, inwordEnglish, numberWithComma, sortArray } from "@/lib/utils";
+import { filterDataInPeriod, formatedDate,  numberWithComma, sortArray } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
 import { useRouter } from "next/navigation";
 

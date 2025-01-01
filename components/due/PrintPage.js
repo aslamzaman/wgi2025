@@ -1,5 +1,4 @@
 
-// npm install react-to-print@3.0.2
 import React, { useState, useRef, useCallback } from "react";
 import { useReactToPrint } from "react-to-print";
 import { formatedDateDot, numberWithComma, sortArray } from "@/lib/utils";

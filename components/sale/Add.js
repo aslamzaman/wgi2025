@@ -64,6 +64,7 @@ const Add = ({ message }) => {
 
 
     const createObject = () => {
+        const period = sessionStorage.getItem('yr');
         return {
             customerId: customerId,
             shipment: shipment,
@@ -74,6 +75,7 @@ const Add = ({ message }) => {
             meter: meter,
             weight: weight,
             rate: rate,
+            yrs: period,
             createdAt: new Date().toISOString()
         }
     }

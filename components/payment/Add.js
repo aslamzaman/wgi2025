@@ -52,11 +52,12 @@ const Add = ({ message }) => {
         setBank('');
         setChequeNo('');
         setChequeDt(formatedDate(new Date()));
-        setTaka('');
+        setTaka('');        
     }
 
 
     const createObject = () => {
+        const period = sessionStorage.getItem('yr');
         return {
             customerId: customerId,
             dt: dt,
@@ -65,6 +66,7 @@ const Add = ({ message }) => {
             chequeNo: chequeNo,
             chequeDt: chequeDt,
             taka: taka,
+            yrs: period,
             createdAt: new Date().toISOString()
         }
     }

@@ -56,6 +56,7 @@ const Edit = ({ message, id, data }) => {
 
 
     const createObject = () => {
+        const period = sessionStorage.getItem('yr');
         return {
             customerId: customerId,
             dt: dt,
@@ -64,6 +65,7 @@ const Edit = ({ message, id, data }) => {
             chequeNo: chequeNo,
             chequeDt: chequeDt,
             taka: taka,
+            yrs: period,
             createdAt: createdAt
         }
     }

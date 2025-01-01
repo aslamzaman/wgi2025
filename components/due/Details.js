@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-const date_format = dt => new Date(dt).toISOString().split('T')[0];
 import { formatedDateDot, numberWithComma, sortArray } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
 

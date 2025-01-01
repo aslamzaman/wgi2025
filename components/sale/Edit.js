@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BtnSubmit, DropdownEn, TextNum, TextDt } from "@/components/Form";
-const date_format = dt => new Date(dt).toISOString().split('T')[0];
 import { getDataFromFirebase, updateDataToFirebase } from "@/lib/firebaseFunction";
 import { formatedDate, sortArray } from "@/lib/utils";
 
@@ -65,6 +64,7 @@ const Edit = ({ message, id, data }) => {
 
 
     const createObject = () => {
+        const period = sessionStorage.getItem('yr');
         return {
             customerId: customerId,
             shipment: shipment,
@@ -75,6 +75,7 @@ const Edit = ({ message, id, data }) => {
             meter: meter,
             weight: weight,
             rate: rate,
+            yrs: period,
             createdAt: createdAt
         }
     }

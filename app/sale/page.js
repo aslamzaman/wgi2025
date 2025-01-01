@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Add from "@/components/sale/Add";
 import Edit from "@/components/sale/Edit";
 import Delete from "@/components/sale/Delete";
-import { filterDataInPeriod, formatedDateDot, numberWithComma } from "@/lib/utils";
+import { formatedDateDot, numberWithComma } from "@/lib/utils";
 import { DropdownEn } from "@/components/Form";
 import { sortArray } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
@@ -30,6 +30,9 @@ const Sale = () => {
         const getData = async () => {
             setWaitMsg('Please Wait...');
             try {
+
+                const period = sessionStorage.getItem('yr');
+
                 const [responseSale, responseCustomer, responseItem] = await Promise.all([
                     getDataFromFirebase('sale'),
                     getDataFromFirebase('customer'),
@@ -45,14 +48,16 @@ const Sale = () => {
                 })
 
                 // periodic data ------------------
-                const getDataInPeriod = filterDataInPeriod(joinTable);
+
+
+                const getDataInPeriod = joinTable.filter(data => parseInt(data.yrs) === parseInt(period));
 
                 // console.log("Data in period: ", getDataInPeriod);
 
                 // console.log("joinTable: ", getDataInPeriod);
-                
-                const sortedTable = getDataInPeriod.sort((a,b)=>sortArray(new Date(b.createdAt),new Date(a.createdAt)));
-console.log("sale: ", sortedTable);
+
+                const sortedTable = getDataInPeriod.sort((a, b) => sortArray(new Date(b.createdAt), new Date(a.createdAt)));
+                console.log("sale: ", sortedTable);
                 setSales(sortedTable);
 
                 // -------- Storage for search ----------------------
@@ -67,7 +72,6 @@ console.log("sale: ", sortedTable);
                 setTotalSale(total);
 
                 //---------- Session Storage Year ----------------
-                const period = sessionStorage.getItem('yr');
                 setYr(period);
 
                 setWaitMsg('');
