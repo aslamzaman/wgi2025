@@ -7,7 +7,7 @@ require("@/lib/fonts/Poppins-Bold-normal");
 require("@/lib/fonts/Poppins-Regular-normal");
 
 
-import { filterDataInPeriod, formatedDate, formatedDateDot, inwordEnglish, sortArray } from "@/lib/utils";
+import { formatedDate, formatedDateDot, inwordEnglish, sortArray } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
 
 
@@ -27,11 +27,7 @@ const Moneyreceipt = () => {
                 const data = await getDataFromFirebase('moneyreceipt');
                 console.log(data);
 
-                // periodic data ------------------
-                const getDataInPeriod = filterDataInPeriod(data);
-
-
-                const sortedDate = getDataInPeriod.sort((a, b) => sortArray(new Date(b.createdAt), new Date(a.createdAt)));
+                const sortedDate = data.sort((a, b) => sortArray(new Date(b.createdAt), new Date(a.createdAt)));
                 setMoneyreceipts(sortedDate);
 
                 //---------- Session Storage Year ----------------

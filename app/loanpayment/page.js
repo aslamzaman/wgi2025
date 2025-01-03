@@ -4,7 +4,7 @@ import Add from "@/components/loanpayment/Add";
 import Edit from "@/components/loanpayment/Edit";
 import Delete from "@/components/loanpayment/Delete";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
-import { filterDataInPeriod, formatedDateDot, numberWithComma, sortArray } from "@/lib/utils";
+import { formatedDateDot, numberWithComma, sortArray } from "@/lib/utils";
 
 
 
@@ -34,9 +34,9 @@ const Loanpayment = () => {
                        borrower : borrowers.find(borrower => borrower.id ===loanpayment.borrowerId) || {}
                     }
                 });
-                const filterInPeriod = filterDataInPeriod(joinCollection);
+ 
 
-                const sortedData = filterInPeriod.sort((a, b) => sortArray(new Date(b.createdAt), new Date(a.createdAt)));
+                const sortedData = joinCollection.sort((a, b) => sortArray(new Date(b.createdAt), new Date(a.createdAt)));
                 console.log(sortedData);
                 setLoanpayments(sortedData);
 

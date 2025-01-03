@@ -5,7 +5,7 @@ import Edit from "@/components/loan/Edit";
 import Delete from "@/components/loan/Delete";
 // import Print from "@/components/loan/Print";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
-import { filterDataInPeriod, formatedDateDot, numberWithComma, sortArray } from "@/lib/utils";
+import { formatedDateDot, numberWithComma, sortArray } from "@/lib/utils";
 
 
 
@@ -34,8 +34,7 @@ const Loan = () => {
                     }
                 });
 
-                const filterInPeriod = filterDataInPeriod(joinCollection);
-                const sortedData = filterInPeriod.sort((a, b) => sortArray(new Date(b.createdAt), new Date(a.createdAt)));
+                const sortedData = joinCollection.sort((a, b) => sortArray(new Date(b.createdAt), new Date(a.createdAt)));
                 console.log(sortedData);
                 setLoans(sortedData);
 

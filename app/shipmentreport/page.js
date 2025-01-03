@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { filterDataInPeriod, numberWithComma, sortArray } from "@/lib/utils";
+import { numberWithComma, sortArray } from "@/lib/utils";
 
 require("@/lib/fonts/Poppins-Bold-normal");
 require("@/lib/fonts/Poppins-Regular-normal");
@@ -34,11 +34,8 @@ const Shipmentreport = () => {
                 ]);
                 setCustomers(customers);
 
-                //----------- Period ------------
-                const periodicSale = filterDataInPeriod(sales);
-
-
-                const arrShipment = periodicSale.map(sale => sale.shipment);
+ 
+                const arrShipment = sales.map(sale => sale.shipment);
                 const shipments = Array.from(new Set(arrShipment));
 
                 setSales(sales);
@@ -104,7 +101,7 @@ const Shipmentreport = () => {
                     <tbody>
                         {saleSummery.length ? (
                             saleSummery.map((customer, i) => (
-                                <tr className={`border-b border-gray-200 hover:bg-gray-100 ${customer.isDues ? 'text-black' : 'text-blue-500'}`} key={i}>
+                                <tr className="border-b border-gray-200 hover:bg-gray-100" key={i}>
                                     <td className="text-center py-2 px-4">{i + 1}</td>
                                     <td className="text-center py-2 px-4">{customer.shipment}</td>
                                     <td className="text-center py-2 px-4">{numberWithComma(customer.totalBale)}</td>

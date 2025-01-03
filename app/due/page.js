@@ -62,10 +62,8 @@ const Customer = () => {
                 };
             });
 
-            // --------- Period range ----------
-            const filterInPeriod = filterDataInPeriod(result);
 
-            const sortResult = filterInPeriod.sort((a, b) => sortArray(parseInt(b.balance), parseInt(a.balance)));
+            const sortResult = result.sort((a, b) => sortArray(parseInt(b.balance), parseInt(a.balance)));
            // console.log(sortResult);
             setCustomers(sortResult);
 

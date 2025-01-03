@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Add from "@/components/invoice/Add";
 import Delete from "@/components/invoice/Delete";
 import jsPDF from "jspdf";
-import { filterDataInPeriod, formatedDate, formatedDateDot, inwordEnglish, sortArray } from "@/lib/utils";
+import { formatedDate, formatedDateDot, inwordEnglish, sortArray } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
 require("@/lib/fonts/Poppins-Bold-normal");
 require("@/lib/fonts/Poppins-Regular-normal");
@@ -38,9 +38,8 @@ const Invoice = () => {
                 })
 
                // periodic data ------------------
-               const getDataInPeriod = filterDataInPeriod(joinWithCustomer);
-
-                const sorted = getDataInPeriod.sort((a, b)=> sortArray(new Date(b.createdAt),new Date(a.createdAt)));
+   
+                const sorted = joinWithCustomer.sort((a, b)=> sortArray(new Date(b.createdAt),new Date(a.createdAt)));
 
                 console.log("join table", sorted);
                 setInvoices(sorted);
@@ -172,7 +171,7 @@ const Invoice = () => {
             doc.line(150, 95, 150, y - 3.5); // Vertical Line
             doc.line(168, 95, 168, y - 3.5); // Vertical Line
 
-            doc.save(`WGI_Invoice_${invoice.invoiceNo}_Created_${formatedDate(invoice.dt)}.pdf`);
+            doc.save(`WGI_Invoice_${invoice.invoiceNumber}_Created_${formatedDate(invoice.dt)}.pdf`);
             setWaitMsg('');
         }, 0);
 
@@ -192,6 +191,7 @@ const Invoice = () => {
                     <table className="w-full border border-gray-200">
                         <thead>
                             <tr className="w-full bg-gray-200">
+                                <th className="text-center border-b border-gray-200 px-4 py-2">SL</th>
                                 <th className="text-center border-b border-gray-200 px-4 py-2">Invoice</th>
                                 <th className="text-center border-b border-gray-200 px-4 py-2">Customer</th>
                                 <th className="text-center border-b border-gray-200 px-4 py-2">Date</th>
@@ -206,8 +206,9 @@ const Invoice = () => {
                         </thead>
                         <tbody>
                             {invoices.length ? (
-                                invoices.map(invoice => (
+                                invoices.map((invoice,i) => (
                                     <tr className="border-b border-gray-200 hover:bg-gray-100" key={invoice.id}>
+                                        <td className="text-center py-2 px-4">{i+1}</td>
                                         <td className="text-center py-2 px-4">{invoice.invoiceNumber}</td>
                                         <td className="text-center py-2 px-4">{invoice.matchCustomer.name}</td>
                                         <td className="text-center py-2 px-4">{formatedDateDot(invoice.dt, true)}</td>

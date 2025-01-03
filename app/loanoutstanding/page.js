@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Payment from "@/components/loanoutstanding/Payment";
 import Detail from "@/components/loanoutstanding/Detail";
-import { filterDataInPeriod, numberWithComma, sortArray } from "@/lib/utils";
+import { numberWithComma, sortArray } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
 
 
@@ -28,12 +28,8 @@ const Borrower = () => {
                 // console.log(borrowerResponse, loanResponse);
 
 
-                // In period loan  ------------------
-                const getDataInPeriod = filterDataInPeriod(loanResponse);
-
-
                 //------- Loan id make Unique ----------------
-                const getAllBorderId = getDataInPeriod.map(loan => loan.borrowerId);
+                const getAllBorderId = loanResponse.map(loan => loan.borrowerId);
                 const newSetIds = new Set(getAllBorderId);
                 const uniqueBorrowerIds = Array.from(newSetIds);
 
@@ -101,10 +97,8 @@ const Borrower = () => {
                                 <th className="text-center border-b border-gray-200 px-4 py-2">SL</th>
                                 <th className="text-start border-b border-gray-200 px-4 py-2">Name</th>
                                 <th className="text-center border-b border-gray-200 px-4 py-2">Balance</th>
-                                <th className="w-[100px] font-normal">
-                                    <div className="w-full flex justify-end py-0.5 pr-4">
-
-                                    </div>
+                                <th className="w-[100px]">
+                                    <div className="w-full flex justify-end py-0.5 pr-4">Actions</div>
                                 </th>
                             </tr>
                         </thead>

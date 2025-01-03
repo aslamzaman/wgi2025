@@ -3,10 +3,8 @@ import React, { useState, useEffect } from "react";
 import Add from "@/components/payment/Add";
 import Edit from "@/components/payment/Edit";
 import Delete from "@/components/payment/Delete";
-import { formatedDate, formatedDateDot, numberWithComma, sortArray } from "@/lib/utils";
+import { formatedDate, formatedDateDot, numberWithComma, sortArray, filterDataInYear } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
-
-
 
 
 
@@ -28,14 +26,12 @@ const Payment = () => {
         const getData = async () => {
             setWaitMsg('Please Wait...');
             try {
-                const period = sessionStorage.getItem('yr');
 
                 const [payments, customers, cashtypes] = await Promise.all([
                     getDataFromFirebase("payment"),
                     getDataFromFirebase("customer"),
                     getDataFromFirebase("cashtype")
                 ]);
-
 
                 const joinCollection = payments.map(payment => {
                     return {
@@ -46,19 +42,19 @@ const Payment = () => {
                 });
 
                 // periodic data ------------------
-                const getDataInPeriod = joinCollection.filter(data => parseInt(data.yrs) === parseInt(period));
+                const getDataInPeriod = filterDataInYear(joinCollection);
 
                 const sortedData = getDataInPeriod.sort((a, b) => sortArray(new Date(b.createdAt), new Date(a.createdAt)));
 
-                console.log(sortedData.length);
                 setPayments(sortedData);
-
+        
                 //---------- Storage data for searcing -----------------------
                 setNewPayments(sortedData)
                 const total = sortedData.reduce((t, c) => t + parseFloat(c.taka), 0);
                 setTotalPayment(total);
 
                 //---------- Session Storage Year ----------------
+                const period = sessionStorage.getItem('yr');
                 setYr(period);
 
                 setWaitMsg('');
@@ -101,32 +97,32 @@ const Payment = () => {
 
 
 
-/*
-    const dd = async () => {
-
-        for (let i = 0; i < saleData.length; i++) {
-
-            const newId = saleData[i].id;
-            const newData = {
-                yrs: 2024,
-                customerId: saleData[i].customerId,
-                shipment: saleData[i].shipment,
-                itemId: saleData[i].itemId,
-                dt: saleData[i].dt,
-                bale: saleData[i].bale,
-                than: saleData[i].than,
-                meter: saleData[i].meter,
-                weight: saleData[i].weight,
-                rate: saleData[i].rate,
-                createdAt: saleData[i].createdAt
+    /*
+        const dd = async () => {
+    
+            for (let i = 0; i < saleData.length; i++) {
+    
+                const newId = saleData[i].id;
+                const newData = {
+                    yrs: 2024,
+                    customerId: saleData[i].customerId,
+                    shipment: saleData[i].shipment,
+                    itemId: saleData[i].itemId,
+                    dt: saleData[i].dt,
+                    bale: saleData[i].bale,
+                    than: saleData[i].than,
+                    meter: saleData[i].meter,
+                    weight: saleData[i].weight,
+                    rate: saleData[i].rate,
+                    createdAt: saleData[i].createdAt
+                }
+                await updateDataToFirebase("sale", newId, newData);
+    
+                console.log(i, saleData.length);
             }
-            await updateDataToFirebase("sale", newId, newData);
-
-            console.log(i, saleData.length);
+    
         }
-
-    }
-*/
+    */
 
     return (
         <>
@@ -135,7 +131,7 @@ const Payment = () => {
                 <h1 className="w-full text-xl lg:text-2xl font-bold text-center text-gray-400">Total = {numberWithComma(parseFloat(totalPayment))}/-</h1>
                 <p className="w-full text-center text-blue-300">&nbsp;{waitMsg}&nbsp;</p>
             </div>
-         
+
             <div className="px-4 lg:px-6">
                 <p className="w-full text-sm text-red-700">{msg}</p>
                 <div className="p-2 overflow-auto">
@@ -150,6 +146,7 @@ const Payment = () => {
                     <table className="w-full border border-gray-200">
                         <thead>
                             <tr className="w-full bg-gray-200">
+                                <th className="text-center border-b border-gray-200 px-4 py-2">SL</th>
                                 <th className="text-center border-b border-gray-200 px-4 py-2">Date</th>
                                 <th className="text-center border-b border-gray-200 px-4 py-2">Customer</th>
                                 <th className="text-center border-b border-gray-200 px-4 py-2">Cash Type</th>
@@ -163,8 +160,9 @@ const Payment = () => {
                         </thead>
                         <tbody>
                             {payments.length ? (
-                                payments.map(payment => (
+                                payments.map((payment,i) => (
                                     <tr className="border-b border-gray-200 hover:bg-gray-100" key={payment.id}>
+                                        <td className="text-center py-2 px-4">{i+1}</td>
                                         <td className="text-center py-2 px-4">{formatedDateDot(payment.dt, true)}</td>
                                         <td className="text-center py-2 px-4">{payment.customer.name}</td>
                                         <td className="text-center py-2 px-4">{payment.cashtype.name}</td>

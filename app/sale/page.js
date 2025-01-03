@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Add from "@/components/sale/Add";
 import Edit from "@/components/sale/Edit";
 import Delete from "@/components/sale/Delete";
-import { formatedDateDot, numberWithComma } from "@/lib/utils";
+import { formatedDateDot, numberWithComma, filterDataInYear } from "@/lib/utils";
 import { DropdownEn } from "@/components/Form";
 import { sortArray } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
@@ -31,7 +31,6 @@ const Sale = () => {
             setWaitMsg('Please Wait...');
             try {
 
-                const period = sessionStorage.getItem('yr');
 
                 const [responseSale, responseCustomer, responseItem] = await Promise.all([
                     getDataFromFirebase('sale'),
@@ -50,11 +49,7 @@ const Sale = () => {
                 // periodic data ------------------
 
 
-                const getDataInPeriod = joinTable.filter(data => parseInt(data.yrs) === parseInt(period));
-
-                // console.log("Data in period: ", getDataInPeriod);
-
-                // console.log("joinTable: ", getDataInPeriod);
+                const getDataInPeriod = filterDataInYear(joinTable);
 
                 const sortedTable = getDataInPeriod.sort((a, b) => sortArray(new Date(b.createdAt), new Date(a.createdAt)));
                 console.log("sale: ", sortedTable);
@@ -72,6 +67,7 @@ const Sale = () => {
                 setTotalSale(total);
 
                 //---------- Session Storage Year ----------------
+                const period = sessionStorage.getItem('yr');
                 setYr(period);
 
                 setWaitMsg('');
@@ -125,6 +121,7 @@ const Sale = () => {
                     <table className="w-full border border-gray-200">
                         <thead>
                             <tr className="w-full bg-gray-200">
+                                <th className="text-center border-b border-gray-200 px-4 py-2">SL</th>
                                 <th className="text-center border-b border-gray-200 px-4 py-2">Date</th>
                                 <th className="text-center border-b border-gray-200 px-4 py-2">Shipment</th>
                                 <th className="text-center border-b border-gray-200 px-4 py-2">Customer</th>
@@ -141,8 +138,9 @@ const Sale = () => {
                         </thead>
                         <tbody>
                             {sales.length ? (
-                                sales.map(sale => (
+                                sales.map((sale, i) => (
                                     <tr className="border-b border-gray-200 hover:bg-gray-100" key={sale.id}>
+                                        <td className="text-center py-2 px-4">{i + 1}</td>
                                         <td className="text-center py-2 px-4">{formatedDateDot(sale.dt, true)}</td>
                                         <td className="text-center py-2 px-4">{sale.shipment}</td>
                                         <td className="text-center py-2 px-4">{sale.customer.name}</td>
