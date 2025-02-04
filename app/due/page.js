@@ -1,10 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Add from "@/components/due/Add";
-import { filterDataInPeriod, formatedDate,  numberWithComma, sortArray } from "@/lib/utils";
+import { filterDataInPeriod, formatedDate, formatedDateDot, numberWithComma, sortArray } from "@/lib/utils";
 import { getDataFromFirebase } from "@/lib/firebaseFunction";
 import { useRouter } from "next/navigation";
-
+import jsPDF from 'jspdf'
+import autoTable from 'jspdf-autotable'
 
 
 const Customer = () => {
@@ -64,7 +65,7 @@ const Customer = () => {
 
 
             const sortResult = result.sort((a, b) => sortArray(parseInt(b.balance), parseInt(a.balance)));
-           // console.log(sortResult);
+            // console.log(sortResult);
             setCustomers(sortResult);
 
             //--------- Tota taka ------------------------------------------
@@ -98,10 +99,10 @@ const Customer = () => {
     }
 
 
-    const searchClickHandler = () => {
+    const searchClickHandler = async () => {
         const d1 = new Date(dt1);
         const d2 = new Date(dt2);
-        loadData(d1, d2);
+        await loadData(d1, d2);
     }
 
     const refreshClickHandler = () => {
@@ -115,6 +116,58 @@ const Customer = () => {
         router.push('/dueprint');
     }
 
+
+    const printAllData = () => {
+        const customerFilterData = customers.filter(customer => customer.balance > 0);
+
+        const threeColumn = customerFilterData.map((customer, i) => {
+            return {
+                sl: i + 1,
+                name: customer.name,
+                balance: customer.balance
+            }
+        })
+        const totalTK = threeColumn.reduce((t, c) => t + parseFloat(c.balance), 0);
+        const data = [...threeColumn, { sl: "", name: "Total", balance: totalTK }]
+        console.log({ data });
+
+        const doc = new jsPDF();
+
+        doc.autoTable({
+            theme: 'grid',
+            columnStyles: {
+                0: { halign: 'center', cellWidth: 10 },
+                2: { halign: 'right', cellWidth: 30 }
+            },
+            startY: 40, // Start position of the table
+            tableWidth: 'auto',
+            margin: { top: 20, botton: 20 },
+            head: [[
+                { content: 'SL', styles: { halign: 'center' } },
+                { content: 'Customer', styles: { halign: 'left' } },
+                { content: 'Dues', styles: { halign: 'right' } }
+            ]], // Table headers
+            body: data.map(row => [row.sl, row.name, numberWithComma(row.balance,true)]), // Table data
+        });
+        // Save the PDF
+        const numOfPages = doc.internal.getNumberOfPages();
+        const pageHeight = doc.internal.pageSize.getHeight();
+        doc.setFontSize(10);
+        for (let i = 1; i <= numOfPages; i++) {
+            doc.setPage(i);
+            doc.text(`Page ${i}  of ${numOfPages}`, 15, pageHeight - 10);
+        }
+
+
+        doc.setPage(1);
+        doc.setFontSize(18);       
+        doc.text("Customer Dues", 105, 20, "center");
+        doc.setFontSize(10);
+        doc.text(`Period: ${formatedDateDot(dt1,true)} to ${formatedDateDot(dt2,true)}`, 105, 27, "center");
+        doc.text(`Print Date: ${formatedDateDot(new Date(),true)}`, 195, 37, "right");
+
+        doc.save('database_information.pdf');
+    }
 
 
     return (
@@ -133,6 +186,7 @@ const Customer = () => {
                     <input onChange={e => setDt2(e.target.value)} value={dt2} type="date" id='dt2' name="dt2" required className="w-[155px] px-4 py-1.5 text-gray-600 ring-1 focus:ring-4 ring-blue-300 outline-none rounded duration-300" />
                     <button onClick={searchClickHandler} className="text-center mx-0.5 px-4 py-2 bg-green-600 hover:bg-green-800 text-white font-semibold rounded-md focus:ring-1 ring-blue-200 ring-offset-2 duration-300  cursor-pointer">Search</button>
                     <button onClick={refreshClickHandler} className="text-center mx-0.5 px-4 py-2 bg-violet-600 hover:bg-violet-800 text-white font-semibold rounded-md focus:ring-1 ring-blue-200 ring-offset-2 duration-300  cursor-pointer">Refresh</button>
+                    <button onClick={printAllData} className="text-center mx-0.5 px-4 py-2 bg-blue-600 hover:bg-blue-800 text-white font-semibold rounded-md focus:ring-1 ring-blue-200 ring-offset-2 duration-300  cursor-pointer">Print All</button>
                 </div>
                 <table className="w-full border border-gray-200">
                     <thead>
