@@ -64,7 +64,7 @@ const Customer = () => {
             });
 
 
-            const sortResult = result.sort((a, b) => sortArray(parseInt(b.balance), parseInt(a.balance)));
+            const sortResult = result.sort((a, b) => sortArray(a.name.toUpperCase(), b.name.toUpperCase()));
             // console.log(sortResult);
             setCustomers(sortResult);
 
