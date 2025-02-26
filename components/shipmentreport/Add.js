@@ -13,7 +13,8 @@ const Add = ({ sales, customers, data }) => {
         setShow(true);
         try {
 
-            const filterSale = sales.filter(sale => sale.shipment === data.shipment);
+            
+            const filterSale = sales.filter(sale => (parseInt(sale.shipment) === parseInt(data.shipment)));
             const joinWithCustomer = filterSale.map(sale => {
                 const matchCustomer = customers.find(customer => customer.id === sale.customerId);
                 return {
@@ -21,6 +22,7 @@ const Add = ({ sales, customers, data }) => {
                     customer: matchCustomer
                 }
             })
+            console.log({ joinWithCustomer });
 
             const sortedCustomer = joinWithCustomer.sort((a, b) => sortArray(new Date(a.dt), new Date(b.dt)));
             setSaleDatas(sortedCustomer);

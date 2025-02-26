@@ -20,6 +20,8 @@ const Shipmentreport = () => {
 
     //-------- Data display year --------
     const [yr, setYr] = useState('');
+    const [totalWgt, setTotalWgt] = useState('0');
+    const [totalWgtTk, setTotalWgtTk] = useState('0');
 
 
 
@@ -27,6 +29,8 @@ const Shipmentreport = () => {
         const loadData = async () => {
             setWaitMsg('Please Wait...');
             try {
+                const period = sessionStorage.getItem('yr');
+
 
                 const [sales, customers] = await Promise.all([
                     getDataFromFirebase('sale'),
@@ -34,16 +38,20 @@ const Shipmentreport = () => {
                 ]);
                 setCustomers(customers);
 
- 
-                const arrShipment = sales.map(sale => sale.shipment);
-                const shipments = Array.from(new Set(arrShipment));
+                console.log({ sales, customers });
+
+                const onlyThisYrs = sales.filter(sale => (parseInt(sale.yrs) === parseInt(period)));
+          
+                const arrShipment = onlyThisYrs.map(sale => (parseInt(sale.shipment)));
+                const shipments = [...new Set(arrShipment)];
+                console.log({shipments });
 
                 setSales(sales);
 
                 const result = shipments.map(shipment => {
-                    const oneSale = sales.find(sale => sale.shipment === shipment);
+                    const oneSale = sales.find(sale => parseInt(sale.shipment) === shipment);
                     const customerName = customers.find(customer => customer.id === oneSale.customerId);
-                    const matchingSale = sales.filter(sale => sale.shipment === shipment);
+                    const matchingSale = sales.filter(sale => parseInt(sale.shipment) === shipment);
                     const totalBale = matchingSale.reduce((t, c) => t + parseFloat(c.bale), 0);
                     const totalThan = matchingSale.reduce((t, c) => t + parseFloat(c.than), 0);
                     const totalMeter = matchingSale.reduce((t, c) => t + parseFloat(c.meter), 0);
@@ -62,9 +70,13 @@ const Shipmentreport = () => {
                 setSaleSummery(sortData);
 
                 //---------- Session Storage Year ----------------
-                const period = sessionStorage.getItem('yr');
-                setYr(period);
 
+                setYr(period);
+                // ----------------------------------------------------
+                const gtWgt = sortData.reduce((t, c) => t + parseFloat(c.totalWeitht), 0);
+                const gtWgtTk = sortData.reduce((t, c) => t + parseFloat(c.totalTaka), 0);
+                setTotalWgt(numberWithComma(gtWgt, false));
+                setTotalWgtTk(numberWithComma(gtWgtTk, false));
 
                 setWaitMsg('');
             } catch (error) {
@@ -81,6 +93,7 @@ const Shipmentreport = () => {
         <>
             <div className="w-full mb-3 mt-8">
                 <h1 className="w-full text-xl lg:text-3xl font-bold text-center text-blue-700">Report on Shipment-{yr}</h1>
+                <h1 className="w-full text-lg text-center">Weight: {totalWgt}; Taka: {totalWgtTk}</h1>
                 <p className="w-full text-center text-blue-300">&nbsp;{waitMsg}&nbsp;</p>
             </div>
 
