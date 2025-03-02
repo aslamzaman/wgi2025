@@ -6,6 +6,7 @@ import { getDataFromFirebase } from "@/lib/firebaseFunction";
 import { useRouter } from "next/navigation";
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
+import { dataDues } from "@/helpers/dueHelpers";
 
 
 const Customer = () => {
@@ -13,102 +14,28 @@ const Customer = () => {
     const [msg, setMsg] = useState("Data ready");
     const [waitMsg, setWaitMsg] = useState("");
 
-    const [dt1, setDt1] = useState("");
-    const [dt2, setDt2] = useState("");
-
-
-    //------- Total Taka in dues----------------------
     const [totalDue, setTotalDue] = useState('0');
-
-    //------- For dropdown ----------------------
-    const [cashtypes, setCashtypes] = useState([]);
     const [yr, setYr] = useState("");
 
     const router = useRouter();
 
 
-
-    const loadData = async (initD1, initD2) => {
-        setWaitMsg('Please Wait...');
-        try {
-
-            const [customers, sales, payments, cashtypes] = await Promise.all([
-                getDataFromFirebase('customer'),
-                getDataFromFirebase('sale'),
-                getDataFromFirebase('payment'),
-                getDataFromFirebase('cashtype')
-            ]);
-
-            //   console.log("Customer: ", customers);
-            //  console.log("Sale: ", sales);
-
-
-            setCashtypes(cashtypes);
-
-            const result = customers.map(customer => {
-                // dataDate >= d1 && dataDate <= d2
-                const matchingSale = sales.filter(sale => new Date(sale.dt) >= initD1 && new Date(sale.dt) <= initD2 && sale.customerId === customer.id);
-                const matchingPayment = payments.filter(payment => new Date(payment.dt) >= initD1 && new Date(payment.dt) <= initD2 && payment.customerId === customer.id);
-
-                const totalSale = matchingSale.reduce((t, c) => t + (parseFloat(c.weight) * parseFloat(c.rate)), 0);
-                const totalPayment = matchingPayment.reduce((t, c) => t + parseFloat(c.taka), 0);
-                const balance = totalSale - totalPayment;
-                const isDues = balance > 0 ? true : false;
-                return {
-                    ...customer,
-                    balance,
-                    isDues,
-                    matchingSale,
-                    matchingPayment
-                };
-            });
-
-
-            const sortResult = result.sort((a, b) => sortArray(a.name.toUpperCase(), b.name.toUpperCase()));
-            // console.log(sortResult);
-            setCustomers(sortResult);
-
-            //--------- Tota taka ------------------------------------------
-            const total = sortResult.reduce((t, c) => t + parseFloat(c.balance), 0);
-            setTotalDue(total);
-            setYr(sessionStorage.getItem('yr'));
-
-            setWaitMsg('');
-        } catch (error) {
-            console.error("Error fetching data:", error);
-            setMsg("Failed to fetch data");
-        }
-    };
-
-
-
-
     useEffect(() => {
-        const initD1 = new Date("1900-01-01");
-        const initD2 = new Date("2050-01-01");
-        loadData(initD1, initD2);
-        setDt1('2024-05-01');
-        setDt2(formatedDate(new Date()));
+        const dueData = async () => {
+            const data = await dataDues(false);
+            setCustomers(data.sortResult);
+            setTotalDue(data.totalTaka);
+            setYr(data.yrs);
+            console.log(data);
+        }
+        dueData();
     }, [msg]);
-
 
 
 
     const messageHandler = (data) => {
         setMsg(data);
     }
-
-
-    const searchClickHandler = async () => {
-        const d1 = new Date(dt1);
-        const d2 = new Date(dt2);
-        await loadData(d1, d2);
-    }
-
-    const refreshClickHandler = () => {
-        setMsg(`Refresh at: ${Date.now()}`);
-    }
-
 
 
     const gotToPrintPage = (data) => {
@@ -147,7 +74,7 @@ const Customer = () => {
                 { content: 'Customer', styles: { halign: 'left' } },
                 { content: 'Dues', styles: { halign: 'right' } }
             ]], // Table headers
-            body: data.map(row => [row.sl, row.name, numberWithComma(row.balance,true)]), // Table data
+            body: data.map(row => [row.sl, row.name, numberWithComma(row.balance, true)]), // Table data
         });
         // Save the PDF
         const numOfPages = doc.internal.getNumberOfPages();
@@ -160,14 +87,32 @@ const Customer = () => {
 
 
         doc.setPage(1);
-        doc.setFontSize(18);       
+        doc.setFontSize(18);
         doc.text("Customer Dues", 105, 20, "center");
         doc.setFontSize(10);
-        doc.text(`Period: ${formatedDateDot(dt1,true)} to ${formatedDateDot(dt2,true)}`, 105, 27, "center");
-        doc.text(`Print Date: ${formatedDateDot(new Date(),true)}`, 195, 37, "right");
+        doc.text(`Period: ${formatedDateDot(dt1, true)} to ${formatedDateDot(dt2, true)}`, 105, 27, "center");
+        doc.text(`Print Date: ${formatedDateDot(new Date(), true)}`, 195, 37, "right");
 
         doc.save('database_information.pdf');
     }
+
+
+    const sortByName = async () => {
+        const data = await dataDues(true);
+
+        setCustomers(data.sortResult);
+        setTotalDue(data.totalTaka);
+        setYr(data.yrs);
+    }
+
+    const sortByDues = async () => {
+        const data = await dataDues(false);
+
+        setCustomers(data.sortResult);
+        setTotalDue(data.totalTaka);
+        setYr(data.yrs);
+    }
+
 
 
     return (
@@ -177,15 +122,12 @@ const Customer = () => {
                 <h1 className="w-full text-xl lg:text-2xl font-bold text-center text-gray-400">Total = {numberWithComma(parseFloat(totalDue))}/-</h1>
                 <p className="w-full text-center text-blue-300">&nbsp;{waitMsg}&nbsp;</p>
             </div>
-
+  
             <div className="px-4 lg:px-6 overflow-auto">
                 <p className="w-full text-sm text-red-700">{msg}</p>
                 <div className="flex justify-end items-center space-x-2 mb-2">
-                    <input onChange={e => setDt1(e.target.value)} value={dt1} type="date" id='dt1' name="dt1" required className="w-[155px] px-4 py-1.5 text-gray-600 ring-1 focus:ring-4 ring-blue-300 outline-none rounded duration-300" />
-                    <span>To</span>
-                    <input onChange={e => setDt2(e.target.value)} value={dt2} type="date" id='dt2' name="dt2" required className="w-[155px] px-4 py-1.5 text-gray-600 ring-1 focus:ring-4 ring-blue-300 outline-none rounded duration-300" />
-                    <button onClick={searchClickHandler} className="text-center mx-0.5 px-4 py-2 bg-green-600 hover:bg-green-800 text-white font-semibold rounded-md focus:ring-1 ring-blue-200 ring-offset-2 duration-300  cursor-pointer">Search</button>
-                    <button onClick={refreshClickHandler} className="text-center mx-0.5 px-4 py-2 bg-violet-600 hover:bg-violet-800 text-white font-semibold rounded-md focus:ring-1 ring-blue-200 ring-offset-2 duration-300  cursor-pointer">Refresh</button>
+                    <button onClick={sortByName} className="text-center mx-0.5 px-4 py-2 bg-green-600 hover:bg-green-800 text-white font-semibold rounded-md focus:ring-1 ring-blue-200 ring-offset-2 duration-300  cursor-pointer">Sort By Name</button>
+                    <button onClick={sortByDues} className="text-center mx-0.5 px-4 py-2 bg-violet-600 hover:bg-violet-800 text-white font-semibold rounded-md focus:ring-1 ring-blue-200 ring-offset-2 duration-300  cursor-pointer">Sort By Dues</button>
                     <button onClick={printAllData} className="text-center mx-0.5 px-4 py-2 bg-blue-600 hover:bg-blue-800 text-white font-semibold rounded-md focus:ring-1 ring-blue-200 ring-offset-2 duration-300  cursor-pointer">Print All</button>
                 </div>
                 <table className="w-full border border-gray-200">
@@ -201,7 +143,7 @@ const Customer = () => {
                     <tbody>
                         {customers.length ? (
                             customers.map((customer, i) => (
-                                <tr className={`border-b border-gray-200 hover:bg-gray-100 ${customer.isDues ? 'text-black' : 'text-blue-500'}`} key={customer.id}>
+                                <tr className={`border-b border-gray-200 hover:bg-gray-100 ${customer.isDues ? 'text-red-800' : 'text-black'}`} key={customer.id}>
                                     <td className="text-start py-2 px-4">
                                         <span className="font-bold">{i + 1}. {customer.name}</span><br />
                                         {customer.address}<br />
