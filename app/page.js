@@ -97,7 +97,6 @@ export default function Home() {
           <form onSubmit={submitHandler}>
             <div className="grid grid-cols-1 gap-4">
             <DropdownEn Title="Year" Id="yr" Change={e => setYr(e.target.value)} Value={yr} >
-              <option value="all">All</option>
               <option value="2024">2024</option>
               <option value="2025">2025</option>
               <option value="2026">2026</option>
