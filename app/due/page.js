@@ -1,11 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Add from "@/components/due/Add";
-import { filterDataInPeriod, formatedDate, formatedDateDot, numberWithComma, sortArray } from "@/lib/utils";
-import { getDataFromFirebase } from "@/lib/firebaseFunction";
+import { formatedDateDot, numberWithComma } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import jsPDF from 'jspdf'
-import autoTable from 'jspdf-autotable'
+import 'jspdf-autotable'
 import { dataDues } from "@/helpers/dueHelpers";
 
 
@@ -90,10 +89,9 @@ const Customer = () => {
         doc.setFontSize(18);
         doc.text("Customer Dues", 105, 20, "center");
         doc.setFontSize(10);
-        doc.text(`Period: ${formatedDateDot(dt1, true)} to ${formatedDateDot(dt2, true)}`, 105, 27, "center");
         doc.text(`Print Date: ${formatedDateDot(new Date(), true)}`, 195, 37, "right");
 
-        doc.save('database_information.pdf');
+        doc.save('dues_all.pdf');
     }
 
 
